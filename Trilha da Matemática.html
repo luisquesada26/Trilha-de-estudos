@@ -1,0 +1,1184 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A trilha da Matemática: revisão para a prova</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F6FAFF; --sheet:#FFFFFF; --grid:#DCE8F5; --ink:#1E3F94; --on-ink:#FFFFFF;
+  --margin:#E34A62; --mark:#FFE16B; --fig:#E7EFFF; --ok:#1F8A50; --ok-bg:#E2F6EA; --bad:#B93229; --bad-bg:#FDEBE8;
+  --text:#1F2B45; --muted:#56637E; --line:#C9D7EA; --sol:#FFC93C; --capi:#B9824F; --capi-esc:#8A5A33;
+  --tema:#2F6BFF;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#101A2B; --sheet:#172338; --grid:#1A2940; --ink:#A5BEFF; --on-ink:#0E1830;
+    --margin:#FF7E91; --mark:#7A6414; --fig:#22355A; --ok:#62D394; --ok-bg:#153626; --bad:#FF8F84; --bad-bg:#3B1E1E;
+    --text:#E9EEF7; --muted:#A8B3C9; --line:#2D3D5B; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101A2B; --sheet:#172338; --grid:#1A2940; --ink:#A5BEFF; --on-ink:#0E1830;
+  --margin:#FF7E91; --mark:#7A6414; --fig:#22355A; --ok:#62D394; --ok-bg:#153626; --bad:#FF8F84; --bad-bg:#3B1E1E;
+  --text:#E9EEF7; --muted:#A8B3C9; --line:#2D3D5B; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{
+  margin:0;min-height:100%;
+  background-color:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:26px 26px;
+  color:var(--text);
+  font-family:Andika,"Trebuchet MS",Verdana,system-ui,sans-serif;
+  font-size:19px;line-height:1.6;
+}
+main{max-width:760px;margin:0 auto;padding:22px 20px 90px;min-height:100vh}
+@media (max-width:600px){body{font-size:18px} main{padding:14px 14px 80px}}
+h1,h2,h3{font-family:Fredoka,"Trebuchet MS",system-ui,sans-serif;color:var(--ink);line-height:1.2;margin:0}
+h1{font-size:clamp(1.9rem,6vw,2.6rem);font-weight:700}
+h2{font-size:1.6rem;font-weight:600;margin-bottom:.4em}
+h3{font-size:1.3rem;font-weight:600;margin:1.2em 0 .5em}
+p{margin:.55em 0}
+mark{background:linear-gradient(transparent 35%,var(--mark) 35%,var(--mark) 90%,transparent 90%);color:inherit;padding:0 .1em}
+b{color:var(--ink)}
+small{color:var(--muted)}
+
+/* Capi, a capivara */
+.capi{display:flex;align-items:flex-end;gap:10px;margin:6px 0 18px}
+.capi svg{width:96px;height:80px;flex:none}
+.capi.peq svg{width:70px;height:58px}
+.balao{position:relative;background:var(--sheet);border:2.5px solid var(--ink);border-radius:18px;padding:10px 16px;font-weight:700;max-width:46ch;margin-bottom:22px}
+.balao::before{content:"";position:absolute;left:-12px;bottom:12px;border:10px solid transparent;border-right-color:var(--ink);border-left:0}
+.balao::after{content:"";position:absolute;left:-8px;bottom:14px;border:8px solid transparent;border-right-color:var(--sheet);border-left:0}
+
+.placar-topo{display:flex;flex-wrap:wrap;gap:10px;margin:4px 0 22px}
+.chip{background:var(--sheet);border:2px solid var(--line);border-radius:99px;padding:6px 14px;font-family:Fredoka,sans-serif;font-weight:600;color:var(--ink)}
+.chip.dias{border-color:var(--margin);color:var(--margin)}
+
+/* Trilha */
+.trilha{list-style:none;padding:0;margin:0 0 30px;position:relative}
+.trilha::before{content:"";position:absolute;left:39px;top:30px;bottom:30px;border-left:5px dotted var(--line)}
+.parada{position:relative;margin:0 0 14px}
+.parada button{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:16px;width:100%;padding:6px 8px;border-radius:16px}
+.parada button:hover{background:color-mix(in srgb,var(--tema) 10%,transparent)}
+.parada button:focus-visible{outline:3px solid var(--tema);outline-offset:2px}
+.bola{
+  width:64px;height:64px;flex:none;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:Fredoka,sans-serif;font-weight:700;font-size:1.7rem;color:#fff;background:var(--tema);
+  box-shadow:0 5px 0 color-mix(in srgb,var(--tema) 65%,#000);position:relative;z-index:1;
+}
+.bola.figurinha{font-size:2.1rem;background:var(--sheet);border:4px solid var(--tema);box-shadow:0 5px 0 color-mix(in srgb,var(--tema) 65%,#000)}
+.parada .info b{display:block;color:var(--text);font-size:1.05rem;line-height:1.3}
+.est{color:#E2A400;font-size:1.25rem;letter-spacing:.08em}
+.tag{display:inline-block;background:var(--tema);color:#fff;font-family:Fredoka,sans-serif;font-weight:600;font-size:.8rem;padding:2px 10px;border-radius:99px;margin-left:6px;vertical-align:middle}
+.parada.agora .bola{animation:pulsa 1.6s ease-in-out infinite}
+@keyframes pulsa{50%{transform:scale(1.08)}}
+
+/* Álbum */
+.album{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;margin:10px 0 20px}
+.fig-card{background:var(--sheet);border:2.5px dashed var(--line);border-radius:14px;padding:12px 8px;text-align:center;min-height:130px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.fig-card .em{font-size:2.8rem;line-height:1.1}
+.fig-card.vazia .em{font-family:Fredoka,sans-serif;color:var(--line);font-size:2.4rem}
+.fig-card.ganha{border:3px solid var(--tema);background:color-mix(in srgb,var(--tema) 12%,var(--sheet))}
+.fig-card b{font-size:.92rem;line-height:1.25}
+.fig-card small{font-size:.78rem;line-height:1.3}
+
+/* Botões */
+.btn{
+  font:inherit;font-family:Fredoka,sans-serif;font-weight:600;font-size:1.1rem;cursor:pointer;
+  background:var(--tema);color:#fff;border:0;border-radius:14px;padding:12px 22px;
+  box-shadow:0 5px 0 color-mix(in srgb,var(--tema) 60%,#000);transition:transform .08s;
+}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 color-mix(in srgb,var(--tema) 60%,#000)}
+.btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.btn.sec{background:var(--sheet);color:var(--ink);box-shadow:0 4px 0 var(--line);border:2px solid var(--line)}
+.btn.lapis{background:var(--sol);color:#3A2E00;box-shadow:0 5px 0 #C99A10}
+.acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px;align-items:center}
+.voltar{all:unset;cursor:pointer;color:var(--ink);font-weight:700;display:inline-block;margin-bottom:14px}
+.voltar:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+
+/* Cartões de explicação */
+.faixa{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.faixa .bola{width:54px;height:54px;font-size:1.4rem}
+.faixa h2{margin:0;font-size:1.45rem}
+.pontos{display:flex;gap:6px;margin:6px 0 14px}
+.pontos i{width:26px;height:8px;border-radius:99px;background:var(--line)}
+.pontos i.feito{background:var(--tema)}
+.cartao{background:var(--sheet);border:3px solid var(--tema);border-radius:20px;padding:18px 22px 22px;box-shadow:0 6px 0 color-mix(in srgb,var(--tema) 30%,transparent)}
+.cartao h3:first-child{margin-top:0;font-size:1.45rem}
+.cartao.entra{animation:entra .3s ease-out}
+@keyframes entra{from{opacity:0;transform:translateX(24px)}}
+.dica{border-left:5px solid var(--sol);background:color-mix(in srgb,var(--sol) 14%,transparent);padding:8px 12px;margin:14px 0;border-radius:0 10px 10px 0}
+.exemplos{list-style:none;padding:0;margin:10px 0}
+.exemplos li{padding:4px 0}
+.exemplos .num{font-family:Fredoka,sans-serif;font-weight:600;color:var(--ink);font-size:1.15rem;margin-right:6px}
+.tabela-wrap{overflow-x:auto;margin:12px 0}
+table{border-collapse:collapse;background:var(--sheet);min-width:280px}
+th,td{border:1.5px solid var(--line);padding:6px 12px;text-align:center}
+th{font-family:Fredoka,sans-serif;font-weight:600;color:var(--ink)}
+td.big{font-family:Fredoka,sans-serif;font-size:1.4rem;color:var(--ink)}
+.conta{display:inline-grid;--cell:1.75em;font-family:Fredoka,sans-serif;font-size:1.45rem;margin:10px 0;background:var(--sheet)}
+.conta span{width:var(--cell);height:var(--cell);display:flex;align-items:center;justify-content:center;border:1px solid var(--grid)}
+.conta .carry{color:var(--margin);font-size:.62em;font-weight:700}
+.conta .op{color:var(--margin);font-weight:700}
+.conta .res{border-top:3px solid var(--ink)}
+.conta .r{color:var(--ok);font-weight:700}
+.contas{display:flex;flex-wrap:wrap;gap:26px;align-items:flex-start}
+.galeria{display:flex;flex-wrap:wrap;gap:12px;margin:12px 0}
+.galeria figure{margin:0;width:112px;text-align:center;background:var(--paper);border:2px solid var(--line);border-radius:12px;padding:8px 6px}
+.galeria figcaption{font-weight:700;font-size:.92rem;line-height:1.25}
+.galeria figcaption small{display:block;font-weight:400}
+.galeria.nao figure{border-color:var(--margin)}
+svg.fig{width:80px;height:80px;display:block;margin:0 auto}
+svg.fig *{fill:var(--fig);stroke:var(--ink);stroke-width:3.5;stroke-linejoin:round;stroke-linecap:round}
+svg.fig polyline{fill:none}
+.q-fig svg.fig{width:130px;height:130px;margin:6px 0}
+
+/* Desafio */
+.ficha{background:var(--sheet);border:3px solid var(--tema);border-radius:20px;padding:18px 20px 24px;box-shadow:0 6px 0 color-mix(in srgb,var(--tema) 30%,transparent)}
+.prog{display:flex;justify-content:space-between;align-items:center;gap:10px;color:var(--muted);font-size:.95rem;margin-bottom:8px;font-weight:700}
+.fogo{color:#E8590C;font-family:Fredoka,sans-serif;font-weight:700}
+.barra{height:12px;background:var(--grid);border-radius:99px;overflow:hidden;margin-bottom:18px}
+.barra i{display:block;height:100%;background:var(--tema);border-radius:99px;transition:width .4s}
+.enunciado{font-size:1.25rem;font-weight:700;margin:0 0 10px}
+.papel{background:color-mix(in srgb,var(--sol) 20%,var(--sheet));border:2.5px dashed #D3A417;border-radius:14px;padding:14px 16px;margin:14px 0}
+.papel p{margin:0 0 10px}
+.opcoes{display:grid;gap:10px;margin:14px 0}
+.opcao{all:unset;box-sizing:border-box;cursor:pointer;border:2.5px solid var(--line);border-radius:14px;padding:10px 14px;background:var(--paper);display:flex;gap:12px;align-items:center}
+.opcao .letra{font-family:Fredoka,sans-serif;font-weight:700;color:var(--ink);width:1.7em;height:1.7em;border:2px solid var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;font-size:.9rem}
+.opcao:hover{border-color:var(--tema)}
+.opcao:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.opcao.sel{border-color:var(--tema);background:color-mix(in srgb,var(--tema) 14%,var(--sheet))}
+.opcao.sel .letra{background:var(--tema);border-color:var(--tema);color:#fff}
+.opcao.certa{border-color:var(--ok);background:var(--ok-bg)}
+.opcao.errada{border-color:var(--bad);background:var(--bad-bg)}
+.opcao[aria-disabled="true"]{cursor:default}
+.resp{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0}
+.resp input{font:inherit;font-family:Fredoka,sans-serif;font-size:1.6rem;width:9ch;padding:8px 12px;border-radius:12px;border:3px solid var(--tema);background:var(--paper);color:var(--text)}
+.resp input:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.aviso{color:var(--bad);font-weight:700;min-height:1.2em;margin:6px 0 0}
+.feedback{border-radius:16px;padding:14px 16px;margin-top:16px}
+.feedback.ok{background:var(--ok-bg);border:3px solid var(--ok);animation:pop .35s ease-out}
+.feedback.no{background:var(--bad-bg);border:3px solid var(--bad)}
+.feedback .tit{font-family:Fredoka,sans-serif;font-weight:700;font-size:1.5rem}
+.feedback.ok .tit{color:var(--ok)}
+.feedback.no .tit{color:var(--bad)}
+.feedback .capi{margin:0 0 6px}
+.feedback .balao{margin-bottom:14px}
+@keyframes pop{0%{transform:scale(.9);opacity:0}70%{transform:scale(1.03)}100%{transform:scale(1)}}
+
+/* Resultado */
+.resultado{text-align:center}
+.resultado .placar{font-family:Fredoka,sans-serif;font-size:clamp(3rem,12vw,4.6rem);color:var(--tema);font-weight:700;line-height:1;margin:8px 0}
+.estrelas-grandes{font-size:3rem;letter-spacing:.12em;color:#E2A400}
+.estrelas-grandes span{display:inline-block;animation:pop .4s ease-out both}
+.estrelas-grandes span:nth-child(2){animation-delay:.2s}.estrelas-grandes span:nth-child(3){animation-delay:.4s}
+.premio{background:var(--sheet);border:3px solid var(--tema);border-radius:20px;padding:16px;margin:18px auto;max-width:420px}
+.premio .em{font-size:4.5rem;line-height:1;display:block;animation:gira .9s ease-out}
+@keyframes gira{from{transform:scale(.2) rotate(-200deg)}}
+.revisao{list-style:none;padding:0;margin:16px 0;text-align:left}
+.revisao li{border-bottom:1.5px dashed var(--line);padding:10px 0}
+.revisao .marca{font-weight:700;margin-right:6px}
+.revisao .marca.ok{color:var(--ok)}.revisao .marca.no{color:var(--bad)}
+.resultado .acoes{justify-content:center}
+
+/* Tabuada */
+.tab-box{background:color-mix(in srgb,var(--tema) 8%,var(--paper));border:2.5px solid var(--tema);border-radius:16px;padding:16px;margin:14px 0}
+.tab-q{font-family:Fredoka,sans-serif;font-size:2.4rem;color:var(--ink);font-weight:700;margin:4px 0}
+.tab-msg{min-height:1.6em;font-weight:700}
+.tab-msg.ok{color:var(--ok)}.tab-msg.no{color:var(--bad)}
+.tabuada-grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin:12px 0}
+.tabuada-grade div{background:var(--paper);border:1.5px solid var(--line);border-radius:8px;padding:6px 10px;font-size:.92rem;line-height:1.45}
+.tabuada-grade strong{font-family:Fredoka,sans-serif;color:var(--ink)}
+
+.painel h3{margin-top:1.4em}
+.painel table{width:100%}
+.painel td{text-align:left}
+.painel td.n{text-align:center;font-family:Fredoka,sans-serif;font-weight:600}
+.tentativa{background:var(--sheet);border:2px solid var(--line);border-radius:14px;margin:10px 0;padding:0}
+.tentativa summary{cursor:pointer;padding:12px 14px;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;list-style:none}
+.tentativa summary::-webkit-details-marker{display:none}
+.tentativa summary::before{content:"▸";color:var(--ink);font-weight:700}
+.tentativa[open] summary::before{content:"▾"}
+.tentativa .quando{color:var(--muted);font-size:.9rem}
+.tentativa .nota{margin-left:auto;font-family:Fredoka,sans-serif;font-weight:700}
+.tentativa .nota.boa{color:var(--ok)}.tentativa .nota.fraca{color:var(--bad)}
+.tentativa ul{list-style:none;margin:0;padding:0 14px 12px;border-top:1.5px dashed var(--line)}
+.tentativa li{padding:8px 0;border-bottom:1px dashed var(--line);font-size:.95rem}
+.tentativa li:last-child{border-bottom:0}
+.link-tent{all:unset;cursor:pointer;color:var(--ink);text-decoration:underline;text-underline-offset:3px;font-family:Fredoka,sans-serif;font-weight:700;padding:2px 12px;border-radius:8px}
+.link-tent:hover{background:color-mix(in srgb,var(--ink) 14%,transparent)}
+.link-tent:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.modal-fundo{position:fixed;inset:0;z-index:40;background:rgba(8,14,28,.62);display:flex;align-items:center;justify-content:center;padding:calc(env(safe-area-inset-top,0px) + 16px) 14px calc(env(safe-area-inset-bottom,0px) + 16px)}
+.modal{background:var(--paper);border:3px solid var(--ink);border-radius:20px;width:min(740px,100%);max-height:100%;display:flex;flex-direction:column;overflow:hidden;animation:pop .25s ease-out}
+.modal-topo{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 16px;border-bottom:2px solid var(--line);background:var(--sheet)}
+.modal-topo h3{margin:0;font-size:1.2rem}
+.fechar{all:unset;cursor:pointer;flex:none;font-size:1.3rem;width:42px;height:42px;display:flex;align-items:center;justify-content:center;border-radius:50%;color:var(--ink)}
+.fechar:hover{background:var(--grid)}
+.fechar:focus-visible{outline:3px solid var(--ink)}
+.modal-corpo{overflow-y:auto;padding:4px 16px 20px}
+.m-tent h4{font-family:Fredoka,sans-serif;color:var(--ink);font-size:1.1rem;margin:18px 0 6px;display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center}
+.m-tent h4 .nota{margin-left:auto;font-weight:700}
+.m-tent h4 .nota.boa{color:var(--ok)}.m-tent h4 .nota.fraca{color:var(--bad)}
+.m-qs{list-style:none;padding:0;margin:0}
+.m-qs>li{background:var(--sheet);border:2px solid var(--line);border-left-width:7px;border-radius:12px;padding:10px 14px;margin:10px 0}
+.m-qs>li.ok{border-left-color:var(--ok)}.m-qs>li.no{border-left-color:var(--bad)}
+.m-enun{font-weight:700;margin:0 0 8px}
+.m-enun .ic{margin-right:6px}
+.m-qs>li.ok .ic{color:var(--ok)}.m-qs>li.no .ic{color:var(--bad)}
+.m-ops{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+.m-ops li{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;padding:6px 10px;border-radius:10px;border:2px solid var(--line)}
+.m-ops li.c{border-color:var(--ok);background:var(--ok-bg)}
+.m-ops li.e{border-color:var(--bad);background:var(--bad-bg)}
+.m-ops .letra{font-family:Fredoka,sans-serif;font-weight:700;color:var(--ink);width:1.6em;height:1.6em;border:2px solid var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;font-size:.85rem}
+.m-ops .tag{margin-left:auto;font-size:.78rem}
+.m-ops li.c .tag{background:var(--ok)}.m-ops li.e .tag{background:var(--bad)}
+.m-num{display:flex;flex-wrap:wrap;gap:8px 18px}
+.m-num span{padding:4px 12px;border-radius:10px;border:2px solid var(--line)}
+.m-num .sua.ok{border-color:var(--ok);background:var(--ok-bg)}.m-num .sua.no{border-color:var(--bad);background:var(--bad-bg)}
+.estudar{margin-top:10px;padding:10px 14px;border-radius:12px;background:color-mix(in srgb,var(--sol) 16%,var(--sheet));border:2px dashed #D3A417}
+.estudar p{margin:0 0 6px}
+.link-est{all:unset;cursor:pointer;font-family:Fredoka,sans-serif;font-weight:600;color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.link-est:focus-visible{outline:3px solid var(--ink);outline-offset:2px;border-radius:4px}
+.convite{font-family:Fredoka,sans-serif;font-weight:600;font-size:1.1rem;color:var(--margin);margin:6px 0 0}
+.convite b{color:var(--margin)}
+.convite-fixo{position:fixed;left:12px;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);z-index:30;background:var(--sheet);color:var(--margin);border:2px solid var(--margin);border-radius:99px;padding:5px 14px;font-family:Fredoka,sans-serif;font-weight:600;font-size:.85rem;box-shadow:0 3px 10px rgba(0,0,0,.15);pointer-events:none}
+.salvo{display:inline-block;font-size:.85rem;font-weight:700;color:var(--ok);background:var(--ok-bg);border-radius:99px;padding:3px 12px}
+.salvo.local{color:var(--muted);background:var(--grid)}
+.confete{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:50}
+.confete i{position:absolute;top:-14px;width:10px;height:15px;border-radius:2px;animation:cai 1.9s ease-in forwards}
+@keyframes cai{to{transform:translate(var(--x),108vh) rotate(var(--r))}}
+.rodape{margin-top:40px;font-size:.85rem;color:var(--muted)}
+.rodape button{all:unset;cursor:pointer;text-decoration:underline}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<div class="convite-fixo">💌 Convite da Miranda</div>
+<script>
+
+/* ---------- Ajudantes visuais ---------- */
+function conta(expr){
+  const m = expr.match(/^(\d+)([+\-x])(\d+)$/);
+  const a = +m[1], op = m[2], b = +m[3];
+  const r = op === '+' ? a + b : op === '-' ? a - b : a * b;
+  const A = String(a), B = String(b), R = String(r);
+  const cols = Math.max(A.length, B.length, R.length) + 1;
+  const carry = Array(cols).fill('');
+  let c = 0;
+  if (op === '+') {
+    const L = Math.max(A.length, B.length);
+    for (let i = 0; i < L; i++) {
+      const s = (+A[A.length - 1 - i] || 0) + (+B[B.length - 1 - i] || 0) + c;
+      c = Math.floor(s / 10);
+      if (c && i + 1 < L) carry[cols - 2 - i] = c;
+    }
+  } else if (op === 'x') {
+    for (let i = 0; i < A.length; i++) {
+      const s = (+A[A.length - 1 - i]) * b + c;
+      c = Math.floor(s / 10);
+      if (c && i + 1 < A.length) carry[cols - 2 - i] = c;
+    }
+  }
+  const pad = s => Array(cols - s.length).fill('').concat(s.split(''));
+  const sign = op === '+' ? '+' : op === '-' ? '−' : '×';
+  const rowB = pad(B); rowB[0] = sign;
+  let html = '';
+  if (carry.some(x => x !== '')) html += carry.map(x => `<span class="carry">${x}</span>`).join('');
+  html += pad(A).map(x => `<span>${x}</span>`).join('');
+  html += rowB.map((x, i) => `<span class="${i === 0 ? 'op' : ''}">${x}</span>`).join('');
+  html += pad(R).map(x => `<span class="res r">${x}</span>`).join('');
+  return `<div class="conta" style="grid-template-columns:repeat(${cols},var(--cell))" role="img" aria-label="${a} ${sign} ${b} = ${r}">${html}</div>`;
+}
+const svg = inner => `<svg viewBox="0 0 100 100" class="fig" aria-hidden="true">${inner}</svg>`;
+function reg(n, rot = -90) {
+  const pts = [];
+  for (let k = 0; k < n; k++) {
+    const ang = (rot + 360 * k / n) * Math.PI / 180;
+    pts.push((50 + 40 * Math.cos(ang)).toFixed(1) + ',' + (52 + 40 * Math.sin(ang)).toFixed(1));
+  }
+  return svg(`<polygon points="${pts.join(' ')}"/>`);
+}
+const FIG = {
+  tri: reg(3), quad: reg(4, -45), pent: reg(5), hex: reg(6), oct: reg(8, -22.5),
+  ret: svg('<rect x="10" y="28" width="80" height="46"/>'),
+  los: svg('<polygon points="50,8 82,50 50,92 18,50"/>'),
+  trap: svg('<polygon points="32,28 68,28 90,74 10,74"/>'),
+  circ: svg('<circle cx="50" cy="50" r="38"/>'),
+  aberta: svg('<polyline points="18,80 18,24 82,24 82,80"/>'),
+  curva: svg('<path d="M15,78 L15,26 L85,26 L85,78 Q50,48 15,78 Z"/>'),
+  cruz: svg('<polygon points="15,20 85,80 85,20 15,80"/>')
+};
+const galeria = (itens, nao) => `<div class="galeria${nao ? ' nao' : ''}">${itens.map(([f, n, s]) => `<figure>${FIG[f]}<figcaption>${n}${s ? `<small>${s}</small>` : ''}</figcaption></figure>`).join('')}</div>`;
+
+/* ---------- Conteúdo ---------- */
+const TOPICS = [
+{
+  id: 'numeros', title: 'Números: ler, escrever e comparar',
+  sub: 'Algarismos, leitura e escrita, comparação, antecessor e sucessor, pares e ímpares',
+  lessons: [
+    ['Os 10 algarismos', `
+      <p>Nosso sistema de numeração é <b>decimal</b>: usamos só <mark>10 algarismos</mark> (0, 1, 2, 3, 4, 5, 6, 7, 8 e 9) e fazemos grupos de 10 em 10.</p>
+      <p>Com esses 10 algarismos dá para escrever qualquer número. O segredo é o <b>lugar</b> onde cada algarismo fica. Isso você vai estudar no tema 2.</p>`],
+    ['Leitura e escrita', `
+      <p>Para ler um número grande, separe os algarismos de <mark>3 em 3, da direita para a esquerda</mark>. O ponto mostra onde começa a classe dos milhares.</p>
+      <ul class="exemplos">
+        <li><span class="num">12.408</span> doze mil, quatrocentos e oito</li>
+        <li><span class="num">2.078</span> dois mil e setenta e oito</li>
+        <li><span class="num">30.050</span> trinta mil e cinquenta</li>
+        <li><span class="num">145.300</span> cento e quarenta e cinco mil e trezentos</li>
+      </ul>
+      <p class="dica">Cuidado com o <b>zero</b>: ele não é lido, mas guarda o lugar. Sem o zero, 2.078 viraria 278!</p>
+      <p>Atenção à escrita: dezesseis, dezessete, dezenove, cinquenta, quatrocentos, seiscentos. O 100 sozinho é <b>cem</b>; depois vira <b>cento</b>: cento e um, cento e vinte.</p>`],
+    ['Comparação de números', `
+      <p>Usamos três sinais: <b>&gt;</b> maior que, <b>&lt;</b> menor que e <b>=</b> igual a. A parte aberta do sinal fica sempre virada para o número maior.</p>
+      <p><b>Regra 1:</b> o número com <mark>mais algarismos</mark> é o maior. Exemplo: 10.000 &gt; 9.999.</p>
+      <p><b>Regra 2:</b> se tiverem a mesma quantidade de algarismos, compare <mark>da esquerda para a direita</mark>, um por um, até achar um diferente.</p>
+      <p>Exemplo: 5.621 e 5.640. O 5 é igual, o 6 é igual, mas 2 é menor que 4. Então <b>5.621 &lt; 5.640</b>.</p>
+      <p><b>Ordem crescente:</b> do menor para o maior (como uma escada subindo). <b>Ordem decrescente:</b> do maior para o menor.</p>`],
+    ['Antecessor e sucessor', `
+      <p>O <b>antecessor</b> vem logo antes: é o número <mark>menos 1</mark>. O <b>sucessor</b> vem logo depois: é o número <mark>mais 1</mark>.</p>
+      <div class="tabela-wrap"><table>
+        <tr><th>Antecessor</th><th>Número</th><th>Sucessor</th></tr>
+        <tr><td>99</td><td class="big">100</td><td>101</td></tr>
+        <tr><td>2.999</td><td class="big">3.000</td><td>3.001</td></tr>
+        <tr><td>4.998</td><td class="big">4.999</td><td>5.000</td></tr>
+        <tr><td>9.999</td><td class="big">10.000</td><td>10.001</td></tr>
+      </table></div>
+      <p class="dica">Os números “redondos” são as pegadinhas preferidas da prova. Faça a conta com calma: 3.000 − 1 = 2.999.</p>`],
+    ['Números pares e ímpares', `
+      <p>Para saber se um número é par ou ímpar, olhe <mark>só o último algarismo</mark> (o das unidades).</p>
+      <p><b>Par</b> termina em 0, 2, 4, 6 ou 8. <b>Ímpar</b> termina em 1, 3, 5, 7 ou 9.</p>
+      <ul class="exemplos">
+        <li><span class="num">3.458</span> termina em 8, é par</li>
+        <li><span class="num">7.001</span> termina em 1, é ímpar</li>
+        <li><span class="num">12.340</span> termina em 0, é par</li>
+      </ul>
+      <p>Número par é aquele que dá para dividir em 2 grupos iguais sem sobrar nada.</p>`]
+  ],
+  quiz: [
+    {t:'mc', q:'Como se escreve 2.078 por extenso?', o:['Dois mil setecentos e oito','Dois mil e setenta e oito','Duzentos e setenta e oito','Vinte mil e setenta e oito'], a:1, e:'O 2 está na unidade de milhar (dois mil), o 0 está nas centenas (não se lê), o 7 nas dezenas (setenta) e o 8 nas unidades (oito).'},
+    {t:'mc', q:'Qual número é “quinze mil, trezentos e seis”?', o:['15.360','1.536','15.306','150.306'], a:2, e:'Quinze mil = 15.000. Trezentos e seis = 306. Juntando: 15.306. O zero fica no lugar das dezenas.'},
+    {t:'mc', q:'Qual sinal completa corretamente: 6.098 ___ 6.102', o:['>','<','='], a:1, e:'Os dois têm 4 algarismos. O 6 é igual; depois, 0 é menor que 1. Então 6.098 < 6.102.'},
+    {t:'num', q:'Qual é o antecessor de 3.000?', a:2999, e:'Antecessor é menos 1: 3.000 − 1 = 2.999.'},
+    {t:'num', q:'Qual é o sucessor de 19.999?', a:20000, e:'Sucessor é mais 1: 19.999 + 1 = 20.000.'},
+    {t:'mc', q:'Qual destes números é ímpar?', o:['4.590','3.008','1.002','7.215'], a:3, e:'7.215 termina em 5, que é ímpar. Os outros terminam em 0, 8 e 2, que são pares.'}
+  ]
+},
+{
+  id: 'ordens', title: 'Classes, ordens e valor dos algarismos',
+  sub: 'Quadro valor de lugar, valor absoluto e relativo, composição e decomposição',
+  lessons: [
+    ['Ordens', `
+      <p>Cada <b>lugar</b> de um número é uma <mark>ordem</mark>. Contamos da direita para a esquerda:</p>
+      <div class="tabela-wrap"><table>
+        <tr><th colspan="3">Classe dos milhares</th><th colspan="3">Classe das unidades simples</th></tr>
+        <tr><th>CM</th><th>DM</th><th>UM</th><th>C</th><th>D</th><th>U</th></tr>
+        <tr><td>6ª ordem</td><td>5ª ordem</td><td>4ª ordem</td><td>3ª ordem</td><td>2ª ordem</td><td>1ª ordem</td></tr>
+        <tr><td class="big">2</td><td class="big">4</td><td class="big">5</td><td class="big">3</td><td class="big">1</td><td class="big">8</td></tr>
+      </table></div>
+      <p>No número <b>245.318</b>: 8 unidades (U), 1 dezena (D), 3 centenas (C), 5 unidades de milhar (UM), 4 dezenas de milhar (DM) e 2 centenas de milhar (CM).</p>
+      <p>Lembre as trocas: <mark>10 unidades = 1 dezena</mark>, 10 dezenas = 1 centena, 10 centenas = 1 unidade de milhar.</p>`],
+    ['Classes', `
+      <p>Cada grupo de <mark>3 ordens</mark> forma uma <b>classe</b>.</p>
+      <p><b>Classe das unidades simples:</b> unidades, dezenas e centenas.<br><b>Classe dos milhares:</b> unidades de milhar, dezenas de milhar e centenas de milhar.</p>
+      <p>O ponto separa as classes. Em 245.318 lemos primeiro a classe dos milhares (duzentos e quarenta e cinco <b>mil</b>) e depois a classe das unidades simples (trezentos e dezoito).</p>
+      <p class="dica">Não confunda: <b>ordem</b> é cada lugar (U, D, C...). <b>Classe</b> é o grupo de 3 ordens.</p>`],
+    ['Valor absoluto e valor relativo', `
+      <p><b>Valor absoluto</b> é o valor do algarismo <mark>sozinho</mark>, não importa onde ele está.</p>
+      <p><b>Valor relativo</b> (ou posicional) é quanto ele <mark>vale pela posição</mark> que ocupa.</p>
+      <p>Veja o número <b>7.777</b>. Todos os algarismos têm valor absoluto 7, mas cada um vale uma coisa diferente:</p>
+      <div class="tabela-wrap"><table>
+        <tr><th>UM</th><th>C</th><th>D</th><th>U</th></tr>
+        <tr><td class="big">7</td><td class="big">7</td><td class="big">7</td><td class="big">7</td></tr>
+        <tr><td>vale 7.000</td><td>vale 700</td><td>vale 70</td><td>vale 7</td></tr>
+      </table></div>
+      <p>Outro exemplo: em <b>5.324</b>, o 5 tem valor absoluto 5 e valor relativo 5.000. O 2 tem valor absoluto 2 e valor relativo 20.</p>`],
+    ['Decomposição e composição', `
+      <p><b>Decompor</b> é separar o número pelo valor de cada algarismo.</p>
+      <ul class="exemplos">
+        <li><span class="num">3.819</span> = 3.000 + 800 + 10 + 9</li>
+        <li><span class="num">3.819</span> = 3 UM + 8 C + 1 D + 9 U</li>
+        <li><span class="num">4.056</span> = 4.000 + 50 + 6 <small>(o zero não aparece na soma)</small></li>
+      </ul>
+      <p><b>Compor</b> é o contrário: juntar as partes para formar o número.</p>
+      <ul class="exemplos">
+        <li>20.000 + 400 + 7 = <span class="num">20.407</span></li>
+        <li>6 UM + 3 D = <span class="num">6.030</span></li>
+      </ul>
+      <p class="dica">Para compor sem errar, desenhe o quadro valor de lugar no caderno, coloque cada algarismo na sua casa e <b>complete as casas vazias com zero</b>.</p>`]
+  ],
+  quiz: [
+    {t:'num', q:'Qual é o valor relativo do algarismo 7 no número 7.432?', a:7000, e:'O 7 está na ordem das unidades de milhar, então vale 7.000.'},
+    {t:'mc', q:'No número 63.185, o algarismo 3 ocupa qual ordem?', o:['Dezenas','Unidades de milhar','Centenas','Dezenas de milhar'], a:1, e:'Da direita para a esquerda: 5 (U), 8 (D), 1 (C), 3 (UM), 6 (DM). O 3 está nas unidades de milhar.'},
+    {t:'mc', q:'Qual é a decomposição correta de 3.819?', o:['3.000 + 80 + 10 + 9','300 + 80 + 10 + 9','3.000 + 800 + 10 + 9','3.000 + 800 + 100 + 9'], a:2, e:'3 vale 3.000, 8 vale 800, 1 vale 10 e 9 vale 9.'},
+    {t:'num', q:'Componha o número: 40.000 + 600 + 5', a:40605, p:true, e:'Coloque no quadro: 4 na DM, 0 na UM, 6 na C, 0 na D e 5 na U. Resultado: 40.605.'},
+    {t:'num', q:'Qual é o valor absoluto do algarismo 8 no número 18.402?', a:8, e:'Valor absoluto é o algarismo sozinho: 8. (O valor relativo seria 8.000.)'},
+    {t:'num', q:'Quantas ordens tem o número 254.130?', a:6, e:'Cada algarismo ocupa uma ordem. São 6 algarismos, então 6 ordens (e 2 classes).'}
+  ]
+},
+{
+  id: 'geometria', title: 'Figuras planas e polígonos',
+  sub: 'O que é polígono, lados e vértices, nomes das figuras',
+  lessons: [
+    ['Figuras planas', `
+      <p><b>Figuras planas</b> são “achatadas”: dá para desenhar inteirinhas numa folha de papel. Elas têm comprimento e largura, mas não têm volume.</p>
+      <p>Uma bola, um dado ou uma caixa não são figuras planas: são <b>sólidos geométricos</b>. Mas a face de um dado é um quadrado, que é uma figura plana!</p>`],
+    ['O que é polígono', `
+      <p><b>Polígono</b> é uma figura plana <mark>fechada</mark>, formada <mark>só por linhas retas</mark> que não se cruzam.</p>
+      <p>Partes de um polígono: os <b>lados</b> (as linhas retas) e os <b>vértices</b> (as pontas, onde dois lados se encontram). Todo polígono tem o <b>mesmo número de lados e de vértices</b>.</p>
+      <h3 style="margin-top:1em">São polígonos</h3>
+      ${galeria([['tri','Triângulo'],['ret','Retângulo'],['hex','Hexágono']])}
+      <h3 style="margin-top:1em">Não são polígonos</h3>
+      ${galeria([['circ','Círculo','linha curva'],['aberta','Figura aberta','não fecha'],['curva','Tem parte curva','não é toda reta']], true)}`],
+    ['Nomes dos polígonos', `
+      <p>O nome depende do <mark>número de lados</mark>.</p>
+      ${galeria([['tri','Triângulo','3 lados'],['quad','Quadrado','4 lados'],['pent','Pentágono','5 lados'],['hex','Hexágono','6 lados'],['oct','Octógono','8 lados']])}
+      <p class="dica">Truques: <b>tri</b> = 3 (triciclo), <b>penta</b> = 5 (pentacampeão), <b>hexa</b> = 6, <b>octo</b> = 8 (a placa de PARE tem 8 lados).</p>
+      <p>Todo polígono de 4 lados é um <b>quadrilátero</b>. Alguns quadriláteros:</p>
+      ${galeria([['quad','Quadrado','4 lados iguais'],['ret','Retângulo','lados opostos iguais'],['los','Losango',''],['trap','Trapézio','']])}`]
+  ],
+  quiz: [
+    {t:'mc', q:'Qual destas figuras NÃO é um polígono?', o:['Triângulo','Hexágono','Círculo','Retângulo'], a:2, e:'O círculo é formado por uma linha curva. Polígono só tem lados retos.'},
+    {t:'mc', q:'Como se chama esta figura?', fig:'pent', o:['Hexágono','Pentágono','Quadrado','Octógono'], a:1, e:'Conte os lados: são 5. Polígono de 5 lados é o pentágono.'},
+    {t:'num', q:'Quantos vértices tem um hexágono?', a:6, e:'O hexágono tem 6 lados. Todo polígono tem o mesmo número de lados e de vértices: 6.'},
+    {t:'mc', q:'O quadrado e o retângulo são exemplos de:', o:['Triângulos','Pentágonos','Quadriláteros','Figuras que não são polígonos'], a:2, e:'Os dois têm 4 lados. Todo polígono de 4 lados é um quadrilátero.'},
+    {t:'mc', q:'Esta figura é um polígono?', fig:'aberta', o:['Sim, porque tem lados retos','Não, porque está aberta','Sim, porque tem 3 lados','Não, porque tem lados curvos'], a:1, e:'Para ser polígono, a figura precisa ser fechada. Essa ficou aberta embaixo.'},
+    {t:'num', q:'Desenhe no caderno um triângulo e um pentágono. Quantos lados as duas figuras têm juntas?', a:8, p:true, e:'Triângulo tem 3 lados e pentágono tem 5. 3 + 5 = 8.'}
+  ]
+},
+{
+  id: 'adsub', title: 'Adição e subtração com trocas',
+  sub: 'Armar a conta, “vai um”, empréstimo e prova real',
+  lessons: [
+    ['Armando a conta', `
+      <p>Antes de calcular, <mark>arme a conta</mark> no caderno: unidade embaixo de unidade, dezena embaixo de dezena, centena embaixo de centena. Use o quadriculado: um algarismo em cada quadradinho.</p>
+      <p>Comece sempre <mark>pela direita</mark>, nas unidades.</p>
+      <p>Nomes: na adição, os números somados são as <b>parcelas</b> e o resultado é a <b>soma</b> (ou total). Na subtração, o resultado é o <b>resto</b> (ou diferença).</p>`],
+    ['Adição com reagrupamento (“vai um”)', `
+      <p>Quando a soma de uma coluna passa de 9, deixamos as unidades ali e <mark>mandamos a dezena para a coluna da esquerda</mark>.</p>
+      ${conta('346+278')}
+      <p>1) Unidades: 6 + 8 = 14. Fica 4, vai 1 para as dezenas.<br>
+         2) Dezenas: 4 + 7 + 1 = 12. Fica 2, vai 1 para as centenas.<br>
+         3) Centenas: 3 + 2 + 1 = 6.<br>
+         Resultado: <b>624</b>.</p>
+      <p class="dica">O número pequeno em vermelho em cima da conta é o “vai um”. Escreva ele no caderno para não esquecer.</p>`],
+    ['Subtração com desagrupamento (empréstimo)', `
+      <p>Quando o algarismo de cima é menor que o de baixo, <mark>pedimos emprestado</mark> 1 da coluna da esquerda. Esse 1 vale 10 na coluna da direita.</p>
+      ${conta('71-36')}
+      <p>1) Unidades: 1 − 6 não dá. Pegamos 1 dezena emprestada: o 7 vira 6 e o 1 vira 11. 11 − 6 = 5.<br>
+         2) Dezenas: 6 − 3 = 3.<br>
+         Resultado: <b>35</b>.</p>
+      <h3>E quando tem zeros?</h3>
+      ${conta('500-187')}
+      <p>Não dá para pegar emprestado do zero. Então vamos até o 5: 500 é o mesmo que 4 centenas, 9 dezenas e 10 unidades.<br>
+         Unidades: 10 − 7 = 3. Dezenas: 9 − 8 = 1. Centenas: 4 − 1 = 3.<br>
+         Resultado: <b>313</b>.</p>`],
+    ['Prova real', `
+      <p>Dá para conferir se a conta está certa fazendo a <b>operação contrária</b>.</p>
+      <p>Subtração se confere com adição: 500 − 187 = 313, então <mark>313 + 187 tem que dar 500</mark>.</p>
+      <div class="contas">${conta('313+187')}</div>
+      <p>Adição se confere com subtração: 346 + 278 = 624, então 624 − 278 tem que dar 346.</p>`]
+  ],
+  quiz: [
+    {t:'num', q:'Arme e resolva: 346 + 278', a:624, p:true, c:'346+278', e:'6 + 8 = 14 (fica 4, vai 1). 4 + 7 + 1 = 12 (fica 2, vai 1). 3 + 2 + 1 = 6.'},
+    {t:'num', q:'Arme e resolva: 1.457 + 2.385', a:3842, p:true, c:'1457+2385', e:'7 + 5 = 12 (vai 1). 5 + 8 + 1 = 14 (vai 1). 4 + 3 + 1 = 8. 1 + 2 = 3.'},
+    {t:'num', q:'Arme e resolva: 500 − 187', a:313, p:true, c:'500-187', e:'500 vira 4 centenas, 9 dezenas e 10 unidades. 10 − 7 = 3, 9 − 8 = 1, 4 − 1 = 3.'},
+    {t:'num', q:'Arme e resolva: 2.304 − 1.168', a:1136, p:true, c:'2304-1168', e:'4 − 8 não dá: pega emprestado, 14 − 8 = 6. Nas dezenas, o 0 virou 9 depois de emprestar da centena: 9 − 6 = 3. Centenas: 2 − 1 = 1. Milhares: 2 − 1 = 1.'},
+    {t:'num', q:'Arme e resolva: 4.050 − 2.375', a:1675, p:true, c:'4050-2375', e:'Faça com calma as trocas nos zeros. Confira com a prova real: 1.675 + 2.375 = 4.050.'},
+    {t:'mc', q:'Qual conta serve de prova real para 900 − 356 = 544?', o:['544 − 356','544 + 356 = 900','900 + 356','356 − 544'], a:1, e:'Subtração se confere com adição: resultado + o número que tiramos = o número do começo.'}
+  ]
+},
+{
+  id: 'mult', title: 'Multiplicação e tabuada',
+  sub: 'Tabuada do 0 ao 9, algoritmo e multiplicação por 10, 100 e 1.000',
+  lessons: [
+    ['O que é multiplicar', `
+      <p>Multiplicar é <mark>somar parcelas iguais</mark> de um jeito mais rápido.</p>
+      <p>3 + 3 + 3 + 3 = 12 é o mesmo que <b>4 × 3 = 12</b> (4 vezes o 3).</p>
+      <p>Os números multiplicados são os <b>fatores</b> e o resultado é o <b>produto</b>. A ordem não muda o produto: 6 × 7 = 7 × 6 = 42.</p>`],
+    ['Tabuada do 0 ao 9', `
+      <p>A tabuada precisa estar <mark>na ponta da língua</mark>. Ela é usada na multiplicação, na divisão e nos problemas.</p>
+      <p><b>Truques:</b></p>
+      <ul class="exemplos">
+        <li>× 0: sempre dá 0.</li>
+        <li>× 1: dá o próprio número.</li>
+        <li>× 2: é o dobro.</li>
+        <li>× 4: é o dobro do dobro. 4 × 7: dobro de 7 é 14, dobro de 14 é 28.</li>
+        <li>× 5: o resultado sempre termina em 0 ou 5.</li>
+        <li>× 9: os algarismos do resultado somados dão 9. 9 × 7 = 63, e 6 + 3 = 9.</li>
+      </ul>
+      <div class="tabuada-grade">${[6,7,8,9].map(n=>`<div><strong>Tabuada do ${n}</strong><br>${Array.from({length:10},(_, i)=>`${n} × ${i} = ${n*i}`).join('<br>')}</div>`).join('')}</div>
+      <p>As tabuadas do 6, 7, 8 e 9 são as mais difíceis. Treine com o jogo abaixo, sem olhar a tabela.</p>
+      <div id="tabuada-jogo"></div>`],
+    ['Algoritmo da multiplicação', `
+      <p>Arme a conta e multiplique <mark>cada algarismo de cima pelo de baixo</mark>, começando pelas unidades. Se passar de 9, o “vai um” funciona como na adição, mas é <b>somado depois</b> de multiplicar.</p>
+      <div class="contas">${conta('23x4')}${conta('145x6')}</div>
+      <p><b>23 × 4:</b> 4 × 3 = 12 (fica 2, vai 1). 4 × 2 = 8, mais 1 = 9. Resultado: <b>92</b>.</p>
+      <p><b>145 × 6:</b> 6 × 5 = 30 (fica 0, vai 3). 6 × 4 = 24, mais 3 = 27 (fica 7, vai 2). 6 × 1 = 6, mais 2 = 8. Resultado: <b>870</b>.</p>`],
+    ['Multiplicar por 10, 100 e 1.000', `
+      <p>Quando multiplicamos por 10, cada algarismo <mark>sobe uma ordem</mark>: as unidades viram dezenas, as dezenas viram centenas. Por isso é só acrescentar zeros à direita.</p>
+      <ul class="exemplos">
+        <li>× 10: acrescenta <b>1 zero</b>. 34 × 10 = 340</li>
+        <li>× 100: acrescenta <b>2 zeros</b>. 34 × 100 = 3.400</li>
+        <li>× 1.000: acrescenta <b>3 zeros</b>. 34 × 1.000 = 34.000</li>
+      </ul>
+      <p class="dica">Conte os zeros do 10, 100 ou 1.000 e coloque a mesma quantidade no final do número. 250 × 10 = 2.500 (o 250 já tinha um zero; ganhou mais um).</p>`]
+  ],
+  quiz: [
+    {t:'num', q:'Arme e resolva: 43 × 6', a:258, p:true, c:'43x6', e:'6 × 3 = 18 (fica 8, vai 1). 6 × 4 = 24, mais 1 = 25.'},
+    {t:'num', q:'Arme e resolva: 217 × 4', a:868, p:true, c:'217x4', e:'4 × 7 = 28 (fica 8, vai 2). 4 × 1 = 4, mais 2 = 6. 4 × 2 = 8.'},
+    {t:'num', q:'Quanto é 12 × 100?', a:1200, e:'× 100 acrescenta 2 zeros: 12 vira 1.200.'},
+    {t:'num', q:'Quanto é 9 × 1.000?', a:9000, e:'× 1.000 acrescenta 3 zeros: 9 vira 9.000.'},
+    {t:'num', q:'Quanto é 7 × 8?', a:56, e:'7 × 8 = 56. Truque: 5, 6, 7, 8 → 56 = 7 × 8.'},
+    {t:'num', q:'Arme e resolva: 305 × 3', a:915, p:true, c:'305x3', e:'3 × 5 = 15 (fica 5, vai 1). 3 × 0 = 0, mais 1 = 1. 3 × 3 = 9.'}
+  ]
+},
+{
+  id: 'divisao', title: 'Divisão',
+  sub: 'Repartir em partes iguais, sentença matemática, resto',
+  lessons: [
+    ['O que é dividir', `
+      <p>Dividir é <mark>repartir em partes iguais</mark>. Também serve para descobrir quantas vezes um número cabe dentro de outro.</p>
+      <p>Na conta <b>36 ÷ 4 = 9</b>: 36 é o <b>dividendo</b> (o que vai ser repartido), 4 é o <b>divisor</b> (em quantas partes), 9 é o <b>quociente</b> (quanto fica cada parte).</p>`],
+    ['Sentença matemática', `
+      <p>Sentença matemática é <mark>escrever a situação usando números e sinais</mark>.</p>
+      <p>“Repartir 36 balas igualmente entre 4 amigos” vira a sentença <b>36 ÷ 4 = 9</b>. Cada amigo recebe 9 balas.</p>
+      <p>“Tenho 20 figurinhas e vou colar 5 em cada página. Quantas páginas vou usar?” vira <b>20 ÷ 5 = 4</b>.</p>`],
+    ['Divisão é a tabuada ao contrário', `
+      <p>Para dividir, pense: <mark>qual número vezes o divisor dá o dividendo?</mark></p>
+      <ul class="exemplos">
+        <li>72 ÷ 8 = ? Pense: 8 × <b>9</b> = 72. Então 72 ÷ 8 = 9.</li>
+        <li>42 ÷ 6 = ? Pense: 6 × <b>7</b> = 42. Então 42 ÷ 6 = 7.</li>
+      </ul>
+      <p>Por isso saber a tabuada é tão importante!</p>`],
+    ['Divisões maiores e resto', `
+      <p>Para números maiores, divida <mark>por partes</mark>, começando pela esquerda.</p>
+      <p><b>84 ÷ 4:</b> 8 dezenas ÷ 4 = 2 dezenas. 4 unidades ÷ 4 = 1 unidade. Resultado: <b>21</b>.<br>
+         Prova real: 21 × 4 = 84. ✔</p>
+      <p><b>75 ÷ 5:</b> separe 75 em 50 + 25. 50 ÷ 5 = 10 e 25 ÷ 5 = 5. Resultado: 10 + 5 = <b>15</b>.</p>
+      <p>Às vezes <b>sobra</b> alguma coisa: é o <b>resto</b>. 17 ÷ 5 dá 3 e sobram 2, porque 5 × 3 = 15 e faltam 2 para 17.</p>
+      <p>Quando o resto é zero, a divisão é <b>exata</b>. Quando sobra, é <b>não exata</b>.</p>
+      <p class="dica">Prova real da divisão: quociente × divisor + resto = dividendo. 3 × 5 + 2 = 17. ✔</p>`]
+  ],
+  quiz: [
+    {t:'num', q:'Quanto é 72 ÷ 8?', a:9, e:'8 × 9 = 72, então 72 ÷ 8 = 9.'},
+    {t:'num', q:'Resolva no caderno: 84 ÷ 4', a:21, p:true, e:'8 dezenas ÷ 4 = 2 dezenas. 4 unidades ÷ 4 = 1. Resultado 21. Prova: 21 × 4 = 84.'},
+    {t:'mc', q:'Qual sentença matemática representa: “Repartir 45 figurinhas igualmente entre 5 crianças”?', o:['45 − 5 = 40','45 × 5 = 225','45 ÷ 5 = 9','45 + 5 = 50'], a:2, e:'Repartir igualmente é dividir: 45 ÷ 5 = 9. Cada criança recebe 9.'},
+    {t:'num', q:'Quanto é 63 ÷ 7?', a:9, e:'7 × 9 = 63, então 63 ÷ 7 = 9.'},
+    {t:'num', q:'Resolva no caderno: 96 ÷ 3', a:32, p:true, e:'9 dezenas ÷ 3 = 3 dezenas. 6 unidades ÷ 3 = 2. Resultado 32. Prova: 32 × 3 = 96.'},
+    {t:'num', q:'29 balas foram divididas entre 4 amigos. Cada um recebeu 7. Quantas balas sobraram?', a:1, p:true, e:'4 × 7 = 28. De 29 para 28 sobra 1. Esse é o resto.'}
+  ]
+},
+{
+  id: 'problemas', title: 'Situações-problema',
+  sub: 'Como ler, descobrir a operação e responder',
+  lessons: [
+    ['Passo a passo', `
+      <ul class="exemplos">
+        <li><span class="num">1</span> Leia o problema <mark>duas vezes</mark>, com calma.</li>
+        <li><span class="num">2</span> Sublinhe os <b>números</b> e circule a <b>pergunta</b>.</li>
+        <li><span class="num">3</span> Pense na história: o que está acontecendo? Juntando, tirando, repetindo ou repartindo?</li>
+        <li><span class="num">4</span> Escreva a <b>sentença matemática</b> e arme a conta.</li>
+        <li><span class="num">5</span> Responda com uma <mark>frase completa</mark>: “Resposta: {NOME} tem 203 figurinhas.”</li>
+      </ul>`],
+    ['Palavras que dão pistas', `
+      <div class="tabela-wrap"><table>
+        <tr><th>Pista</th><th>Operação</th></tr>
+        <tr><td>juntar, ao todo, total, ganhou, a mais</td><td><b>Adição +</b></td></tr>
+        <tr><td>tirou, perdeu, gastou, sobrou, quanto falta, diferença</td><td><b>Subtração −</b></td></tr>
+        <tr><td>vezes, cada um tem, dobro, triplo, grupos iguais</td><td><b>Multiplicação ×</b></td></tr>
+        <tr><td>repartir, dividir igualmente, cada um recebe, metade</td><td><b>Divisão ÷</b></td></tr>
+      </table></div>
+      <p class="dica">As palavras ajudam, mas o mais importante é <b>entender a história</b>. Pergunte-se: no final, vai ficar mais ou menos do que no começo?</p>`],
+    ['Exemplos resolvidos', `
+      <p><b>Problema 1.</b> Uma escola tinha 450 livros e emprestou 168. Quantos livros ficaram na escola?</p>
+      <p>A escola “emprestou”, ou seja, saíram livros. É <b>subtração</b>: 450 − 168.</p>
+      ${conta('450-168')}
+      <p>Resposta: ficaram 282 livros na escola.</p>
+      <p><b>Problema 2 (duas etapas).</b> Mamãe comprou 3 pacotes com 12 pães de queijo em cada um. A família comeu 9. Quantos sobraram?</p>
+      <p>Etapa 1: quantos pães ao todo? 3 pacotes iguais é <b>multiplicação</b>: 3 × 12 = 36.<br>
+         Etapa 2: comeram 9, é <b>subtração</b>: 36 − 9 = 27.</p>
+      <p>Resposta: sobraram 27 pães de queijo.</p>`]
+  ],
+  quiz: [
+    {t:'num', q:'{NOME} tinha 128 figurinhas e ganhou 75 da prima. Com quantas figurinhas ficou?', a:203, p:true, c:'128+75', e:'Ganhou = juntar = adição. 128 + 75 = 203.'},
+    {t:'num', q:'Uma biblioteca tinha 450 livros e emprestou 168. Quantos livros ficaram?', a:282, p:true, c:'450-168', e:'Emprestou = saíram livros = subtração. 450 − 168 = 282.'},
+    {t:'num', q:'Cada caixa tem 24 lápis. Quantos lápis há em 5 caixas?', a:120, p:true, c:'24x5', e:'5 grupos iguais de 24 = multiplicação. 24 × 5 = 120.'},
+    {t:'num', q:'36 balas foram repartidas igualmente entre 4 amigos. Quantas balas cada um recebeu?', a:9, p:true, e:'Repartir igualmente = divisão. 36 ÷ 4 = 9, porque 4 × 9 = 36.'},
+    {t:'num', q:'O álbum tem 300 figurinhas. {NOME} já colou 186. Quantas faltam para completar?', a:114, p:true, c:'300-186', e:'“Quanto falta” = subtração. 300 − 186 = 114.'},
+    {t:'num', q:'Mamãe comprou 3 pacotes com 12 pães de queijo cada. A família comeu 9. Quantos sobraram?', a:27, p:true, e:'Duas etapas: 3 × 12 = 36 pães. Depois 36 − 9 = 27.'}
+  ]
+}
+];
+
+const FINAL = [
+  {tm:0, t:'mc', q:'Como se lê o número 30.050?', o:['Três mil e cinquenta','Trinta mil e quinhentos','Trinta mil e cinquenta','Trezentos mil e cinquenta'], a:2, e:'30 na classe dos milhares (trinta mil) e 050 nas unidades simples (cinquenta).'},
+  {tm:0, t:'mc', q:'Qual opção está em ordem crescente?', o:['4.990 – 4.909 – 4.099','4.099 – 4.909 – 4.990','4.909 – 4.099 – 4.990','4.099 – 4.990 – 4.909'], a:1, e:'Crescente é do menor para o maior. Compare as centenas: 0 < 9. Depois as dezenas: 0 < 9.'},
+  {tm:0, t:'num', q:'Qual é o sucessor de 8.999?', a:9000, e:'8.999 + 1 = 9.000.'},
+  {tm:0, t:'num', q:'Qual é o antecessor de 10.000?', a:9999, e:'10.000 − 1 = 9.999.'},
+  {tm:1, t:'num', q:'Qual é o valor relativo do algarismo 6 no número 46.218?', a:6000, e:'O 6 está na ordem das unidades de milhar: vale 6.000.'},
+  {tm:1, t:'mc', q:'No número 52.709, qual algarismo está na ordem das centenas?', o:['5','2','7','0'], a:2, e:'Da direita: 9 (U), 0 (D), 7 (C). O 7 está nas centenas.'},
+  {tm:1, t:'num', q:'Componha: 7.000 + 300 + 8', a:7308, p:true, e:'7 na UM, 3 na C, 0 na D (casa vazia) e 8 na U: 7.308.'},
+  {tm:0, t:'num', q:'Quantos números pares existem nesta lista: 11, 28, 33, 40, 57, 92?', a:3, e:'Os pares são 28, 40 e 92 (terminam em 8, 0 e 2).'},
+  {tm:2, t:'mc', q:'Qual polígono tem 6 lados?', o:['Pentágono','Octógono','Hexágono','Triângulo'], a:2, e:'Hexa = 6. Hexágono tem 6 lados e 6 vértices.'},
+  {tm:2, t:'mc', q:'A placa de PARE tem 8 lados. Que polígono é esse?', fig:'oct', o:['Octógono','Hexágono','Pentágono','Quadrilátero'], a:0, e:'Octo = 8. Polígono de 8 lados é o octógono.'},
+  {tm:3, t:'num', q:'Arme e resolva: 2.687 + 1.548', a:4235, p:true, c:'2687+1548', e:'7 + 8 = 15 (vai 1). 8 + 4 + 1 = 13 (vai 1). 6 + 5 + 1 = 12 (vai 1). 2 + 1 + 1 = 4.'},
+  {tm:3, t:'num', q:'Arme e resolva: 6.003 − 2.458', a:3545, p:true, c:'6003-2458', e:'Os zeros pedem emprestado do 6. Confira: 3.545 + 2.458 = 6.003.'},
+  {tm:4, t:'num', q:'Arme e resolva: 128 × 7', a:896, p:true, c:'128x7', e:'7 × 8 = 56 (fica 6, vai 5). 7 × 2 = 14 + 5 = 19 (fica 9, vai 1). 7 × 1 = 7 + 1 = 8.'},
+  {tm:4, t:'num', q:'Quanto é 56 × 100?', a:5600, e:'× 100 acrescenta 2 zeros: 5.600.'},
+  {tm:4, t:'num', q:'Quanto é 8 × 9?', a:72, e:'8 × 9 = 72. Confira: 7 + 2 = 9 (truque do 9).'},
+  {tm:5, t:'num', q:'Resolva no caderno: 75 ÷ 5', a:15, p:true, e:'75 = 50 + 25. 50 ÷ 5 = 10 e 25 ÷ 5 = 5. Total: 15. Prova: 15 × 5 = 75.'},
+  {tm:5, t:'num', q:'Quanto é 81 ÷ 9?', a:9, e:'9 × 9 = 81.'},
+  {tm:6, t:'num', q:'Uma van leva 14 passageiros. Quantos passageiros cabem em 6 vans iguais?', a:84, p:true, c:'14x6', e:'6 grupos iguais de 14: 14 × 6 = 84.'},
+  {tm:6, t:'num', q:'Um bolo foi cortado em 48 pedaços e repartido igualmente entre 8 pessoas. Quantos pedaços cada uma recebeu?', a:6, p:true, e:'Repartir igualmente: 48 ÷ 8 = 6, porque 8 × 6 = 48.'},
+  {tm:6, t:'num', q:'{NOME} tinha R$ 250,00. Gastou R$ 87,00 num livro e R$ 45,00 num estojo. Quantos reais sobraram?', a:118, p:true, e:'Duas etapas: gastou 87 + 45 = 132. Depois 250 − 132 = 118. Sobraram R$ 118,00.'}
+];
+
+/* ---------- O que estudar quando erra ---------- */
+(() => {
+  const LK = [[1,1,2,3,3,4],[2,0,3,3,2,0],[1,2,2,2,1,2],[1,1,2,2,2,3],[2,2,3,3,1,2],[2,3,1,2,3,3],[1,1,1,1,1,2]];
+  TOPICS.forEach((t, i) => t.quiz.forEach((q, j) => { q.tm = i; q.lk = LK[i][j]; }));
+  [1,2,3,3,2,0,3,4,2,2,1,2,2,3,1,3,2,1,1,2].forEach((lk, j) => { FINAL[j].lk = lk; });
+})();
+function estudarHTML(meta, comExplicacao){
+  if (!meta || meta.tm == null) return '';
+  const t = TOPICS[meta.tm], titulo = t.lessons[meta.lk][0];
+  return `<div class="estudar">${comExplicacao ? `<p><b>Por quê:</b> ${meta.e}</p>` : ''}<p>📚 <b>Seria bom estudar:</b> “${titulo}”, no tema ${meta.tm + 1} (${t.title}).</p><button class="link-est" data-act="estudar" data-arg="${meta.tm}-${meta.lk}">Abrir essa explicação →</button></div>`;
+}
+
+/* ---------- Jogo: temas, figurinhas, Capi ---------- */
+const META = [
+  {cor:'#2F6BFF', em:'🦜', nome:'Arara-azul', dica:'Oi! Eu sou a Capi. Copie os exemplos no caderno, tá? Lembre: o zero não se lê, mas guarda o lugar!'},
+  {cor:'#8E44E8', em:'🐒', nome:'Mico-leão-dourado', dica:'Desenhe o quadro valor de lugar no caderno. Ele resolve quase tudo deste tema!'},
+  {cor:'#F07B00', em:'🐢', nome:'Tartaruga-marinha', dica:'Pegue uma régua! Vai ser divertido desenhar as figuras.'},
+  {cor:'#E0336E', em:'🐬', nome:'Boto-cor-de-rosa', dica:'Quadradinho do caderno: um algarismo em cada um. Conta armada certinha não erra!'},
+  {cor:'#0E9F63', em:'🦥', nome:'Bicho-preguiça', dica:'Tabuada na ponta da língua deixa tudo mais rápido. No final tem jogo!'},
+  {cor:'#0096B8', em:'🐆', nome:'Onça-pintada', dica:'Dividir é a tabuada ao contrário. Fácil, fácil!'},
+  {cor:'#D1452A', em:'🦋', nome:'Borboleta-azul', dica:'Leia o problema duas vezes e imagine a história acontecendo.'}
+];
+const META_FINAL = {cor:'#E2A400', em:'🏆', nome:'Troféu da prova final'};
+const ELOGIOS = ['Mandou bem!','Isso aí!','Arrasou!','Acertou em cheio!','Show de bola!','Que craque!','Perfeito!'];
+const QUASE = ['Quase! Olha só como faz:','Opa, essa escapou. Vamos ver como se faz:','Errar faz parte! Veja o jeito certo:'];
+const rnd = a => a[Math.floor(Math.random() * a.length)];
+const CAPI_SVG = `<svg viewBox="0 0 120 100" aria-hidden="true">
+  <rect x="60" y="6" width="7" height="34" rx="2" transform="rotate(28 63 23)" fill="#FFC93C" stroke="#3A2E00" stroke-width="2"/>
+  <ellipse cx="72" cy="62" rx="40" ry="26" fill="var(--capi)"/>
+  <rect x="44" y="76" width="10" height="16" rx="4" fill="var(--capi-esc)"/><rect x="86" y="76" width="10" height="16" rx="4" fill="var(--capi-esc)"/>
+  <rect x="8" y="30" width="58" height="40" rx="18" fill="var(--capi)"/>
+  <circle cx="54" cy="30" r="7" fill="var(--capi-esc)"/>
+  <rect x="6" y="40" width="18" height="22" rx="8" fill="var(--capi-esc)"/>
+  <circle cx="13" cy="47" r="2" fill="#3B2412"/>
+  <circle cx="36" cy="43" r="5" fill="#2A1A0C"/><circle cx="37.6" cy="41.4" r="1.6" fill="#fff"/>
+  <path d="M26 60 q6 5 12 0" stroke="#3B2412" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <circle cx="44" cy="54" r="4" fill="#F28C8C" opacity=".6"/>
+</svg>`;
+const capi = (msg, peq) => `<div class="capi${peq ? ' peq' : ''}">${CAPI_SVG}<div class="balao">${msg}</div></div>`;
+
+/* ---------- Estado e armazenamento ---------- */
+const KEY = 'revisao-mat-miranda-v1', KEY_H = 'revisao-mat-miranda-hist-v1';
+let cache = null, DB = null;
+function load(){
+  if (cache) return cache;
+  try { cache = JSON.parse(localStorage.getItem(KEY)) || {best:{}, final:null}; } catch(e){ cache = {best:{}, final:null}; }
+  return cache;
+}
+function save(s){
+  cache = s;
+  try { localStorage.setItem(KEY, JSON.stringify(s)); } catch(e){}
+  if (DB) DB.doc('progresso/atual').set({best:s.best, final:s.final ?? null, atualizado:new Date().toISOString()}).catch(() => {});
+}
+function histLocal(){ try { return JSON.parse(localStorage.getItem(KEY_H)) || []; } catch(e){ return []; } }
+function registrar(t){
+  t.id = Date.now() + '-' + Math.random().toString(36).slice(2, 7);
+  t.quando = new Date().toISOString();
+  const h = histLocal(); h.unshift(t);
+  try { localStorage.setItem(KEY_H, JSON.stringify(h.slice(0, 80))); } catch(e){}
+  if (DB) DB.collection('tentativas').doc(t.id).set(t).catch(() => {});
+}
+async function historico(){
+  let arr = [];
+  if (DB) { try { const snap = await DB.collection('tentativas').orderBy('quando', 'desc').limit(200).get(); arr = snap.docs.map(d => d.data()); } catch(e){} }
+  const ids = new Set(arr.map(x => x.id));
+  for (const x of histLocal()) if (!ids.has(x.id)) arr.push(x);
+  return arr.sort((a, b) => b.quando.localeCompare(a.quando));
+}
+async function iniciarDB(tent = 0){
+  if (!window.claude || !window.claude.use) { if (tent < 10) setTimeout(() => iniciarDB(tent + 1), 500); return; }
+  try { DB = await window.claude.use('db'); } catch(e){ DB = null; }
+  if (!DB) return;
+  try {
+    const loc = load(), d = await DB.doc('progresso/atual').get();
+    const r = d.exists ? d.data() : {best:{}, final:null};
+    let mudouLocal = false, subir = !d.exists;
+    const chaves = new Set([...Object.keys(loc.best), ...Object.keys(r.best || {})]);
+    for (const k of chaves) {
+      const a = loc.best[k] ?? -1, b = (r.best || {})[k] ?? -1;
+      if (b > a) { loc.best[k] = b; mudouLocal = true; } else if (a > b) subir = true;
+    }
+    const fa = loc.final ?? -1, fb = r.final ?? -1;
+    if (fb > fa) { loc.final = fb; mudouLocal = true; } else if (fa > fb) subir = true;
+    if (subir) save(loc); else { cache = loc; try { localStorage.setItem(KEY, JSON.stringify(loc)); } catch(e){} }
+    const snap = await DB.collection('tentativas').limit(500).get();
+    const ids = new Set(snap.docs.map(x => x.data().id));
+    for (const t of histLocal()) if (!ids.has(t.id)) await DB.collection('tentativas').doc(t.id).set(t);
+    if (state.view === 'home') home();
+  } catch(e){}
+}
+const app = document.getElementById('app');
+let state = {view:'home'};
+const fmt = n => Number(n).toLocaleString('pt-BR');
+const toNum = s => { s = String(s).replace(/R\$|\s|\./g,'').replace(/,0+$/,''); return /^\d+$/.test(s) ? parseInt(s,10) : NaN; };
+const nEst = (x, tot) => x == null ? 0 : Math.round(x / tot * 3);
+const estrelas = (x, tot) => { const n = nEst(x, tot); return '★'.repeat(n) + '☆'.repeat(3 - n); };
+const subir = () => window.scrollTo({top:0});
+const setTema = cor => document.documentElement.style.setProperty('--tema', cor);
+const ganhou = (s, i) => i < TOPICS.length ? (s.best[TOPICS[i].id] ?? 0) >= 5 : (s.final ?? 0) >= 16;
+
+function confete(n = 60){
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const cores = ['#2F6BFF','#E0336E','#FFC93C','#0E9F63','#8E44E8','#F07B00','#0096B8'];
+  const box = document.createElement('div'); box.className = 'confete';
+  for (let k = 0; k < n; k++) {
+    const p = document.createElement('i');
+    p.style.left = Math.random() * 100 + '%';
+    p.style.background = rnd(cores);
+    p.style.animationDelay = Math.random() * .4 + 's';
+    p.style.setProperty('--x', (Math.random() * 240 - 120) + 'px');
+    p.style.setProperty('--r', (Math.random() * 900) + 'deg');
+    box.appendChild(p);
+  }
+  document.body.appendChild(box);
+  setTimeout(() => box.remove(), 2600);
+}
+
+/* ---------- Nome da criança ---------- */
+let NOME = (() => { try { return localStorage.getItem('revisao-mat-nome') || ''; } catch(e){ return ''; } })();
+function aplicarNome(){
+  const n = NOME || 'Ana';
+  for (const q of [...TOPICS.flatMap(t => t.quiz), ...FINAL]) { if (q.q0 == null) q.q0 = q.q; q.q = q.q0.replaceAll('{NOME}', n); }
+  for (const t of TOPICS) for (const l of t.lessons) { if (l[2] == null) l[2] = l[1]; l[1] = l[2].replaceAll('{NOME}', n); }
+}
+aplicarNome();
+function pedirNome(){
+  state = {view:'nome'}; setTema('#2F6BFF');
+  app.innerHTML = `
+    <h1>A trilha da Matemática</h1>
+    <p style="font-family:Fredoka,sans-serif;font-weight:600;font-size:1.25rem;color:var(--margin);margin:10px 0 4px">💌 A Miranda convidou você para estudar com ela para a prova de Matemática!</p>
+    ${capi('Oi! Eu sou a Capi e vou estudar com vocês. Antes de começar, como você se chama?')}
+    <div class="ficha">
+      <label for="nome" style="font-weight:700">Seu primeiro nome:</label>
+      <div class="resp"><input id="nome" autocomplete="off" maxlength="20" style="width:12ch"><button class="btn" data-act="salvarNome">Começar a trilha →</button></div>
+      <p class="aviso" id="aviso"></p>
+    </div>
+    <p class="dica"><b>Para os pais:</b> o progresso fica salvo neste aparelho, neste navegador. Dentro da trilha, o botão “Painel dos pais” mostra cada resposta e o que vale a pena revisar.</p>`;
+  document.getElementById('nome').focus({preventScroll:true});
+  subir();
+}
+function salvarNome(){
+  const v = (document.getElementById('nome').value || '').trim().replace(/[<>&"'`$\\{}]/g, '');
+  if (!v) { document.getElementById('aviso').textContent = 'Escreva seu nome.'; return; }
+  NOME = v.charAt(0).toUpperCase() + v.slice(1);
+  try { localStorage.setItem('revisao-mat-nome', NOME); } catch(e){}
+  aplicarNome(); home();
+}
+
+/* ---------- Tela inicial: a trilha ---------- */
+function home(){
+  if (!NOME) return pedirNome();
+  state = {view:'home'}; setTema('#2F6BFF');
+  const s = load();
+  const prova = new Date(2026, 9, 22);
+  const hoje = new Date(); hoje.setHours(0,0,0,0);
+  const dias = Math.round((prova - hoje) / 86400000);
+  const totalEst = TOPICS.reduce((a, t) => a + nEst(s.best[t.id], 6), 0) + nEst(s.final, 20);
+  const totalFig = TOPICS.filter((t, i) => ganhou(s, i)).length + (ganhou(s, TOPICS.length) ? 1 : 0);
+  const prox = (() => { const k = TOPICS.findIndex((t, i) => !ganhou(s, i)); return k === -1 ? (ganhou(s, TOPICS.length) ? -1 : TOPICS.length) : k; })();
+  let fala;
+  if (totalEst === 0) fala = `Oi, ${NOME}! Eu sou a Capi. Vamos percorrer a trilha? Cada tema vale até 3 estrelas e uma figurinha para o seu álbum!`;
+  else if (prox === -1) fala = 'Você completou o álbum inteiro! Pode refazer a prova final para treinar mais.';
+  else if (prox === TOPICS.length) fala = 'Todas as figurinhas dos temas são suas! Agora falta só o troféu da prova final.';
+  else fala = `Você já tem ${totalEst} estrelas! A próxima parada é o tema ${prox + 1}. Bora?`;
+  const diasTxt = dias > 1 ? `📅 Faltam ${dias} dias para a prova` : dias === 1 ? '📅 A prova é amanhã!' : dias === 0 ? '📅 Hoje é dia de prova. Você consegue!' : '📅 Prova: 22 de outubro';
+  const paradas = TOPICS.map((t, i) => {
+    const g = ganhou(s, i), b = s.best[t.id];
+    return `<li class="parada${i === prox ? ' agora' : ''}" style="--tema:${META[i].cor}">
+      <button data-act="topic" data-arg="${i}">
+        <span class="bola${g ? ' figurinha' : ''}">${g ? META[i].em : i + 1}</span>
+        <span class="info"><b>${t.title}${i === prox ? '<span class="tag">Próxima parada</span>' : ''}</b><span class="est">${b == null ? '☆☆☆' : estrelas(b, 6)}</span></span>
+      </button></li>`;
+  }).join('');
+  const gf = ganhou(s, TOPICS.length);
+  const album = [...META, META_FINAL].map((m, i) => {
+    const g = ganhou(s, i);
+    const req = i < TOPICS.length ? `Acerte 5 de 6 no tema ${i + 1}` : 'Acerte 16 de 20 na prova final';
+    return g ? `<div class="fig-card ganha" style="--tema:${m.cor}"><span class="em">${m.em}</span><b>${m.nome}</b></div>`
+             : `<div class="fig-card vazia"><span class="em">?</span><small>${req}</small></div>`;
+  }).join('');
+  app.innerHTML = `
+    <h1>A trilha de ${NOME}</h1>
+    <p class="convite">💌 A <b>Miranda</b> está muito feliz de compartilhar esta trilha com os amigos. Bons estudos!</p>
+    ${capi(fala)}
+    <div class="placar-topo"><span class="chip">⭐ ${totalEst} de 24 estrelas</span><span class="chip">🎴 ${totalFig} de 8 figurinhas</span><span class="chip dias">${diasTxt}</span></div>
+    <ol class="trilha">${paradas}
+      <li class="parada${prox === TOPICS.length ? ' agora' : ''}" style="--tema:${META_FINAL.cor}">
+        <button data-act="final"><span class="bola${gf ? ' figurinha' : ''}">${gf ? '🏆' : '★'}</span>
+        <span class="info"><b>Prova final: 20 questões${prox === TOPICS.length ? '<span class="tag">Próxima parada</span>' : ''}</b><span class="est">${s.final == null ? '☆☆☆' : estrelas(s.final, 20)}</span></span></button>
+      </li>
+    </ol>
+    <h2>Meu álbum de figurinhas</h2>
+    <div class="album">${album}</div>
+    <div class="acoes" style="margin:0 0 18px"><button class="btn sec" data-act="painel">👨‍👧 Painel dos pais: acertos e erros</button></div>
+    <p class="dica">✏️ <b>Regra do jogo:</b> toda conta é feita no caderno, com lápis. Aqui você só digita a resposta.</p>
+    <p class="rodape">O progresso fica salvo neste aparelho. <button data-act="reset">Começar a trilha do zero</button> · <button data-act="trocarNome">Trocar o nome</button></p>`;
+  subir();
+}
+
+/* ---------- Explicação em cartões ---------- */
+function topic(i, card = 0){
+  i = +i; card = +card;
+  const t = TOPICS[i], m = META[i];
+  setTema(m.cor);
+  state = {view:'topic', ti:i, card};
+  const n = t.lessons.length;
+  const [h, html] = t.lessons[card];
+  const ultimo = card === n - 1;
+  app.innerHTML = `
+    <button class="voltar" data-act="home">← Voltar para a trilha</button>
+    <div class="faixa"><span class="bola">${i + 1}</span><h2>${t.title}</h2></div>
+    <div class="pontos" aria-label="Parte ${card + 1} de ${n}">${t.lessons.map((_, k) => `<i class="${k <= card ? 'feito' : ''}"></i>`).join('')}<i style="background:none;width:auto;height:auto;font-style:normal;font-size:.85rem;color:var(--muted);margin-left:4px">🏁 desafio</i></div>
+    ${card === 0 ? capi(m.dica, true) : ''}
+    <article class="cartao entra"><h3>${h}</h3>${html}</article>
+    <div class="acoes">
+      ${card > 0 ? `<button class="btn sec" data-act="card" data-arg="${card - 1}">← Voltar</button>` : ''}
+      ${ultimo ? `<button class="btn" data-act="quiz" data-arg="${i}">Entendi! Quero o desafio 🏁</button>` : `<button class="btn" data-act="card" data-arg="${card + 1}">Entendi! Próximo →</button>`}
+    </div>`;
+  if (document.getElementById('tabuada-jogo')) tabRender();
+  subir();
+}
+
+/* ---------- Desafio ---------- */
+function startQuiz(qs, opts){
+  state = {view:'quiz', qs, i:0, sel:null, unlocked:false, checked:false, results:[], seq:0, ...opts};
+  setTema(opts.mode === 'prova' ? META_FINAL.cor : META[opts.ti].cor);
+  renderQuiz(); subir();
+}
+
+function renderQuiz(){
+  const Q = state, q = Q.qs[Q.i], n = Q.qs.length;
+  const letras = 'ABCD';
+  const bloqueado = q.p && !Q.unlocked;
+  let corpo = '';
+  if (bloqueado) {
+    corpo = `<div class="papel"><p>✏️ <b>Essa é no caderno!</b> ${q.c ? 'Arme a conta' : 'Escreva a sentença matemática ou faça o desenho'}, resolva com calma e depois volte aqui.</p>
+      <button class="btn lapis" data-act="unlock">Pronto, já fiz no caderno!</button></div>`;
+  } else if (q.t === 'mc') {
+    corpo = `<div class="opcoes" role="radiogroup">${q.o.map((op, k) => {
+      let cls = 'opcao';
+      if (Q.checked) { if (k === q.a) cls += ' certa'; else if (k === Q.sel) cls += ' errada'; }
+      else if (k === Q.sel) cls += ' sel';
+      return `<button class="${cls}" role="radio" aria-checked="${k === Q.sel}" ${Q.checked ? 'aria-disabled="true"' : `data-act="pick" data-arg="${k}"`}><span class="letra">${letras[k]}</span><span>${op}</span></button>`;
+    }).join('')}</div>`;
+  } else {
+    corpo = `<div class="resp"><label for="ans" style="font-weight:700">Resposta:</label><input id="ans" inputmode="numeric" autocomplete="off" ${Q.checked ? 'disabled' : ''} value="${Q.checked ? Q.results[Q.results.length - 1].ans : ''}"></div>`;
+  }
+  let fb = '';
+  if (Q.checked) {
+    const r = Q.results[Q.results.length - 1];
+    const certa = q.t === 'mc' ? q.o[q.a] : fmt(q.a);
+    fb = r.ok
+      ? `<div class="feedback ok" role="status"><div class="tit">${Q.elogio}${Q.seq >= 3 ? ` 🔥 ${Q.seq} seguidas!` : ''}</div><p>${q.e}</p></div>`
+      : `<div class="feedback no" role="status">${capi(Q.elogio, true)}<p>A resposta certa é <b>${certa}</b>.</p><p>${q.e}</p>${q.c ? `<p style="margin-bottom:0">Compare com o seu caderno:</p>${conta(q.c)}` : ''}</div>`;
+    fb += `<div class="acoes"><button class="btn" data-act="next" id="btn-next">${Q.i + 1 < n ? 'Próxima →' : 'Ver meu resultado 🎉'}</button></div>`;
+  }
+  const podeConfirmar = !bloqueado && !Q.checked;
+  const acertos = Q.results.filter(r => r.ok).length;
+  app.innerHTML = `
+    <button class="voltar" data-act="${Q.mode === 'prova' ? 'home' : 'topic'}" data-arg="${Q.ti ?? ''}">← Sair ${Q.mode === 'prova' ? 'da prova' : 'do desafio'}</button>
+    <h2>${Q.title}</h2>
+    <div class="ficha">
+      <div class="prog"><span>Questão ${Q.i + 1} de ${n}</span>${Q.mode === 'prova' ? '<span>A correção vem no final</span>' : `<span>${Q.seq >= 2 ? `<span class="fogo">🔥 ${Q.seq}</span> ` : ''}✔ ${acertos}</span>`}</div>
+      <div class="barra"><i style="width:${(Q.i + (Q.checked ? 1 : 0)) / n * 100}%"></i></div>
+      <p class="enunciado">${q.q}</p>
+      ${q.fig ? `<div class="q-fig">${FIG[q.fig]}</div>` : ''}
+      ${corpo}
+      ${podeConfirmar ? `<div class="acoes"><button class="btn" data-act="confirm">${Q.mode === 'prova' ? (Q.i + 1 < n ? 'Responder e seguir' : 'Entregar a prova') : 'Conferir'}</button></div><p class="aviso" id="aviso"></p>` : ''}
+      ${fb}
+    </div>`;
+  const inp = document.getElementById('ans');
+  if (inp && !inp.disabled) inp.focus({preventScroll:true});
+  const nb = document.getElementById('btn-next');
+  if (nb) nb.focus({preventScroll:true});
+}
+
+function confirmar(){
+  const Q = state, q = Q.qs[Q.i];
+  let ans, ok;
+  if (q.t === 'mc') {
+    if (Q.sel == null) { document.getElementById('aviso').textContent = 'Escolha uma opção.'; return; }
+    ans = Q.sel; ok = ans === q.a;
+  } else {
+    ans = document.getElementById('ans').value.trim();
+    if (!ans) { document.getElementById('aviso').textContent = 'Digite a resposta.'; return; }
+    if (isNaN(toNum(ans))) { document.getElementById('aviso').textContent = 'Digite só números.'; return; }
+    ok = toNum(ans) === q.a;
+  }
+  Q.results.push({q, ans, ok});
+  Q.seq = ok ? Q.seq + 1 : 0;
+  if (Q.mode === 'prova') return proxima();
+  Q.checked = true;
+  Q.elogio = ok ? rnd(ELOGIOS) : rnd(QUASE);
+  renderQuiz();
+  if (ok) confete(Q.seq >= 3 ? 70 : 35);
+}
+
+function proxima(){
+  const Q = state;
+  Q.i++; Q.sel = null; Q.unlocked = false; Q.checked = false;
+  if (Q.i >= Q.qs.length) resultado(); else { renderQuiz(); subir(); }
+}
+
+function resultado(){
+  const Q = state, n = Q.qs.length;
+  const acertos = Q.results.filter(r => r.ok).length;
+  const s = load();
+  const idx = Q.mode === 'prova' ? TOPICS.length : Q.ti;
+  const tinha = ganhou(s, idx);
+  if (Q.mode === 'prova') s.final = Math.max(s.final ?? 0, acertos);
+  else s.best[TOPICS[Q.ti].id] = Math.max(s.best[TOPICS[Q.ti].id] ?? 0, acertos);
+  save(s);
+  registrar({
+    tipo: Q.mode === 'prova' ? 'prova' : 'desafio', tema: Q.mode === 'prova' ? null : Q.ti,
+    titulo: Q.mode === 'prova' ? 'Prova final' : `Desafio ${Q.ti + 1}: ${TOPICS[Q.ti].title}`,
+    acertos, total: n,
+    respostas: Q.results.map(r => ({
+      q: r.q.q, ok: r.ok, tema: r.q.tm ?? Q.ti,
+      opcoes: r.q.t === 'mc' ? r.q.o : null, marcada: r.q.t === 'mc' ? r.ans : null,
+      resposta: r.q.t === 'mc' ? r.q.o[r.ans] : String(r.ans),
+      certa: r.q.t === 'mc' ? r.q.o[r.q.a] : fmt(r.q.a)
+    }))
+  });
+  const m = Q.mode === 'prova' ? META_FINAL : META[Q.ti];
+  const meta = Q.mode === 'prova' ? 16 : 5;
+  const novaFig = !tinha && acertos >= meta;
+  const pct = acertos / n;
+  const msg = pct === 1 ? 'Gabaritou! Nota máxima!' : pct >= .8 ? 'Excelente! Você está mandando muito bem.' : pct >= .6 ? 'Muito bem! Revise o que errou e tente de novo.' : 'Respira e tenta de novo: releia a explicação com calma. Você consegue!';
+  const k = nEst(acertos, n);
+  let premio = '';
+  if (novaFig) premio = `<div class="premio"><span class="em">${m.em}</span><h3 style="margin:.4em 0 0">Figurinha nova!</h3><p style="margin:.2em 0 0">${m.nome} foi para o seu álbum.</p></div>`;
+  else if (!tinha) premio = `<div class="premio" style="border-style:dashed">${capi(`Faltou ${meta - acertos === 1 ? 'só 1 acerto' : `${meta - acertos} acertos`} para ganhar a figurinha ${m.em}. Tenta de novo?`, true)}</div>`;
+  const lista = Q.results.map((r, j) => {
+    const certa = r.q.t === 'mc' ? r.q.o[r.q.a] : fmt(r.q.a);
+    const deu = r.q.t === 'mc' ? r.q.o[r.ans] : r.ans;
+    return `<li><span class="marca ${r.ok ? 'ok' : 'no'}">${r.ok ? '✔' : '✘'}</span><b>${j + 1})</b> ${r.q.q}
+      ${r.ok ? '' : `<br><small>Você respondeu: ${deu}.</small> Certa: <b>${certa}</b>.<br><small>${r.q.e}</small>${estudarHTML(r.q)}`}</li>`;
+  }).join('');
+  let revisar = '';
+  if (Q.mode === 'prova') {
+    const temas = [...new Set(Q.results.filter(r => !r.ok).map(r => r.q.tm))];
+    if (temas.length) revisar = `<h3>Temas para revisar</h3><div class="acoes" style="margin-top:6px">${temas.map(t => `<button class="btn sec" data-act="topic" data-arg="${t}">${t + 1}. ${TOPICS[t].title}</button>`).join('')}</div>`;
+  }
+  app.innerHTML = `
+    <div class="resultado">
+      <h2>${Q.title}</h2>
+      <div class="estrelas-grandes" aria-label="${k} de 3 estrelas">${[0,1,2].map(x => `<span>${x < k ? '★' : '☆'}</span>`).join('')}</div>
+      <div class="placar">${acertos} de ${n}</div>
+      <p style="font-size:1.2rem;font-weight:700">${msg}</p>
+      ${premio}
+      <div class="acoes">
+        <button class="btn" data-act="home">Voltar para a trilha</button>
+        <button class="btn sec" data-act="${Q.mode === 'prova' ? 'final' : 'quiz'}" data-arg="${Q.ti ?? ''}">Fazer de novo</button>
+        ${Q.mode === 'treino' ? `<button class="btn sec" data-act="topic" data-arg="${Q.ti}">Rever a explicação</button>` : ''}
+      </div>
+      ${revisar}
+      <h3>Correção</h3>
+      <ul class="revisao">${lista}</ul>
+    </div>`;
+  subir();
+  if (novaFig) confete(110); else if (pct >= .8) confete(50);
+}
+
+/* ---------- Painel dos pais ---------- */
+const dataBR = iso => new Date(iso).toLocaleString('pt-BR', {weekday:'short', day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit'});
+async function painel(){
+  state = {view:'painel'}; setTema('#2F6BFF');
+  app.innerHTML = '<button class="voltar" data-act="home">← Voltar para a trilha</button><h2>Painel dos pais</h2><p>Carregando…</p>';
+  const h = await historico();
+  if (state.view !== 'painel') return;
+  state.h = h;
+  const s = load();
+  const onde = DB ? '<span class="salvo">✓ Salvo na sua conta Claude: aparece em qualquer aparelho</span>' : '<span class="salvo local">Salvo neste aparelho e neste navegador</span>';
+  const linhas = TOPICS.map((t, i) => {
+    const ts = h.filter(x => x.tipo === 'desafio' && x.tema === i);
+    const ult = ts[0];
+    return `<tr><td>${i + 1}. ${t.title}</td><td class="n">${ts.length || s.best[t.id] != null ? `<button class="link-tent" data-act="tent" data-arg="${i}" aria-label="Ver respostas do tema ${i + 1}">${ts.length || '1*'}</button>` : 0}</td><td class="n">${s.best[t.id] != null ? s.best[t.id] + '/6' : '–'}</td><td class="n">${ult ? ult.acertos + '/6' : s.best[t.id] != null ? s.best[t.id] + '/6*' : '–'}</td></tr>`;
+  }).join('');
+  const pf = h.filter(x => x.tipo === 'prova'), tb = h.filter(x => x.tipo === 'tabuada');
+  const erros = {};
+  for (const t of h) for (const r of (t.respostas || [])) if (!r.ok && t.tipo !== 'tabuada') {
+    const e = erros[r.q] || (erros[r.q] = {q:r.q, certa:r.certa, n:0, tema:r.tema});
+    e.n++;
+  }
+  const errosTab = {};
+  for (const t of tb) for (const r of t.respostas || []) if (!r.ok) errosTab[r.q] = (errosTab[r.q] || 0) + 1;
+  const topErros = Object.values(erros).sort((a, b) => b.n - a.n).slice(0, 10);
+  const tabTxt = Object.entries(errosTab).sort((a, b) => b[1] - a[1]).map(([q, n]) => `${q}${n > 1 ? ` (${n}×)` : ''}`).join(', ');
+  const lista = h.map(t => {
+    const boa = t.acertos / t.total >= .8;
+    return `<details class="tentativa"><summary><b>${t.titulo}</b><span class="quando">${dataBR(t.quando)}</span><span class="nota ${boa ? 'boa' : t.acertos / t.total < .6 ? 'fraca' : ''}">${t.acertos} de ${t.total}</span></summary>
+      <ul>${(t.respostas || []).map(r => `<li><span class="marca ${r.ok ? 'ok' : 'no'}" style="font-weight:700;color:var(--${r.ok ? 'ok' : 'bad'})">${r.ok ? '✔' : '✘'}</span> ${r.q}<br><small>Respondeu: <b>${r.resposta}</b>${r.ok ? '' : ` · Certa: <b>${r.certa}</b>`}</small></li>`).join('')}</ul></details>`;
+  }).join('');
+  app.innerHTML = `
+    <div class="painel">
+      <button class="voltar" data-act="home">← Voltar para a trilha</button>
+      <h2>Painel dos pais</h2>
+      <p>${onde}</p>
+      ${TOPICS.some((t, i) => s.best[t.id] != null && !h.some(x => x.tipo === 'desafio' && x.tema === i)) ? `<p class="dica"><b>*</b> Tentativa feita antes de o painel existir: só a nota ficou salva, sem as respostas. Se refizer esses desafios (6 questões cada), cada resposta vai aparecer aqui.</p>` : ''}
+      <h3>Resumo por tema</h3>
+      <div class="tabela-wrap"><table>
+        <tr><th>Tema</th><th>Tentativas</th><th>Melhor</th><th>Última</th></tr>${linhas}
+        <tr><td>★ Prova final</td><td class="n">${pf.length || s.final != null ? `<button class="link-tent" data-act="tent" data-arg="f" aria-label="Ver respostas da prova final">${pf.length || '1*'}</button>` : 0}</td><td class="n">${s.final != null ? s.final + '/20' : '–'}</td><td class="n">${pf[0] ? pf[0].acertos + '/20' : s.final != null ? s.final + '/20*' : '–'}</td></tr>
+      </table></div>
+      ${tabTxt ? `<p><b>Tabuada relâmpago</b> (${tb.length} ${tb.length === 1 ? 'jogo' : 'jogos'}). Contas com erro: ${tabTxt}</p>` : ''}
+      <h3>Questões com mais erros</h3>
+      ${topErros.length ? `<ul class="revisao">${topErros.map(e => `<li><span class="marca no">✘ ${e.n}×</span> ${e.q}<br><small>Resposta certa: <b>${e.certa}</b></small>${estudarHTML(ALLQ.find(x => x.q === e.q))}</li>`).join('')}</ul>` : '<p><small>Nenhum erro registrado ainda.</small></p>'}
+      <h3>Todas as tentativas</h3>
+      <p><small>Toque em uma tentativa para ver cada resposta.</small></p>
+      ${lista || '<p>Ainda não há tentativas registradas. A partir de agora, cada desafio, prova e jogo de tabuada fica guardado aqui.</p>'}
+    </div>`;
+  subir();
+}
+
+/* ---------- Modal com as respostas ---------- */
+const ALLQ = [...TOPICS.flatMap(t => t.quiz), ...FINAL];
+function tentModal(arg){
+  fecharModal();
+  const fin = arg === 'f', i = fin ? null : +arg;
+  const h = (state.h || []).filter(x => fin ? x.tipo === 'prova' : (x.tipo === 'desafio' && x.tema === i));
+  const s = load();
+  const best = fin ? s.final : s.best[TOPICS[i].id], tot = fin ? 20 : 6;
+  const titulo = fin ? 'Prova final' : `Tema ${i + 1}: ${TOPICS[i].title}`;
+  const letras = 'ABCD';
+  const blocos = h.map((t, n) => {
+    const pct = t.acertos / t.total;
+    const qs = (t.respostas || []).map((r, j) => {
+      const meta = ALLQ.find(x => x.q === r.q);
+      const ops = r.opcoes || (meta && meta.t === 'mc' ? meta.o : null);
+      let corpo;
+      if (ops) {
+        const marc = r.marcada ?? ops.indexOf(r.resposta);
+        const certa = meta && meta.t === 'mc' ? meta.a : ops.indexOf(r.certa);
+        corpo = `<ul class="m-ops">${ops.map((o, k) => {
+          const cls = k === certa ? 'c' : (k === marc ? 'e' : '');
+          const tag = k === marc ? `<span class="tag">${k === certa ? '✔ marcada (certa)' : '✘ marcada'}</span>` : (k === certa ? '<span class="tag">✔ resposta certa</span>' : '');
+          return `<li class="${cls}"><span class="letra">${letras[k]}</span><span>${o}</span>${tag}</li>`;
+        }).join('')}</ul>`;
+      } else {
+        corpo = `<div class="m-num"><span class="sua ${r.ok ? 'ok' : 'no'}">Resposta dada: <b>${r.resposta}</b></span>${r.ok ? '' : `<span>Certa: <b>${r.certa}</b></span>`}</div>`;
+      }
+      return `<li class="${r.ok ? 'ok' : 'no'}"><p class="m-enun"><span class="ic">${r.ok ? '✔' : '✘'}</span>${j + 1}) ${r.q}</p>${meta && meta.fig ? `<div class="q-fig">${FIG[meta.fig]}</div>` : ''}${corpo}${r.ok ? '' : estudarHTML(meta, true)}</li>`;
+    }).join('');
+    return `<section class="m-tent"><h4>Tentativa ${h.length - n} <small>${dataBR(t.quando)}</small><span class="nota ${pct >= .8 ? 'boa' : pct < .6 ? 'fraca' : ''}">${t.acertos} de ${t.total}</span></h4><ol class="m-qs">${qs}</ol></section>`;
+  }).join('');
+  const legado = `<section class="m-tent"><h4>Tentativa 1 <small>antes do painel</small><span class="nota">${best} de ${tot}</span></h4><p>Essa tentativa foi feita antes de o painel existir, então só a nota ficou salva. Não dá para ver o que foi marcado em cada questão.</p><p>Se refizer este desafio, cada pergunta aparece aqui com as opções e a resposta marcada.</p></section>`;
+  const ov = document.createElement('div');
+  ov.className = 'modal-fundo';
+  ov.innerHTML = `<div class="modal" role="dialog" aria-modal="true" aria-labelledby="m-tit"><div class="modal-topo"><h3 id="m-tit">${titulo}</h3><button class="fechar" data-act="fecharModal" aria-label="Fechar">✕</button></div><div class="modal-corpo">${blocos || (best != null ? legado : '<p>Nenhuma tentativa ainda.</p>')}</div></div>`;
+  ov.addEventListener('click', e => { if (e.target === ov) fecharModal(); });
+  document.body.appendChild(ov);
+  document.body.style.overflow = 'hidden';
+  ov.querySelector('.fechar').focus();
+}
+function fecharModal(){
+  const m = document.querySelector('.modal-fundo');
+  if (m) m.remove();
+  document.body.style.overflow = '';
+}
+
+/* ---------- Tabuada relâmpago ---------- */
+let tab = null;
+function tabRender(){
+  const box = document.getElementById('tabuada-jogo');
+  if (!box) return;
+  if (!tab) {
+    box.innerHTML = `<div class="tab-box"><h3 style="margin-top:0">⚡ Tabuada relâmpago</h3><p>10 contas de tabuada, de cabeça. Quantas você acerta?</p><button class="btn" data-act="tabStart">Começar</button></div>`;
+    return;
+  }
+  if (tab.i >= tab.qs.length) {
+    box.innerHTML = `<div class="tab-box"><h3 style="margin-top:0">⚡ Tabuada relâmpago</h3><p class="tab-q">${tab.ok} de 10</p><p><b>${tab.ok === 10 ? 'Gabaritou! Fera da tabuada! 👑' : tab.ok >= 8 ? 'Muito bem! Quase perfeito.' : 'Treine as que errou e jogue de novo.'}</b></p>${tab.erros.length ? `<p><small>Para treinar: ${tab.erros.join(', ')}</small></p>` : ''}<button class="btn" data-act="tabStart">Jogar de novo</button></div>`;
+    if (tab.ok >= 8) confete(50);
+    return;
+  }
+  const [a, b] = tab.qs[tab.i];
+  box.innerHTML = `<div class="tab-box"><h3 style="margin-top:0">⚡ Tabuada relâmpago</h3>
+    <p style="margin:0;color:var(--muted)">Conta ${tab.i + 1} de 10. Acertos: ${tab.ok}</p>
+    <p class="tab-q">${a} × ${b} = ?</p>
+    <div class="resp" style="margin-top:0"><input id="tab-ans" inputmode="numeric" autocomplete="off" aria-label="Resposta"><button class="btn" data-act="tabCheck">Ok</button></div>
+    <p class="tab-msg ${tab.last?.ok ? 'ok' : 'no'}">${tab.last ? (tab.last.ok ? rnd(ELOGIOS) : `Era ${tab.last.r}.`) : ''}</p></div>`;
+  document.getElementById('tab-ans').focus({preventScroll:true});
+}
+function tabStart(){
+  const qs = [];
+  for (let k = 0; k < 10; k++) qs.push([2 + Math.floor(Math.random() * 8), Math.floor(Math.random() * 10)]);
+  tab = {qs, i:0, ok:0, erros:[], last:null, log:[]};
+  tabRender();
+}
+function tabCheck(){
+  const inp = document.getElementById('tab-ans');
+  if (!inp || !inp.value.trim()) return;
+  const [a, b] = tab.qs[tab.i];
+  const ok = toNum(inp.value) === a * b;
+  if (ok) tab.ok++; else tab.erros.push(`${a} × ${b} = ${a * b}`);
+  tab.last = {ok, r: a * b};
+  tab.log.push({q:`${a} × ${b}`, resposta:inp.value.trim(), certa:String(a * b), ok, tema:4});
+  tab.i++;
+  if (tab.i >= tab.qs.length) registrar({tipo:'tabuada', tema:4, titulo:'Tabuada relâmpago', acertos:tab.ok, total:10, respostas:tab.log});
+  tabRender();
+}
+
+/* ---------- Ações ---------- */
+const actions = {
+  home,
+  painel,
+  salvarNome,
+  trocarNome: () => { NOME = ''; try { localStorage.removeItem('revisao-mat-nome'); } catch(e){} aplicarNome(); pedirNome(); },
+  tent: tentModal,
+  estudar: a => { const [tm, lk] = a.split('-').map(Number); fecharModal(); tab = null; topic(tm, lk); },
+  fecharModal,
+  topic: i => { tab = null; topic(i, 0); },
+  card: c => topic(state.ti, c),
+  quiz: i => { i = +i; startQuiz(TOPICS[i].quiz, {mode:'treino', ti:i, title:`Desafio do tema ${i + 1}`}); },
+  final: () => startQuiz(FINAL, {mode:'prova', title:'Prova final'}),
+  unlock: () => { state.unlocked = true; renderQuiz(); },
+  pick: k => { state.sel = +k; renderQuiz(); },
+  confirm: confirmar,
+  next: proxima,
+  tabStart, tabCheck,
+  reset: () => { if (confirm('Apagar todas as estrelas e figurinhas e começar do zero?')) { save({best:{}, final:null}); home(); } }
+};
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-act]');
+  if (!b) return;
+  actions[b.dataset.act](b.dataset.arg);
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') return fecharModal();
+  if (e.key !== 'Enter') return;
+  if (e.target.id === 'ans') { e.preventDefault(); confirmar(); }
+  else if (e.target.id === 'tab-ans') { e.preventDefault(); tabCheck(); }
+  else if (e.target.id === 'nome') { e.preventDefault(); salvarNome(); }
+});
+home();
+</script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>A trilha da Matemática: revisão para a prova</title>
+<title>A trilha de estudos: revisão 4º ano</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
@@ -252,6 +252,44 @@ svg.fig polyline{fill:none}
 .convite{font-family:Fredoka,sans-serif;font-weight:600;font-size:1.1rem;color:var(--margin);margin:6px 0 0}
 .convite b{color:var(--margin)}
 .convite-fixo{position:fixed;left:12px;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);z-index:30;background:var(--sheet);color:var(--margin);border:2px solid var(--margin);border-radius:99px;padding:5px 14px;font-family:Fredoka,sans-serif;font-weight:600;font-size:.85rem;box-shadow:0 3px 10px rgba(0,0,0,.15);pointer-events:none}
+/* Visual de cada matéria */
+:root[data-materia="mat"] body{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cg font-family='Arial,sans-serif' font-weight='700' fill='%235B7BD6' fill-opacity='.11'%3E%3Ctext x='18' y='52' font-size='36'%3E+%3C/text%3E%3Ctext x='150' y='42' font-size='32'%3E%C3%B7%3C/text%3E%3Ctext x='92' y='122' font-size='34'%3E%C3%97%3C/text%3E%3Ctext x='192' y='150' font-size='36'%3E=%3C/text%3E%3Ctext x='30' y='192' font-size='34'%3E%E2%88%92%3C/text%3E%3Ctext x='122' y='222' font-size='26'%3E7%3C/text%3E%3Ctext x='204' y='226' font-size='24'%3E3%3C/text%3E%3Ctext x='58' y='112' font-size='22'%3E2%3C/text%3E%3C/g%3E%3C/svg%3E"),linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:240px 240px,26px 26px,26px 26px;
+}
+:root[data-materia="cie"]{--paper:#EEF9F6;--grid:#CDEAE3;--ink:#0B5D6E;--line:#BCDCD5;--fig:#DCF2EE}
+@media (prefers-color-scheme:dark){:root[data-materia="cie"]:not([data-theme="light"]){--paper:#0B1C20;--sheet:#12282D;--grid:#163236;--ink:#7FD8D2;--line:#24464A;--fig:#1B3B40}}
+:root[data-theme="dark"][data-materia="cie"]{--paper:#0B1C20;--sheet:#12282D;--grid:#163236;--ink:#7FD8D2;--line:#24464A;--fig:#1B3B40}
+:root[data-materia="cie"] body{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cg fill='none' stroke='%2322A39F' stroke-opacity='.2' stroke-width='2'%3E%3Ccircle cx='40' cy='50' r='18'/%3E%3Ccircle cx='70' cy='26' r='8'/%3E%3Ccircle cx='180' cy='70' r='26'/%3E%3Ccircle cx='216' cy='38' r='10'/%3E%3Ccircle cx='120' cy='160' r='14'/%3E%3Ccircle cx='60' cy='212' r='24'/%3E%3Ccircle cx='210' cy='200' r='16'/%3E%3Ccircle cx='150' cy='236' r='7'/%3E%3C/g%3E%3Cg fill='%2322A39F' fill-opacity='.14'%3E%3Ccircle cx='33' cy='43' r='4'/%3E%3Ccircle cx='170' cy='59' r='5'/%3E%3Ccircle cx='52' cy='202' r='5'/%3E%3Ccircle cx='204' cy='194' r='3'/%3E%3C/g%3E%3C/svg%3E"),radial-gradient(circle at 12% 0%,rgba(34,163,159,.16),transparent 45%),radial-gradient(circle at 100% 35%,rgba(14,124,192,.12),transparent 42%);
+  background-size:260px 260px,auto,auto;
+  background-attachment:scroll,fixed,fixed;
+}
+:root[data-materia="cie"] .bola{border-radius:46% 54% 52% 48% / 54% 46% 54% 46%}
+:root[data-materia="cie"] .cartao,:root[data-materia="cie"] .ficha{border-radius:30px}
+:root[data-materia="cie"] .chip,:root[data-materia="cie"] .abas button{border-style:dashed}
+.subtitulo{font-family:Fredoka,sans-serif;font-weight:600;font-size:1.15rem;color:var(--ink);margin:4px 0 0}
+.abas{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.abas button{all:unset;cursor:pointer;font-family:Fredoka,sans-serif;font-weight:600;font-size:1.05rem;padding:8px 18px;border-radius:99px;border:2.5px solid var(--line);background:var(--sheet);color:var(--ink)}
+.abas button.on{background:var(--ink);border-color:var(--ink);color:var(--on-ink)}
+.abas button:focus-visible{outline:3px solid var(--margin);outline-offset:2px}
+.modelo{background:var(--ok-bg);border:2.5px solid var(--ok);border-radius:14px;padding:12px 16px;margin:12px 0}
+.modelo p{margin:.3em 0 0}
+.caminho{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:12px 0}
+.caminho span{background:var(--sheet);border:2.5px solid var(--tema);border-radius:99px;padding:3px 12px;font-weight:700}
+.caminho b{color:var(--tema)}
+svg.diag{width:100%;max-width:440px;height:auto;display:block;margin:6px auto}
+.diag .org{fill:#F6B3C3;stroke:#B4425E;stroke-width:2.5}
+.diag .tubo{fill:#FBD3DC;stroke:#B4425E;stroke-width:2.5}
+.diag .anel{stroke:#B4425E;stroke-width:1.6}
+.diag .ram{stroke:#B4425E;stroke-width:3;fill:none;stroke-linecap:round}
+.diag .ram.grosso{stroke-width:7}
+.diag .mus{stroke:#C0392B;stroke-width:7;fill:none;stroke-linecap:round}
+.diag .pele{fill:#F3D2B5;stroke:#8A5A33;stroke-width:2.5}
+.diag .nariz{fill:#E8B996;stroke:#8A5A33;stroke-width:2}
+.diag .sangue{stroke:#C0392B;stroke-width:6;fill:none;stroke-linecap:round}
+.diag .lin{stroke:var(--muted);stroke-width:1.4}
+.diag text{fill:var(--text);font-family:Andika,sans-serif;font-size:14px;font-weight:700}
 .salvo{display:inline-block;font-size:.85rem;font-weight:700;color:var(--ok);background:var(--ok-bg);border-radius:99px;padding:3px 12px}
 .salvo.local{color:var(--muted);background:var(--grid)}
 .confete{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:50}
@@ -322,7 +360,7 @@ const FIG = {
 const galeria = (itens, nao) => `<div class="galeria${nao ? ' nao' : ''}">${itens.map(([f, n, s]) => `<figure>${FIG[f]}<figcaption>${n}${s ? `<small>${s}</small>` : ''}</figcaption></figure>`).join('')}</div>`;
 
 /* ---------- Conteúdo ---------- */
-const TOPICS = [
+const TOPICS_MAT = [
 {
   id: 'numeros', title: 'Números: ler, escrever e comparar',
   sub: 'Algarismos, leitura e escrita, comparação, antecessor e sucessor, pares e ímpares',
@@ -622,7 +660,7 @@ const TOPICS = [
 }
 ];
 
-const FINAL = [
+const FINAL_MAT = [
   {tm:0, t:'mc', q:'Como se lê o número 30.050?', o:['Três mil e cinquenta','Trinta mil e quinhentos','Trinta mil e cinquenta','Trezentos mil e cinquenta'], a:2, e:'30 na classe dos milhares (trinta mil) e 050 nas unidades simples (cinquenta).'},
   {tm:0, t:'mc', q:'Qual opção está em ordem crescente?', o:['4.990 – 4.909 – 4.099','4.099 – 4.909 – 4.990','4.909 – 4.099 – 4.990','4.099 – 4.990 – 4.909'], a:1, e:'Crescente é do menor para o maior. Compare as centenas: 0 < 9. Depois as dezenas: 0 < 9.'},
   {tm:0, t:'num', q:'Qual é o sucessor de 8.999?', a:9000, e:'8.999 + 1 = 9.000.'},
@@ -645,11 +683,235 @@ const FINAL = [
   {tm:6, t:'num', q:'{NOME} tinha R$ 250,00. Gastou R$ 87,00 num livro e R$ 45,00 num estojo. Quantos reais sobraram?', a:118, p:true, e:'Duas etapas: gastou 87 + 45 = 132. Depois 250 − 132 = 118. Sobraram R$ 118,00.'}
 ];
 
+
+/* ======================= CIÊNCIAS: SISTEMA RESPIRATÓRIO ======================= */
+const SVG_RESP = `<svg viewBox="0 0 360 372" class="diag" role="img" aria-label="Desenho do sistema respiratório com o nome de cada órgão">
+  <circle cx="180" cy="46" r="34" class="pele"/>
+  <path d="M180 34 l-8 20 q8 5 16 0 z" class="nariz"/>
+  <rect x="174" y="78" width="12" height="24" rx="4" class="tubo"/>
+  <rect x="168" y="100" width="24" height="24" rx="8" class="tubo"/>
+  <rect x="172" y="122" width="16" height="74" rx="5" class="tubo"/>
+  <path d="M172 132h16M172 141h16M172 150h16M172 159h16M172 168h16M172 177h16M172 186h16" class="anel"/>
+  <path d="M150 200 C110 196 92 250 96 300 C100 326 140 330 162 318 L166 230 C166 214 160 202 150 200 Z" class="org"/>
+  <path d="M210 200 C250 196 268 250 264 300 C260 326 220 330 198 318 L194 230 C194 214 200 202 210 200 Z" class="org"/>
+  <path d="M180 194 L152 224 M180 194 L208 224" class="ram grosso"/>
+  <path d="M152 224 L130 252 M152 224 L148 264 M130 252 L118 274 M130 252 L136 284 M148 264 L140 298 M148 264 L158 294" class="ram"/>
+  <path d="M208 224 L230 252 M208 224 L212 264 M230 252 L242 274 M230 252 L224 284 M212 264 L220 298 M212 264 L202 294" class="ram"/>
+  <path d="M84 338 Q180 300 276 338" class="mus"/>
+  <path d="M172 50 L112 40 M186 90 L248 90 M168 112 L112 112 M188 160 L248 160 M162 212 L112 208 M100 262 L90 262 M232 262 L270 262 M252 328 L272 348" class="lin"/>
+  <text x="108" y="44" text-anchor="end">Cavidades nasais</text>
+  <text x="252" y="95">Faringe</text>
+  <text x="108" y="117" text-anchor="end">Laringe</text>
+  <text x="252" y="165">Traqueia</text>
+  <text x="108" y="213" text-anchor="end">Brônquios</text>
+  <text x="86" y="267" text-anchor="end">Pulmões</text>
+  <text x="274" y="267">Bronquíolos</text>
+  <text x="276" y="360">Diafragma</text>
+</svg>`;
+const SVG_ALV = `<svg viewBox="0 0 330 200" class="diag" role="img" aria-label="Desenho de um bronquíolo terminando em alvéolos, cercados por um vaso de sangue">
+  <rect x="8" y="88" width="132" height="18" rx="9" class="tubo"/>
+  <path d="M120 156 C160 182 226 176 246 134 C262 100 254 58 222 42" class="sangue"/>
+  ${[[152,78],[178,66],[204,82],[160,108],[188,112],[214,108],[174,136],[200,138]].map(([x,y]) => `<circle cx="${x}" cy="${y}" r="17" class="org"/>`).join('')}
+  <text x="12" y="80">Bronquíolo</text>
+  <text x="236" y="30">Alvéolos</text>
+  <text x="246" y="176">Sangue</text>
+</svg>`;
+const caminho = `<div class="caminho">${['👃 Cavidades nasais','Faringe','Laringe','Traqueia','Brônquios','Bronquíolos','Alvéolos'].map(s => `<span>${s}</span>`).join('<b aria-hidden="true">→</b>')}</div>`;
+
+const TOPICS_CIE = [
+{
+  id: 'c-sistema', title: 'O sistema respiratório e suas funções',
+  sub: 'O que é, do que é formado, troca gasosa, produção de sons e defesa',
+  lessons: [
+    ['O que é o sistema respiratório', `
+      <p>O <b>sistema respiratório</b> é o conjunto de órgãos responsáveis por <mark>absorver o oxigênio do ar</mark> e por <mark>eliminar o gás carbônico</mark>, que é tóxico e é retirado das nossas células.</p>
+      <p class="dica">Jeito fácil de lembrar: <b>entra oxigênio, sai gás carbônico.</b></p>`],
+    ['Do que ele é formado', `
+      <p>O sistema respiratório é formado pelas <mark>vias respiratórias</mark> e pelos <mark>pulmões</mark>.</p>
+      <p>Os órgãos das vias respiratórias são: cavidades nasais, faringe, laringe, traqueia, brônquios, bronquíolos e alvéolos.</p>
+      <div class="tabela-wrap">${SVG_RESP}</div>
+      <p class="dica">Desenhe esse esquema no caderno e escreva o nome de cada órgão. Desenhar ajuda muito a memorizar!</p>`],
+    ['Função 1: troca gasosa', `
+      <p>Quando inspiramos, o ar entra, passa pelas vias respiratórias e chega aos pulmões.</p>
+      <p>É <mark>nos pulmões que acontece a troca do gás carbônico pelo oxigênio</mark>. Isso se chama <b>troca gasosa</b>.</p>
+      <p>Para o ar entrar e sair, trabalham os <b>músculos respiratórios</b>, como o <b>diafragma</b>. Quem dá as ordens é o <b>Sistema Nervoso Central</b>.</p>`],
+    ['Função 2: produção de sons', `
+      <p>Para falar, o <b>Sistema Nervoso</b> trabalha junto com os <b>músculos da respiração</b>.</p>
+      <p>Eles fazem o <mark>ar passar pelas cordas vocais e pela boca</mark>, e é assim que conseguimos falar.</p>
+      <p class="dica">Experimente: coloque a mão na garganta e fale “aaaa”. Sentiu tremer? São as cordas vocais vibrando com o ar!</p>`],
+    ['Função 3: defesa pulmonar', `
+      <p>Quando respiramos, é quase impossível não puxar junto sujeirinhas e <b>microrganismos</b> (seres tão pequenos que não conseguimos ver).</p>
+      <p>Para evitar problemas de saúde, o sistema respiratório tem <mark>mecanismos de defesa</mark>, feitos pelos seus diferentes órgãos. Por exemplo, os pelos do nariz seguram a sujeira (você vai ver no tema 2).</p>
+      <p class="dica">Resumo das 3 funções: <b>troca gasosa</b>, <b>produção de sons</b> e <b>defesa pulmonar</b>.</p>`]
+  ],
+  quiz: [
+    {t:'mc', q:'O sistema respiratório é responsável por:', o:['Digerir os alimentos','Absorver o oxigênio e eliminar o gás carbônico','Bombear o sangue','Sustentar o corpo'], a:1, e:'O sistema respiratório absorve o oxigênio do ar e elimina o gás carbônico.', lk:0},
+    {t:'mc', q:'Qual gás o nosso corpo absorve do ar?', o:['Gás carbônico','Fumaça','Oxigênio'], a:2, e:'Do ar, o corpo absorve o oxigênio. O gás carbônico é eliminado.', lk:0},
+    {t:'mc', q:'Por que o corpo precisa eliminar o gás carbônico?', o:['Porque ele é tóxico','Porque ele dá energia','Porque ele é cheiroso','Porque ajuda na digestão'], a:0, e:'O gás carbônico é tóxico, por isso é retirado das células e eliminado.', lk:0},
+    {t:'mc', q:'O sistema respiratório é formado por:', o:['Coração e veias','Estômago e intestino','Ossos e músculos','Vias respiratórias e pulmões'], a:3, e:'Ele é formado pelas vias respiratórias e pelos pulmões.', lk:1},
+    {t:'mc', q:'Onde acontece a troca do gás carbônico pelo oxigênio?', o:['No estômago','Nos pulmões','Na boca','No coração'], a:1, e:'A troca gasosa acontece nos pulmões.', lk:2},
+    {t:'mc', q:'Qual destas é uma função do sistema respiratório?', o:['Digerir os alimentos','Bombear o sangue','Produção de sons','Sustentar o corpo'], a:2, e:'As funções são: troca gasosa, produção de sons e defesa pulmonar.', lk:3}
+  ]
+},
+{
+  id: 'c-caminho', title: 'O caminho do ar',
+  sub: 'Cavidades nasais, faringe, laringe, traqueia e brônquios',
+  lessons: [
+    ['O caminho do ar', `
+      <p>O ar faz sempre o mesmo caminho dentro do corpo:</p>
+      ${caminho}
+      <p class="dica">Frase para decorar a ordem: “<b>Na F</b>azenda, o <b>La</b>garto <b>T</b>omou <b>B</b>anho no <b>B</b>alde <b>A</b>zul”: <b>N</b>ariz, <b>F</b>aringe, <b>La</b>ringe, <b>T</b>raqueia, <b>B</b>rônquios, <b>B</b>ronquíolos, <b>A</b>lvéolos.</p>
+      <div class="tabela-wrap">${SVG_RESP}</div>`],
+    ['Cavidades nasais (fossas nasais)', `
+      <p>As cavidades nasais <b>começam nas narinas e terminam na faringe</b>.</p>
+      <p>Dentro delas existem <mark>pelos que filtram o ar</mark>, segurando sujeiras e germes. Assim o ar chega limpo aos pulmões.</p>
+      <p>A membrana que forra as cavidades nasais <b>umedece</b> o ar. Ela tem muitos vasos sanguíneos, que <b>aquecem</b> o ar que entra no nariz.</p>
+      <p class="dica">O nariz faz 3 coisas com o ar: <b>filtra, umedece e aquece</b>.</p>`],
+    ['Faringe', `
+      <p>A faringe é um tubo que serve de passagem <mark>tanto para os alimentos quanto para o ar</mark>.</p>
+      <p>Por isso, a faringe faz parte de <b>dois sistemas</b>: do sistema respiratório e do sistema digestório.</p>
+      <p class="dica">Pergunta que costuma cair: <i>Por que a faringe faz parte do sistema respiratório e do digestório?</i> Resposta: <b>porque por ela passam o ar e os alimentos.</b></p>`],
+    ['Laringe', `
+      <p>A laringe é o órgão que <b>liga a faringe à traqueia</b>.</p>
+      <p>Na parte de cima da laringe fica a <mark>epiglote</mark>. Ela <b>se fecha quando estamos comendo</b>, para impedir que o alimento entre na traqueia. Depois ela se abre de novo para o ar passar.</p>
+      <p>A laringe também é o <mark>principal órgão da fala</mark>: nela ficam as <b>cordas vocais</b>.</p>
+      <p class="dica">Quando a gente se engasga, é porque um pouquinho de comida tentou ir pelo caminho do ar!</p>`],
+    ['Traqueia, brônquios e bronquíolos', `
+      <p>A <b>traqueia</b> é um tubo que fica abaixo da laringe. Ela tem de <mark>15 a 20 anéis de cartilagem</mark>, que a mantêm sempre aberta para o ar passar bem.</p>
+      <p>Os <b>brônquios</b> são <mark>duas ramificações da traqueia</mark>, também com anéis de cartilagem. Cada brônquio entra em um pulmão.</p>
+      <p>Dentro do pulmão, cada brônquio se divide em ramos cada vez menores, os <b>bronquíolos</b>. Como parece uma árvore de cabeça para baixo, isso se chama <mark>árvore brônquica</mark>.</p>`]
+  ],
+  quiz: [
+    {t:'mc', q:'Qual é a ordem certa do caminho do ar?', o:['Cavidades nasais → faringe → laringe → traqueia → brônquios','Faringe → cavidades nasais → traqueia → laringe → brônquios','Cavidades nasais → laringe → faringe → brônquios → traqueia','Traqueia → laringe → faringe → cavidades nasais → brônquios'], a:0, e:'Lembre da frase: Na Fazenda, o Lagarto Tomou Banho no Balde Azul.', lk:0},
+    {t:'mc', q:'Para que servem os pelos das cavidades nasais?', o:['Para produzir a voz','Para filtrar o ar, segurando sujeira e germes','Para fazer a troca gasosa','Para engolir a comida'], a:1, e:'Os pelos filtram o ar, segurando impurezas e germes.', lk:1},
+    {t:'mc', q:'Por que a faringe faz parte do sistema respiratório e do sistema digestório?', o:['Porque ela produz a voz','Porque fica dentro do pulmão','Porque por ela passam o ar e os alimentos','Porque ela filtra o sangue'], a:2, e:'A faringe é passagem para o ar e para os alimentos.', lk:2},
+    {t:'mc', q:'O que faz a epiglote?', o:['Fecha quando comemos, para o alimento não ir para a traqueia','Aquece o ar','Faz a troca gasosa','Filtra a poeira'], a:0, e:'A epiglote se fecha quando comemos e se abre para o ar passar.', lk:3},
+    {t:'mc', q:'Em qual órgão ficam as cordas vocais?', o:['Traqueia','Faringe','Brônquios','Laringe'], a:3, e:'As cordas vocais ficam na laringe, o principal órgão da fala.', lk:3},
+    {t:'mc', q:'O que mantém a traqueia sempre aberta?', o:['Os pelos','Os anéis de cartilagem','Os alvéolos','A epiglote'], a:1, e:'A traqueia tem de 15 a 20 anéis de cartilagem que a mantêm aberta.', lk:4}
+  ]
+},
+{
+  id: 'c-pulmoes', title: 'Pulmões, alvéolos e respiração',
+  sub: 'Pleura, alvéolos, troca gasosa, inspiração e expiração',
+  lessons: [
+    ['Os pulmões', `
+      <p>Temos <b>dois pulmões</b>. Eles são órgãos <mark>esponjosos</mark> que ficam dentro da <mark>caixa torácica</mark> (protegidos pelas costelas).</p>
+      <p>Os pulmões absorvem o oxigênio e eliminam o gás carbônico, através da respiração.</p>
+      <p>Cada pulmão é envolvido por uma membrana chamada <mark>pleura</mark>.</p>`],
+    ['Os alvéolos (⭐ pergunta do professor)', `
+      <p>Dentro de cada pulmão existem cerca de <mark>200 milhões de alvéolos pulmonares</mark>: estruturas bem pequenas, com <b>forma de cacho de uva</b>, que se enchem de ar.</p>
+      <div class="tabela-wrap">${SVG_ALV}</div>
+      <p><mark>Cada alvéolo recebe o ar que chega de um bronquíolo.</mark> E é nos alvéolos que acontecem as <b>trocas gasosas</b>, entre o oxigênio e o gás carbônico:</p>
+      <ul class="exemplos">
+        <li>⬇️ O <b>oxigênio</b> passa do alvéolo para o <b>sangue</b>.</li>
+        <li>⬆️ O <b>gás carbônico</b> passa do sangue para o alvéolo e sai quando soltamos o ar.</li>
+      </ul>
+      <p class="dica">Pergunta que costuma cair: <i>O que acontece nos alvéolos?</i> Resposta: <b>cada alvéolo recebe o ar que chega de um bronquíolo, e nos alvéolos acontecem as trocas gasosas, entre o oxigênio e o gás carbônico.</b></p>`],
+    ['Inspiração: o ar entra', `
+      <p>Para respirar, trabalham juntos os <b>músculos intercostais</b> (entre as costelas) e o <b>diafragma</b>.</p>
+      <p><b>Inspiração</b> é quando o <mark>ar entra nos pulmões</mark>. O <b>diafragma se contrai e abaixa</b>, e isso força o ar a entrar e ajuda a absorver o oxigênio.</p>
+      <p class="dica">Experimente: coloque a mão na barriga e puxe o ar bem fundo. Sentiu a barriga ir para frente? É o diafragma descendo!</p>`],
+    ['Expiração: o ar sai', `
+      <p><b>Expiração</b> é quando o <mark>ar sai dos pulmões</mark>. O <b>diafragma relaxa</b> (e sobe), o que força a saída do ar e ajuda a eliminar o gás carbônico.</p>
+      <div class="tabela-wrap"><table>
+        <tr><th></th><th>Inspiração</th><th>Expiração</th></tr>
+        <tr><th>O ar</th><td>entra</td><td>sai</td></tr>
+        <tr><th>Diafragma</th><td>contrai e abaixa</td><td>relaxa e sobe</td></tr>
+        <tr><th>Ajuda a</th><td>absorver oxigênio</td><td>eliminar gás carbônico</td></tr>
+      </table></div>
+      <p class="dica">Truque: <b>IN</b>spiração = ar para <b>dENtro</b>. <b>EX</b>piração = ar para <b>fora</b> (como “EXit”, saída).</p>`]
+  ],
+  quiz: [
+    {t:'mc', q:'Onde ficam os pulmões?', o:['Na barriga, junto ao estômago','Na cabeça','Na caixa torácica'], a:2, e:'Os pulmões ficam na caixa torácica, protegidos pelas costelas.', lk:0},
+    {t:'mc', q:'Como se chama a membrana que envolve cada pulmão?', o:['Epiglote','Pleura','Traqueia','Faringe'], a:1, e:'A pleura é a membrana que envolve cada pulmão.', lk:0},
+    {t:'mc', q:'O que acontece nos alvéolos?', o:['As trocas gasosas, entre o oxigênio e o gás carbônico','A digestão dos alimentos','A produção da voz','A filtragem do ar pelos pelos'], a:0, e:'Cada alvéolo recebe o ar de um bronquíolo, e ali acontecem as trocas gasosas.', lk:1},
+    {t:'mc', q:'Os alvéolos têm a forma de:', o:['Tubo com anéis','Folha','Estrela','Cacho de uva'], a:3, e:'Os alvéolos são bem pequenos e têm forma de cacho de uva.', lk:1},
+    {t:'mc', q:'Na inspiração, o diafragma:', o:['Relaxa e o ar sai','Contrai e abaixa, e o ar entra','Fecha a traqueia','Fica parado'], a:1, e:'Na inspiração o diafragma contrai e abaixa, e o ar entra nos pulmões.', lk:2},
+    {t:'mc', q:'O que acontece na expiração?', o:['O diafragma contrai e o ar entra','Engolimos o ar','O diafragma relaxa e o ar sai, levando o gás carbônico'], a:2, e:'Na expiração o diafragma relaxa, o ar sai e o gás carbônico é eliminado.', lk:3}
+  ]
+},
+{
+  id: 'c-doencas', title: 'Doenças e o perigo do cigarro',
+  sub: 'Doenças infecciosas, doenças alérgicas e tabagismo',
+  lessons: [
+    ['Doenças infecciosas', `
+      <p>Os pulmões podem ser atacados por doenças <b>infecciosas</b> ou <b>alérgicas</b>.</p>
+      <p>As <b>doenças infecciosas</b> são inflamações provocadas por <mark>microrganismos</mark>, como <b>vírus</b>, <b>bactérias</b> e outros parasitas.</p>
+      <p>As mais conhecidas são: <mark>gripe, resfriado, tuberculose, pneumonia e enfisema pulmonar</mark>.</p>`],
+    ['Doenças alérgicas', `
+      <p>As <b>doenças alérgicas</b> acontecem quando o corpo fica <mark>muito sensível</mark> a alguma coisa, como <b>poeira, medicamentos, cosméticos e pólen</b>.</p>
+      <p>Exemplos: <mark>rinite, bronquite e asma</mark>.</p>
+      <p class="dica">Para decorar as alérgicas: “<b>R</b>ita <b>B</b>rincou <b>A</b>nimada”: <b>R</b>inite, <b>B</b>ronquite, <b>A</b>sma.</p>
+      <div class="tabela-wrap"><table>
+        <tr><th>Infecciosas (micróbios)</th><th>Alérgicas (sensibilidade)</th></tr>
+        <tr><td>gripe, resfriado, tuberculose, pneumonia, enfisema pulmonar</td><td>rinite, bronquite, asma</td></tr>
+      </table></div>`],
+    ['O perigo do cigarro', `
+      <p>Fumar é um hábito <mark>muito perigoso</mark> para o sistema respiratório: <b>causa várias doenças</b> e <b>vicia muito rápido</b>.</p>
+      <p><b>Nunca aceite</b> que um “amigo” ofereça um cigarro para você experimentar. Isso pode fazer muito mal.</p>
+      <p class="dica">Pergunta que costuma cair: <i>Por que fumar faz mal?</i> Resposta: <b>porque o cigarro causa doenças no sistema respiratório e vicia muito rápido.</b></p>`]
+  ],
+  quiz: [
+    {t:'mc', q:'As doenças infecciosas são provocadas por:', o:['Poeira e pólen','Microrganismos, como vírus e bactérias','Comer doce','Beber água'], a:1, e:'Doenças infecciosas são causadas por microrganismos, como vírus e bactérias.', lk:0},
+    {t:'mc', q:'Qual destas é uma doença infecciosa?', o:['Asma','Rinite','Pneumonia','Bronquite'], a:2, e:'Pneumonia é infecciosa. Asma, rinite e bronquite são alérgicas.', lk:0},
+    {t:'mc', q:'Qual destas é uma doença alérgica?', o:['Asma','Gripe','Tuberculose','Resfriado'], a:0, e:'Asma é alérgica, assim como rinite e bronquite.', lk:1},
+    {t:'mc', q:'As doenças alérgicas acontecem quando o corpo fica muito sensível a:', o:['Vírus da gripe','Água limpa','Poeira, pólen, medicamentos e cosméticos','Exercícios'], a:2, e:'Alergia é uma sensibilidade a coisas como poeira, pólen, medicamentos e cosméticos.', lk:1},
+    {t:'mc', q:'Por que fumar faz mal?', o:['Porque deixa os pulmões mais fortes','Porque ajuda a respirar','Porque causa doenças e vicia muito rápido','Não faz mal'], a:2, e:'O cigarro causa várias doenças no sistema respiratório e vicia rapidamente.', lk:2},
+    {t:'mc', q:'Se um “amigo” oferecer um cigarro, o certo é:', o:['Experimentar só um','Nunca aceitar','Aceitar se ninguém estiver vendo','Guardar para depois'], a:1, e:'Nunca aceite: o cigarro faz muito mal e vicia rápido.', lk:2}
+  ]
+},
+{
+  id: 'c-escrita', title: '⭐ As perguntas do professor',
+  sub: 'As 4 perguntas que o professor pediu para anotar na apostila, para treinar no caderno',
+  lessons: [
+    ['Como responder bem', `
+      <p>Na prova também tem perguntas em que você precisa <mark>escrever a resposta</mark>. Aqui estão as <b>4 perguntas que o professor pediu para anotar na apostila</b> (marcadas com ⭐). É muito provável que elas caiam na prova! Depois vêm mais 2 parecidas, para treinar.</p>
+      <div class="modelo"><b>⭐ As 4 perguntas do professor</b><p>1. Cite uma função do sistema respiratório.<br>2. Por que a faringe faz parte do sistema respiratório e do sistema digestório?<br>3. O que acontece nos alvéolos?<br>4. Por que fumar faz mal?</p></div>
+      <p class="dica"><b>Atenção na pergunta dos alvéolos:</b> não basta dizer que o alvéolo recebe o ar do bronquíolo. Complete com: <b>nos alvéolos acontecem as trocas gasosas, entre o oxigênio e o gás carbônico.</b></p>
+      <ul class="exemplos">
+        <li><span class="num">1</span> Leia a pergunta com calma.</li>
+        <li><span class="num">2</span> Comece a resposta usando as palavras da pergunta. Pergunta: “Por que fumar faz mal?” Resposta: “<b>Fumar faz mal porque...</b>”</li>
+        <li><span class="num">3</span> Use as palavras da apostila: alvéolos, troca gasosa, oxigênio, gás carbônico.</li>
+        <li><span class="num">4</span> Escreva uma frase completa, com letra caprichada, e releia no final.</li>
+      </ul>
+      <p class="dica">No desafio, você escreve no caderno, depois compara com a resposta esperada e diz se acertou. Vale ser sincero(a): é treino!</p>`]
+  ],
+  quiz: [
+    {t:'esc', p:true, q:'⭐ Cite uma função do sistema respiratório.', r:'A troca gasosa: trocar o gás carbônico pelo oxigênio. (Também vale: produção de sons ou defesa pulmonar.)', e:'As três funções são troca gasosa, produção de sons e defesa pulmonar. Citar uma delas já está certo.', tm:0, lk:2},
+    {t:'esc', p:true, q:'⭐ Por que a faringe faz parte do sistema respiratório e do sistema digestório?', r:'Porque pela faringe passam o ar e os alimentos.', e:'A faringe é um tubo de passagem para o ar e para a comida, por isso pertence aos dois sistemas.', tm:1, lk:2},
+    {t:'esc', p:true, q:'⭐ O que acontece nos alvéolos?', r:'Cada alvéolo recebe o ar que chega de um bronquíolo. Nos alvéolos acontecem as trocas gasosas, entre o oxigênio e o gás carbônico.', e:'Cuidado: só dizer que o alvéolo recebe o ar do bronquíolo fica incompleto. O principal é a troca gasosa: o oxigênio passa do alvéolo para o sangue, e o gás carbônico passa do sangue para o alvéolo.', tm:2, lk:1},
+    {t:'esc', p:true, q:'⭐ Por que fumar faz mal?', r:'Porque o cigarro causa várias doenças no sistema respiratório e vicia muito rápido.', e:'Fumar é muito perigoso: causa doenças e vicia rapidamente.', tm:3, lk:2},
+    {t:'esc', p:true, q:'Qual é a diferença entre inspiração e expiração?', r:'Na inspiração o ar entra nos pulmões (o diafragma contrai e abaixa). Na expiração o ar sai dos pulmões (o diafragma relaxa).', e:'Inspiração: ar para dentro. Expiração: ar para fora.', tm:2, lk:3},
+    {t:'esc', p:true, q:'Cite duas doenças alérgicas do sistema respiratório.', r:'Duas destas: rinite, bronquite, asma.', e:'Lembre: Rita Brincou Animada (rinite, bronquite, asma).', tm:3, lk:1}
+  ]
+}
+];
+TOPICS_CIE.forEach((t, i) => t.quiz.forEach(q => { if (q.tm == null) q.tm = i; }));
+
+const FINAL_CIE = [
+  {tm:0, lk:0, t:'mc', q:'Qual gás o sistema respiratório elimina?', o:['Oxigênio','Gás carbônico','Ar puro'], a:1, e:'O gás carbônico é tóxico e é eliminado. O oxigênio é absorvido.'},
+  {tm:0, lk:4, t:'mc', q:'Quais são as funções do sistema respiratório?', o:['Digestão, circulação e movimento','Visão, audição e tato','Troca gasosa, produção de sons e defesa pulmonar','Mastigar, engolir e digerir'], a:2, e:'As três funções: troca gasosa, produção de sons e defesa pulmonar.'},
+  {tm:1, lk:0, t:'mc', q:'Por onde o ar entra primeiro?', o:['Pelas cavidades nasais','Pela traqueia','Pelos brônquios','Pelos alvéolos'], a:0, e:'O ar entra pelas cavidades nasais (nariz).'},
+  {tm:1, lk:1, t:'mc', q:'O nariz faz três coisas com o ar. Quais?', o:['Esfria, seca e suja','Filtra, umedece e aquece','Engole, mastiga e digere'], a:1, e:'Os pelos filtram, a membrana umedece e os vasos sanguíneos aquecem o ar.'},
+  {tm:1, lk:3, t:'mc', q:'Qual órgão liga a faringe à traqueia e é o principal órgão da fala?', o:['Brônquio','Pulmão','Laringe','Diafragma'], a:2, e:'A laringe liga a faringe à traqueia, e nela ficam as cordas vocais.'},
+  {tm:1, lk:4, t:'mc', q:'Os brônquios são:', o:['Pelos do nariz','Duas ramificações da traqueia, que entram nos pulmões','Músculos da barriga','Partes do estômago'], a:1, e:'Os brônquios são duas ramificações da traqueia, uma para cada pulmão.'},
+  {tm:1, lk:4, t:'mc', q:'Os brônquios se dividem em ramos menores chamados:', o:['Cordas vocais','Narinas','Anéis','Bronquíolos'], a:3, e:'Os ramos menores são os bronquíolos, formando a árvore brônquica.'},
+  {tm:2, lk:1, t:'mc', q:'Cada pulmão tem cerca de quantos alvéolos?', o:['200','2 mil','200 milhões'], a:2, e:'Cada pulmão tem cerca de 200 milhões de alvéolos.'},
+  {tm:2, lk:2, t:'mc', q:'Qual músculo trabalha na respiração?', o:['Bíceps','Diafragma','Língua','Estômago'], a:1, e:'O diafragma, junto com os músculos intercostais.'},
+  {tm:2, lk:2, t:'mc', q:'Na inspiração, o diafragma:', o:['Contrai e abaixa','Relaxa e sobe','Fecha a laringe'], a:0, e:'Na inspiração o diafragma contrai e abaixa, e o ar entra.'},
+  {tm:3, lk:0, t:'mc', q:'Gripe, resfriado, tuberculose e pneumonia são doenças:', o:['Alérgicas','Dos ossos','Infecciosas','Dos dentes'], a:2, e:'São doenças infecciosas, causadas por microrganismos.'},
+  {tm:3, lk:1, t:'mc', q:'Rinite, bronquite e asma são doenças:', o:['Alérgicas','Infecciosas','Do estômago','Da pele'], a:0, e:'São doenças alérgicas.'},
+  {tm:0, lk:2, t:'esc', p:true, q:'⭐ Cite uma função do sistema respiratório.', r:'A troca gasosa: trocar o gás carbônico pelo oxigênio. (Também vale: produção de sons ou defesa pulmonar.)', e:'Qualquer uma das três funções está certa.'},
+  {tm:1, lk:2, t:'esc', p:true, q:'⭐ Por que a faringe faz parte do sistema respiratório e do sistema digestório?', r:'Porque pela faringe passam o ar e os alimentos.', e:'A faringe é passagem para o ar e para a comida.'},
+  {tm:2, lk:1, t:'esc', p:true, q:'⭐ O que acontece nos alvéolos?', r:'Cada alvéolo recebe o ar que chega de um bronquíolo. Nos alvéolos acontecem as trocas gasosas, entre o oxigênio e o gás carbônico.', e:'Nos alvéolos, o oxigênio vai para o sangue e o gás carbônico sai do sangue.'},
+  {tm:3, lk:2, t:'esc', p:true, q:'⭐ Por que fumar faz mal?', r:'Porque o cigarro causa várias doenças no sistema respiratório e vicia muito rápido.', e:'Causa doenças e vicia rapidamente.'}
+];
+
 /* ---------- O que estudar quando erra ---------- */
 (() => {
   const LK = [[1,1,2,3,3,4],[2,0,3,3,2,0],[1,2,2,2,1,2],[1,1,2,2,2,3],[2,2,3,3,1,2],[2,3,1,2,3,3],[1,1,1,1,1,2]];
-  TOPICS.forEach((t, i) => t.quiz.forEach((q, j) => { q.tm = i; q.lk = LK[i][j]; }));
-  [1,2,3,3,2,0,3,4,2,2,1,2,2,3,1,3,2,1,1,2].forEach((lk, j) => { FINAL[j].lk = lk; });
+  TOPICS_MAT.forEach((t, i) => t.quiz.forEach((q, j) => { q.tm = i; q.lk = LK[i][j]; }));
+  [1,2,3,3,2,0,3,4,2,2,1,2,2,3,1,3,2,1,1,2].forEach((lk, j) => { FINAL_MAT[j].lk = lk; });
 })();
 function estudarHTML(meta, comExplicacao){
   if (!meta || meta.tm == null) return '';
@@ -658,7 +920,7 @@ function estudarHTML(meta, comExplicacao){
 }
 
 /* ---------- Jogo: temas, figurinhas, Capi ---------- */
-const META = [
+const META_MAT = [
   {cor:'#2F6BFF', em:'🦜', nome:'Arara-azul', dica:'Oi! Eu sou a Capi. Copie os exemplos no caderno, tá? Lembre: o zero não se lê, mas guarda o lugar!'},
   {cor:'#8E44E8', em:'🐒', nome:'Mico-leão-dourado', dica:'Desenhe o quadro valor de lugar no caderno. Ele resolve quase tudo deste tema!'},
   {cor:'#F07B00', em:'🐢', nome:'Tartaruga-marinha', dica:'Pegue uma régua! Vai ser divertido desenhar as figuras.'},
@@ -667,7 +929,29 @@ const META = [
   {cor:'#0096B8', em:'🐆', nome:'Onça-pintada', dica:'Dividir é a tabuada ao contrário. Fácil, fácil!'},
   {cor:'#D1452A', em:'🦋', nome:'Borboleta-azul', dica:'Leia o problema duas vezes e imagine a história acontecendo.'}
 ];
-const META_FINAL = {cor:'#E2A400', em:'🏆', nome:'Troféu da prova final'};
+const META_CIE = [
+  {cor:'#0E7CC0', em:'🐋', nome:'Baleia-jubarte', dica:'Oi! Eu sou a Capi. Sabia que a baleia também respira com pulmões? Vamos descobrir como a gente respira!'},
+  {cor:'#E0336E', em:'🐊', nome:'Jacaré-do-papo-amarelo', dica:'Siga o caminho do ar com o dedo no desenho. E decore a frase do lagarto!'},
+  {cor:'#F07B00', em:'🦉', nome:'Coruja-buraqueira', dica:'Coloque a mão na barriga enquanto respira. Você vai sentir o diafragma trabalhando!'},
+  {cor:'#0E9F63', em:'🐸', nome:'Sapo-cururu', dica:'Lembre: infecciosas são causadas por micróbios; alérgicas, por sensibilidade a poeira, pólen...'},
+  {cor:'#8E44E8', em:'🦚', nome:'Pavão', dica:'Aqui você escreve as respostas no caderno, como na prova. Capricha na letra!'}
+];
+const SUBJ = {
+  mat: {nome:'Matemática', em:'🔢', topics:TOPICS_MAT, final:FINAL_MAT, meta:META_MAT, metaFinal:{cor:'#E2A400', em:'🏆', nome:'Troféu da prova final'}, data:new Date(2026, 9, 22), key:'revisao-mat-miranda-v1', keyH:'revisao-mat-miranda-hist-v1'},
+  cie: {nome:'Ciências', em:'🫁', topics:TOPICS_CIE, final:FINAL_CIE, meta:META_CIE, metaFinal:{cor:'#E2A400', em:'🥇', nome:'Medalha de Ciências'}, data:new Date(2026, 9, 23), key:'revisao-cie-v1', keyH:'revisao-cie-hist-v1'}
+};
+let MAT, TOPICS, FINAL, META, META_FINAL, KEY, KEY_H, ALLQ = [];
+function usarMateria(m){
+  if (!SUBJ[m]) m = 'cie';
+  MAT = m; const S = SUBJ[m];
+  TOPICS = S.topics; FINAL = S.final; META = S.meta; META_FINAL = S.metaFinal; KEY = S.key; KEY_H = S.keyH;
+  ALLQ = [...TOPICS.flatMap(t => t.quiz), ...FINAL];
+  cache = null;
+  document.documentElement.dataset.materia = m;
+  try { localStorage.setItem('revisao-materia', m); } catch(e){}
+}
+const abas = act => `<nav class="abas" aria-label="Matéria">${Object.entries(SUBJ).map(([k, s]) => `<button class="${k === MAT ? 'on' : ''}" data-act="${act}" data-arg="${k}" aria-pressed="${k === MAT}">${s.em} ${s.nome}</button>`).join('')}</nav>`;
+const certaTxt = q => q.t === 'mc' ? q.o[q.a] : q.t === 'esc' ? q.r : fmt(q.a);
 const ELOGIOS = ['Mandou bem!','Isso aí!','Arrasou!','Acertou em cheio!','Show de bola!','Que craque!','Perfeito!'];
 const QUASE = ['Quase! Olha só como faz:','Opa, essa escapou. Vamos ver como se faz:','Errar faz parte! Veja o jeito certo:'];
 const rnd = a => a[Math.floor(Math.random() * a.length)];
@@ -683,10 +967,14 @@ const CAPI_SVG = `<svg viewBox="0 0 120 100" aria-hidden="true">
   <path d="M26 60 q6 5 12 0" stroke="#3B2412" stroke-width="2.5" fill="none" stroke-linecap="round"/>
   <circle cx="44" cy="54" r="4" fill="#F28C8C" opacity=".6"/>
 </svg>`;
-const capi = (msg, peq) => `<div class="capi${peq ? ' peq' : ''}">${CAPI_SVG}<div class="balao">${msg}</div></div>`;
+const OCULOS = '<path d="M44 40 L58 31" stroke="#1F6FA8" stroke-width="3" stroke-linecap="round"/><circle cx="36" cy="43" r="10" fill="rgba(190,235,255,.45)" stroke="#1F6FA8" stroke-width="3"/>';
+const FRASCO = '<g transform="rotate(22 64 22)"><rect x="60" y="2" width="9" height="8" fill="#E6F7FF" stroke="#1F6FA8" stroke-width="2"/><path d="M60 10 L52 36 Q64 42 77 36 L69 10 Z" fill="#E6F7FF" stroke="#1F6FA8" stroke-width="2"/><path d="M55 28 Q64 33 74 28 L77 36 Q64 42 52 36 Z" fill="#3CCFB4"/></g>';
+const capiSvg = () => MAT === 'cie'
+  ? CAPI_SVG.replace(/<rect x="60" y="6"[^>]*\/>/, FRASCO).replace('</svg>', OCULOS + '</svg>')
+  : CAPI_SVG;
+const capi = (msg, peq) => `<div class="capi${peq ? ' peq' : ''}">${capiSvg()}<div class="balao">${msg}</div></div>`;
 
 /* ---------- Estado e armazenamento ---------- */
-const KEY = 'revisao-mat-miranda-v1', KEY_H = 'revisao-mat-miranda-hist-v1';
 let cache = null, DB = null;
 function load(){
   if (cache) return cache;
@@ -743,7 +1031,8 @@ const nEst = (x, tot) => x == null ? 0 : Math.round(x / tot * 3);
 const estrelas = (x, tot) => { const n = nEst(x, tot); return '★'.repeat(n) + '☆'.repeat(3 - n); };
 const subir = () => window.scrollTo({top:0});
 const setTema = cor => document.documentElement.style.setProperty('--tema', cor);
-const ganhou = (s, i) => i < TOPICS.length ? (s.best[TOPICS[i].id] ?? 0) >= 5 : (s.final ?? 0) >= 16;
+const metaFinal = () => Math.ceil(FINAL.length * .8);
+const ganhou = (s, i) => i < TOPICS.length ? (s.best[TOPICS[i].id] ?? 0) >= 5 : (s.final ?? 0) >= metaFinal();
 
 function confete(n = 60){
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -766,15 +1055,15 @@ function confete(n = 60){
 let NOME = (() => { try { return localStorage.getItem('revisao-mat-nome') || ''; } catch(e){ return ''; } })();
 function aplicarNome(){
   const n = NOME || 'Ana';
-  for (const q of [...TOPICS.flatMap(t => t.quiz), ...FINAL]) { if (q.q0 == null) q.q0 = q.q; q.q = q.q0.replaceAll('{NOME}', n); }
-  for (const t of TOPICS) for (const l of t.lessons) { if (l[2] == null) l[2] = l[1]; l[1] = l[2].replaceAll('{NOME}', n); }
+  for (const q of [...TOPICS_MAT, ...TOPICS_CIE].flatMap(t => t.quiz).concat(FINAL_MAT, FINAL_CIE)) { if (q.q0 == null) q.q0 = q.q; q.q = q.q0.replaceAll('{NOME}', n); }
+  for (const t of [...TOPICS_MAT, ...TOPICS_CIE]) for (const l of t.lessons) { if (l[2] == null) l[2] = l[1]; l[1] = l[2].replaceAll('{NOME}', n); }
 }
 aplicarNome();
 function pedirNome(){
   state = {view:'nome'}; setTema('#2F6BFF');
   app.innerHTML = `
-    <h1>A trilha da Matemática</h1>
-    <p style="font-family:Fredoka,sans-serif;font-weight:600;font-size:1.25rem;color:var(--margin);margin:10px 0 4px">💌 A Miranda convidou você para estudar com ela para a prova de Matemática!</p>
+    <h1>A trilha de estudos</h1>
+    <p style="font-family:Fredoka,sans-serif;font-weight:600;font-size:1.25rem;color:var(--margin);margin:10px 0 4px">💌 A Miranda convidou você para estudar com ela para as provas de Matemática e Ciências!</p>
     ${capi('Oi! Eu sou a Capi e vou estudar com vocês. Antes de começar, como você se chama?')}
     <div class="ficha">
       <label for="nome" style="font-weight:700">Seu primeiro nome:</label>
@@ -798,10 +1087,10 @@ function home(){
   if (!NOME) return pedirNome();
   state = {view:'home'}; setTema('#2F6BFF');
   const s = load();
-  const prova = new Date(2026, 9, 22);
+  const prova = SUBJ[MAT].data;
   const hoje = new Date(); hoje.setHours(0,0,0,0);
   const dias = Math.round((prova - hoje) / 86400000);
-  const totalEst = TOPICS.reduce((a, t) => a + nEst(s.best[t.id], 6), 0) + nEst(s.final, 20);
+  const totalEst = TOPICS.reduce((a, t) => a + nEst(s.best[t.id], 6), 0) + nEst(s.final, FINAL.length);
   const totalFig = TOPICS.filter((t, i) => ganhou(s, i)).length + (ganhou(s, TOPICS.length) ? 1 : 0);
   const prox = (() => { const k = TOPICS.findIndex((t, i) => !ganhou(s, i)); return k === -1 ? (ganhou(s, TOPICS.length) ? -1 : TOPICS.length) : k; })();
   let fala;
@@ -809,7 +1098,8 @@ function home(){
   else if (prox === -1) fala = 'Você completou o álbum inteiro! Pode refazer a prova final para treinar mais.';
   else if (prox === TOPICS.length) fala = 'Todas as figurinhas dos temas são suas! Agora falta só o troféu da prova final.';
   else fala = `Você já tem ${totalEst} estrelas! A próxima parada é o tema ${prox + 1}. Bora?`;
-  const diasTxt = dias > 1 ? `📅 Faltam ${dias} dias para a prova` : dias === 1 ? '📅 A prova é amanhã!' : dias === 0 ? '📅 Hoje é dia de prova. Você consegue!' : '📅 Prova: 22 de outubro';
+  const nm = SUBJ[MAT].nome;
+  const diasTxt = dias > 1 ? `📅 Faltam ${dias} dias para a prova de ${nm}` : dias === 1 ? `📅 A prova de ${nm} é amanhã!` : dias === 0 ? `📅 Hoje é a prova de ${nm}. Você consegue!` : `📅 A prova de ${nm} já passou. Dá para continuar treinando!`;
   const paradas = TOPICS.map((t, i) => {
     const g = ganhou(s, i), b = s.best[t.id];
     return `<li class="parada${i === prox ? ' agora' : ''}" style="--tema:${META[i].cor}">
@@ -821,19 +1111,21 @@ function home(){
   const gf = ganhou(s, TOPICS.length);
   const album = [...META, META_FINAL].map((m, i) => {
     const g = ganhou(s, i);
-    const req = i < TOPICS.length ? `Acerte 5 de 6 no tema ${i + 1}` : 'Acerte 16 de 20 na prova final';
+    const req = i < TOPICS.length ? `Acerte 5 de 6 no tema ${i + 1}` : `Acerte ${metaFinal()} de ${FINAL.length} na prova final`;
     return g ? `<div class="fig-card ganha" style="--tema:${m.cor}"><span class="em">${m.em}</span><b>${m.nome}</b></div>`
              : `<div class="fig-card vazia"><span class="em">?</span><small>${req}</small></div>`;
   }).join('');
   app.innerHTML = `
+    ${abas('materia')}
     <h1>A trilha de ${NOME}</h1>
+    <p class="subtitulo">${MAT === 'cie' ? '🔬 Ciências: o sistema respiratório' : '📏 Matemática: números, contas e figuras'}</p>
     <p class="convite">💌 A <b>Miranda</b> está muito feliz de compartilhar esta trilha com os amigos. Bons estudos!</p>
     ${capi(fala)}
-    <div class="placar-topo"><span class="chip">⭐ ${totalEst} de 24 estrelas</span><span class="chip">🎴 ${totalFig} de 8 figurinhas</span><span class="chip dias">${diasTxt}</span></div>
+    <div class="placar-topo"><span class="chip">⭐ ${totalEst} de ${(TOPICS.length + 1) * 3} estrelas</span><span class="chip">🎴 ${totalFig} de ${TOPICS.length + 1} figurinhas</span><span class="chip dias">${diasTxt}</span></div>
     <ol class="trilha">${paradas}
       <li class="parada${prox === TOPICS.length ? ' agora' : ''}" style="--tema:${META_FINAL.cor}">
         <button data-act="final"><span class="bola${gf ? ' figurinha' : ''}">${gf ? '🏆' : '★'}</span>
-        <span class="info"><b>Prova final: 20 questões${prox === TOPICS.length ? '<span class="tag">Próxima parada</span>' : ''}</b><span class="est">${s.final == null ? '☆☆☆' : estrelas(s.final, 20)}</span></span></button>
+        <span class="info"><b>Prova final: ${FINAL.length} questões${prox === TOPICS.length ? '<span class="tag">Próxima parada</span>' : ''}</b><span class="est">${s.final == null ? '☆☆☆' : estrelas(s.final, FINAL.length)}</span></span></button>
       </li>
     </ol>
     <h2>Meu álbum de figurinhas</h2>
@@ -880,8 +1172,15 @@ function renderQuiz(){
   const bloqueado = q.p && !Q.unlocked;
   let corpo = '';
   if (bloqueado) {
-    corpo = `<div class="papel"><p>✏️ <b>Essa é no caderno!</b> ${q.c ? 'Arme a conta' : 'Escreva a sentença matemática ou faça o desenho'}, resolva com calma e depois volte aqui.</p>
+    corpo = q.t === 'esc'
+      ? `<div class="papel"><p>✏️ <b>Responda no caderno!</b> Escreva a resposta com uma frase completa. Depois volte aqui para comparar.</p>
+      <button class="btn lapis" data-act="unlock">Pronto, já escrevi!</button></div>`
+      : `<div class="papel"><p>✏️ <b>Essa é no caderno!</b> ${q.c ? 'Arme a conta' : 'Escreva a sentença matemática ou faça o desenho'}, resolva com calma e depois volte aqui.</p>
       <button class="btn lapis" data-act="unlock">Pronto, já fiz no caderno!</button></div>`;
+  } else if (q.t === 'esc') {
+    corpo = Q.checked ? '' : `<div class="modelo"><b>Resposta esperada:</b><p>${q.r}</p></div>
+      <p style="font-weight:700">Compare com o que você escreveu. A ideia principal está lá?</p>
+      <div class="acoes" style="margin-top:8px"><button class="btn" data-act="auto" data-arg="1">✔ Acertei</button><button class="btn sec" data-act="auto" data-arg="0">✘ Errei ou faltou algo</button></div>`;
   } else if (q.t === 'mc') {
     corpo = `<div class="opcoes" role="radiogroup">${q.o.map((op, k) => {
       let cls = 'opcao';
@@ -895,13 +1194,13 @@ function renderQuiz(){
   let fb = '';
   if (Q.checked) {
     const r = Q.results[Q.results.length - 1];
-    const certa = q.t === 'mc' ? q.o[q.a] : fmt(q.a);
+    const certa = certaTxt(q);
     fb = r.ok
       ? `<div class="feedback ok" role="status"><div class="tit">${Q.elogio}${Q.seq >= 3 ? ` 🔥 ${Q.seq} seguidas!` : ''}</div><p>${q.e}</p></div>`
       : `<div class="feedback no" role="status">${capi(Q.elogio, true)}<p>A resposta certa é <b>${certa}</b>.</p><p>${q.e}</p>${q.c ? `<p style="margin-bottom:0">Compare com o seu caderno:</p>${conta(q.c)}` : ''}</div>`;
     fb += `<div class="acoes"><button class="btn" data-act="next" id="btn-next">${Q.i + 1 < n ? 'Próxima →' : 'Ver meu resultado 🎉'}</button></div>`;
   }
-  const podeConfirmar = !bloqueado && !Q.checked;
+  const podeConfirmar = !bloqueado && !Q.checked && q.t !== 'esc';
   const acertos = Q.results.filter(r => r.ok).length;
   app.innerHTML = `
     <button class="voltar" data-act="${Q.mode === 'prova' ? 'home' : 'topic'}" data-arg="${Q.ti ?? ''}">← Sair ${Q.mode === 'prova' ? 'da prova' : 'do desafio'}</button>
@@ -921,6 +1220,16 @@ function renderQuiz(){
   if (nb) nb.focus({preventScroll:true});
 }
 
+function autoAvaliar(v){
+  const Q = state, q = Q.qs[Q.i], ok = v === '1';
+  Q.results.push({q, ans: ok ? 'Acertou (comparou com a resposta esperada)' : 'Errou ou faltou algo (comparou com a resposta esperada)', ok});
+  Q.seq = ok ? Q.seq + 1 : 0;
+  if (Q.mode === 'prova') return proxima();
+  Q.checked = true;
+  Q.elogio = ok ? rnd(ELOGIOS) : rnd(QUASE);
+  renderQuiz();
+  if (ok) confete(Q.seq >= 3 ? 70 : 35);
+}
 function confirmar(){
   const Q = state, q = Q.qs[Q.i];
   let ans, ok;
@@ -965,11 +1274,11 @@ function resultado(){
       q: r.q.q, ok: r.ok, tema: r.q.tm ?? Q.ti,
       opcoes: r.q.t === 'mc' ? r.q.o : null, marcada: r.q.t === 'mc' ? r.ans : null,
       resposta: r.q.t === 'mc' ? r.q.o[r.ans] : String(r.ans),
-      certa: r.q.t === 'mc' ? r.q.o[r.q.a] : fmt(r.q.a)
+      certa: certaTxt(r.q)
     }))
   });
   const m = Q.mode === 'prova' ? META_FINAL : META[Q.ti];
-  const meta = Q.mode === 'prova' ? 16 : 5;
+  const meta = Q.mode === 'prova' ? metaFinal() : 5;
   const novaFig = !tinha && acertos >= meta;
   const pct = acertos / n;
   const msg = pct === 1 ? 'Gabaritou! Nota máxima!' : pct >= .8 ? 'Excelente! Você está mandando muito bem.' : pct >= .6 ? 'Muito bem! Revise o que errou e tente de novo.' : 'Respira e tenta de novo: releia a explicação com calma. Você consegue!';
@@ -978,7 +1287,7 @@ function resultado(){
   if (novaFig) premio = `<div class="premio"><span class="em">${m.em}</span><h3 style="margin:.4em 0 0">Figurinha nova!</h3><p style="margin:.2em 0 0">${m.nome} foi para o seu álbum.</p></div>`;
   else if (!tinha) premio = `<div class="premio" style="border-style:dashed">${capi(`Faltou ${meta - acertos === 1 ? 'só 1 acerto' : `${meta - acertos} acertos`} para ganhar a figurinha ${m.em}. Tenta de novo?`, true)}</div>`;
   const lista = Q.results.map((r, j) => {
-    const certa = r.q.t === 'mc' ? r.q.o[r.q.a] : fmt(r.q.a);
+    const certa = certaTxt(r.q);
     const deu = r.q.t === 'mc' ? r.q.o[r.ans] : r.ans;
     return `<li><span class="marca ${r.ok ? 'ok' : 'no'}">${r.ok ? '✔' : '✘'}</span><b>${j + 1})</b> ${r.q.q}
       ${r.ok ? '' : `<br><small>Você respondeu: ${deu}.</small> Certa: <b>${certa}</b>.<br><small>${r.q.e}</small>${estudarHTML(r.q)}`}</li>`;
@@ -1012,7 +1321,7 @@ function resultado(){
 const dataBR = iso => new Date(iso).toLocaleString('pt-BR', {weekday:'short', day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit'});
 async function painel(){
   state = {view:'painel'}; setTema('#2F6BFF');
-  app.innerHTML = '<button class="voltar" data-act="home">← Voltar para a trilha</button><h2>Painel dos pais</h2><p>Carregando…</p>';
+  app.innerHTML = `<button class="voltar" data-act="home">← Voltar para a trilha</button><h2>Painel dos pais: ${SUBJ[MAT].nome}</h2><p>Carregando…</p>`;
   const h = await historico();
   if (state.view !== 'painel') return;
   state.h = h;
@@ -1041,13 +1350,13 @@ async function painel(){
   app.innerHTML = `
     <div class="painel">
       <button class="voltar" data-act="home">← Voltar para a trilha</button>
-      <h2>Painel dos pais</h2>
+      ${abas('materiaPainel')}<h2>Painel dos pais: ${SUBJ[MAT].nome}</h2>
       <p>${onde}</p>
       ${TOPICS.some((t, i) => s.best[t.id] != null && !h.some(x => x.tipo === 'desafio' && x.tema === i)) ? `<p class="dica"><b>*</b> Tentativa feita antes de o painel existir: só a nota ficou salva, sem as respostas. Se refizer esses desafios (6 questões cada), cada resposta vai aparecer aqui.</p>` : ''}
       <h3>Resumo por tema</h3>
       <div class="tabela-wrap"><table>
         <tr><th>Tema</th><th>Tentativas</th><th>Melhor</th><th>Última</th></tr>${linhas}
-        <tr><td>★ Prova final</td><td class="n">${pf.length || s.final != null ? `<button class="link-tent" data-act="tent" data-arg="f" aria-label="Ver respostas da prova final">${pf.length || '1*'}</button>` : 0}</td><td class="n">${s.final != null ? s.final + '/20' : '–'}</td><td class="n">${pf[0] ? pf[0].acertos + '/20' : s.final != null ? s.final + '/20*' : '–'}</td></tr>
+        <tr><td>★ Prova final</td><td class="n">${pf.length || s.final != null ? `<button class="link-tent" data-act="tent" data-arg="f" aria-label="Ver respostas da prova final">${pf.length || '1*'}</button>` : 0}</td><td class="n">${s.final != null ? s.final + ('/' + FINAL.length + '') : '–'}</td><td class="n">${pf[0] ? pf[0].acertos + ('/' + FINAL.length + '') : s.final != null ? s.final + ('/' + FINAL.length + '*') : '–'}</td></tr>
       </table></div>
       ${tabTxt ? `<p><b>Tabuada relâmpago</b> (${tb.length} ${tb.length === 1 ? 'jogo' : 'jogos'}). Contas com erro: ${tabTxt}</p>` : ''}
       <h3>Questões com mais erros</h3>
@@ -1060,13 +1369,12 @@ async function painel(){
 }
 
 /* ---------- Modal com as respostas ---------- */
-const ALLQ = [...TOPICS.flatMap(t => t.quiz), ...FINAL];
 function tentModal(arg){
   fecharModal();
   const fin = arg === 'f', i = fin ? null : +arg;
   const h = (state.h || []).filter(x => fin ? x.tipo === 'prova' : (x.tipo === 'desafio' && x.tema === i));
   const s = load();
-  const best = fin ? s.final : s.best[TOPICS[i].id], tot = fin ? 20 : 6;
+  const best = fin ? s.final : s.best[TOPICS[i].id], tot = fin ? FINAL.length : 6;
   const titulo = fin ? 'Prova final' : `Tema ${i + 1}: ${TOPICS[i].title}`;
   const letras = 'ABCD';
   const blocos = h.map((t, n) => {
@@ -1150,6 +1458,9 @@ function tabCheck(){
 const actions = {
   home,
   painel,
+  auto: autoAvaliar,
+  materia: m => { usarMateria(m); tab = null; home(); },
+  materiaPainel: m => { usarMateria(m); painel(); },
   salvarNome,
   trocarNome: () => { NOME = ''; try { localStorage.removeItem('revisao-mat-nome'); } catch(e){} aplicarNome(); pedirNome(); },
   tent: tentModal,
@@ -1178,6 +1489,7 @@ document.addEventListener('keydown', e => {
   else if (e.target.id === 'tab-ans') { e.preventDefault(); tabCheck(); }
   else if (e.target.id === 'nome') { e.preventDefault(); salvarNome(); }
 });
+usarMateria((() => { try { return localStorage.getItem('revisao-materia'); } catch(e){ return null; } })() || 'cie');
 home();
 </script>
 </body>

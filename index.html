@@ -268,6 +268,22 @@ svg.fig polyline{fill:none}
 :root[data-materia="cie"] .bola{border-radius:46% 54% 52% 48% / 54% 46% 54% 46%}
 :root[data-materia="cie"] .cartao,:root[data-materia="cie"] .ficha{border-radius:30px}
 :root[data-materia="cie"] .chip,:root[data-materia="cie"] .abas button{border-style:dashed}
+:root[data-materia="inicio"]{--paper:#F1F7FF;--line:#C9DAEE}
+@media (prefers-color-scheme:dark){:root[data-materia="inicio"]:not([data-theme="light"]){--paper:#0F1A2C;--sheet:#172438;--line:#2B3D5A}}
+:root[data-theme="dark"][data-materia="inicio"]{--paper:#0F1A2C;--sheet:#172438;--line:#2B3D5A}
+:root[data-materia="inicio"] body{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cg fill='none' stroke-width='4' stroke-linecap='round'%3E%3Cpath d='M20 40 q10-12 20 0 t20 0 t20 0' stroke='%232F6BFF' stroke-opacity='.35'/%3E%3Cpath d='M150 150 q10-12 20 0 t20 0 t20 0' stroke='%230E9F63' stroke-opacity='.35'/%3E%3Cpath d='M140 40 l14 0' stroke='%23F07B00' stroke-opacity='.4'/%3E%3Cpath d='M147 33 l0 14' stroke='%23F07B00' stroke-opacity='.4'/%3E%3Cpath d='M40 190 l12 12 M52 190 l-12 12' stroke='%232F6BFF' stroke-opacity='.3'/%3E%3Ccircle cx='200' cy='90' r='9' stroke='%23FFB800' stroke-opacity='.5'/%3E%3Ccircle cx='90' cy='120' r='6' stroke='%230096B8' stroke-opacity='.4'/%3E%3C/g%3E%3Cg%3E%3Ccircle cx='110' cy='30' r='4' fill='%23FFB800' fill-opacity='.6'/%3E%3Ccircle cx='60' cy='95' r='3' fill='%230E9F63' fill-opacity='.5'/%3E%3Ccircle cx='220' cy='210' r='4' fill='%232F6BFF' fill-opacity='.45'/%3E%3Ccircle cx='120' cy='215' r='3' fill='%23F07B00' fill-opacity='.5'/%3E%3Crect x='190' y='20' width='9' height='9' rx='2' fill='%230E9F63' fill-opacity='.35' transform='rotate(20 194 24)'/%3E%3Crect x='20' y='130' width='9' height='9' rx='2' fill='%23FFB800' fill-opacity='.45' transform='rotate(-15 24 134)'/%3E%3C/g%3E%3C/svg%3E"),radial-gradient(circle at 8% 6%,rgba(255,184,0,.22),transparent 42%),radial-gradient(circle at 95% 85%,rgba(14,159,99,.16),transparent 45%),radial-gradient(circle at 92% 8%,rgba(47,107,255,.16),transparent 40%);
+  background-size:240px 240px,auto,auto,auto;
+  background-attachment:scroll,fixed,fixed,fixed;
+}
+.escolha{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:8px 0}
+.escolha-mat{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:12px;align-items:center;padding:14px 16px;border-radius:18px;border:3px solid var(--tema);background:color-mix(in srgb,var(--tema) 12%,var(--sheet));box-shadow:0 5px 0 color-mix(in srgb,var(--tema) 55%,#000);transition:transform .08s}
+.escolha-mat span{grid-row:1 / 3;font-size:2.2rem}
+.escolha-mat b{font-family:Fredoka,sans-serif;font-size:1.3rem;color:var(--text)}
+.escolha-mat small{font-size:.9rem}
+.escolha-mat:hover{transform:translateY(-2px)}
+.escolha-mat:active{transform:translateY(3px);box-shadow:0 2px 0 color-mix(in srgb,var(--tema) 55%,#000)}
+.escolha-mat:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
 .subtitulo{font-family:Fredoka,sans-serif;font-weight:600;font-size:1.15rem;color:var(--ink);margin:4px 0 0}
 .abas{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
 .abas button{all:unset;cursor:pointer;font-family:Fredoka,sans-serif;font-weight:600;font-size:1.05rem;padding:8px 18px;border-radius:99px;border:2.5px solid var(--line);background:var(--sheet);color:var(--ink)}
@@ -874,7 +890,7 @@ const TOPICS_CIE = [
         <li><span class="num">3</span> Use as palavras da apostila: alvéolos, troca gasosa, oxigênio, gás carbônico.</li>
         <li><span class="num">4</span> Escreva uma frase completa, com letra caprichada, e releia no final.</li>
       </ul>
-      <p class="dica">No desafio, você escreve no caderno, depois compara com a resposta esperada e diz se acertou. Vale ser sincero(a): é treino!</p>`]
+      <p class="dica">No desafio, você escreve no caderno, depois compara com a resposta esperada e diz se acertou. Responda com sinceridade: é só treino!</p>`]
   ],
   quiz: [
     {t:'esc', p:true, q:'⭐ Cite uma função do sistema respiratório.', r:'A troca gasosa: trocar o gás carbônico pelo oxigênio. (Também vale: produção de sons ou defesa pulmonar.)', e:'As três funções são troca gasosa, produção de sons e defesa pulmonar. Citar uma delas já está certo.', tm:0, lk:2},
@@ -1061,30 +1077,39 @@ function aplicarNome(){
 aplicarNome();
 function pedirNome(){
   state = {view:'nome'}; setTema('#2F6BFF');
+  document.documentElement.dataset.materia = 'inicio';
   app.innerHTML = `
     <h1>A trilha de estudos</h1>
     <p style="font-family:Fredoka,sans-serif;font-weight:600;font-size:1.25rem;color:var(--margin);margin:10px 0 4px">💌 A Miranda convidou você para estudar com ela para as provas de Matemática e Ciências!</p>
-    ${capi('Oi! Eu sou a Capi e vou estudar com vocês. Antes de começar, como você se chama?')}
+    <div class="capi">${CAPI_SVG.replace(/<rect x="60" y="6"[^>]*\/>/, '')}<div class="balao">Oi! Eu sou a Capi e vou estudar com vocês. Antes de começar, como você se chama?</div></div>
     <div class="ficha">
       <label for="nome" style="font-weight:700">Seu primeiro nome:</label>
-      <div class="resp"><input id="nome" autocomplete="off" maxlength="20" style="width:12ch"><button class="btn" data-act="salvarNome">Começar a trilha →</button></div>
+      <div class="resp"><input id="nome" autocomplete="off" maxlength="20" style="width:14ch"></div>
+      <p style="font-weight:700;margin:14px 0 4px">O que você quer estudar primeiro?</p>
+      <div class="escolha">
+        <button class="escolha-mat" data-act="salvarNome" data-arg="cie" style="--tema:#0E9F8F"><span>🔬</span><b>Ciências</b><small>Sistema respiratório</small></button>
+        <button class="escolha-mat" data-act="salvarNome" data-arg="mat" style="--tema:#2F6BFF"><span>📏</span><b>Matemática</b><small>Números, contas e figuras</small></button>
+      </div>
       <p class="aviso" id="aviso"></p>
+      <p style="margin:0"><small>Dá para trocar de matéria a qualquer momento, nas abas do topo.</small></p>
     </div>
     <p class="dica"><b>Para os pais:</b> o progresso fica salvo neste aparelho, neste navegador. Dentro da trilha, o botão “Painel dos pais” mostra cada resposta e o que vale a pena revisar.</p>`;
   document.getElementById('nome').focus({preventScroll:true});
   subir();
 }
-function salvarNome(){
+function salvarNome(m){
   const v = (document.getElementById('nome').value || '').trim().replace(/[<>&"'`$\\{}]/g, '');
   if (!v) { document.getElementById('aviso').textContent = 'Escreva seu nome.'; return; }
   NOME = v.charAt(0).toUpperCase() + v.slice(1);
   try { localStorage.setItem('revisao-mat-nome', NOME); } catch(e){}
+  if (SUBJ[m]) usarMateria(m);
   aplicarNome(); home();
 }
 
 /* ---------- Tela inicial: a trilha ---------- */
 function home(){
   if (!NOME) return pedirNome();
+  document.documentElement.dataset.materia = MAT;
   state = {view:'home'}; setTema('#2F6BFF');
   const s = load();
   const prova = SUBJ[MAT].data;
@@ -1119,7 +1144,7 @@ function home(){
     ${abas('materia')}
     <h1>A trilha de ${NOME}</h1>
     <p class="subtitulo">${MAT === 'cie' ? '🔬 Ciências: o sistema respiratório' : '📏 Matemática: números, contas e figuras'}</p>
-    <p class="convite">💌 A <b>Miranda</b> está muito feliz de compartilhar esta trilha com os amigos. Bons estudos!</p>
+    <p class="convite">💌 A <b>Miranda</b> está muito feliz de compartilhar esta trilha com a turma toda. Bons estudos!</p>
     ${capi(fala)}
     <div class="placar-topo"><span class="chip">⭐ ${totalEst} de ${(TOPICS.length + 1) * 3} estrelas</span><span class="chip">🎴 ${totalFig} de ${TOPICS.length + 1} figurinhas</span><span class="chip dias">${diasTxt}</span></div>
     <ol class="trilha">${paradas}

@@ -41,7 +41,7 @@ body{
   font-family:Andika,"Trebuchet MS",Verdana,system-ui,sans-serif;
   font-size:19px;line-height:1.6;
 }
-main{max-width:760px;margin:0 auto;padding:22px 20px 90px;min-height:100vh}
+main{max-width:760px;margin:0 auto;padding:22px 20px 90px;min-height:100vh;overflow-x:clip}
 @media (max-width:600px){body{font-size:18px} main{padding:14px 14px 80px}}
 h1,h2,h3{font-family:Fredoka,"Trebuchet MS",system-ui,sans-serif;color:var(--ink);line-height:1.2;margin:0}
 h1{font-size:clamp(1.9rem,6vw,2.6rem);font-weight:700}
@@ -252,6 +252,7 @@ svg.fig polyline{fill:none}
 .convite{font-family:Fredoka,sans-serif;font-weight:600;font-size:1.1rem;color:var(--margin);margin:6px 0 0}
 .convite b{color:var(--margin)}
 .convite-fixo{position:fixed;left:12px;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);z-index:30;background:var(--sheet);color:var(--margin);border:2px solid var(--margin);border-radius:99px;padding:5px 14px;font-family:Fredoka,sans-serif;font-weight:600;font-size:.85rem;box-shadow:0 3px 10px rgba(0,0,0,.15);pointer-events:none}
+@media (max-width:1100px){.convite-fixo{position:static;display:table;margin:0 auto 24px}}
 /* Visual de cada matéria */
 :root[data-materia="mat"] body{
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cg font-family='Arial,sans-serif' font-weight='700' fill='%235B7BD6' fill-opacity='.11'%3E%3Ctext x='18' y='52' font-size='36'%3E+%3C/text%3E%3Ctext x='150' y='42' font-size='32'%3E%C3%B7%3C/text%3E%3Ctext x='92' y='122' font-size='34'%3E%C3%97%3C/text%3E%3Ctext x='192' y='150' font-size='36'%3E=%3C/text%3E%3Ctext x='30' y='192' font-size='34'%3E%E2%88%92%3C/text%3E%3Ctext x='122' y='222' font-size='26'%3E7%3C/text%3E%3Ctext x='204' y='226' font-size='24'%3E3%3C/text%3E%3Ctext x='58' y='112' font-size='22'%3E2%3C/text%3E%3C/g%3E%3C/svg%3E"),linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
@@ -800,7 +801,7 @@ const TOPICS_CIE = [
       <p>A laringe é o órgão que <b>liga a faringe à traqueia</b>.</p>
       <p>Na parte de cima da laringe fica a <mark>epiglote</mark>. Ela <b>se fecha quando estamos comendo</b>, para impedir que o alimento entre na traqueia. Depois ela se abre de novo para o ar passar.</p>
       <p>A laringe também é o <mark>principal órgão da fala</mark>: nela ficam as <b>cordas vocais</b>.</p>
-      <p class="dica">Quando a gente se engasga, é porque um pouquinho de comida tentou ir pelo caminho do ar!</p>`],
+      <p class="dica">Quando nos engasgamos, é porque um pouquinho de comida tentou ir pelo caminho do ar!</p>`],
     ['Traqueia, brônquios e bronquíolos', `
       <p>A <b>traqueia</b> é um tubo que fica abaixo da laringe. Ela tem de <mark>15 a 20 anéis de cartilagem</mark>, que a mantêm sempre aberta para o ar passar bem.</p>
       <p>Os <b>brônquios</b> são <mark>duas ramificações da traqueia</mark>, também com anéis de cartilagem. Cada brônquio entra em um pulmão.</p>
@@ -1013,7 +1014,7 @@ const TOPICS_POR = [
       </ul>`],
     ['Artigo definido: o, a, os, as', `
       <p>O <b>artigo definido</b> fala de algo <mark>específico, já conhecido</mark>.</p>
-      <p>“Me empresta <b>o</b> lápis?” Quem fala está pensando em um lápis certo, aquele que está ali.</p>
+      <p>“Você me empresta <b>o</b> lápis?” Quem fala está pensando em um lápis certo, aquele que está ali.</p>
       <div class="tabela-wrap"><table>
         <tr><th></th><th>Singular</th><th>Plural</th></tr>
         <tr><th>Masculino</th><td class="big">o</td><td class="big">os</td></tr>
@@ -1021,7 +1022,7 @@ const TOPICS_POR = [
       </table></div>`],
     ['Artigo indefinido: um, uma, uns, umas', `
       <p>O <b>artigo indefinido</b> fala de algo <mark>qualquer, ainda não conhecido</mark>.</p>
-      <p>“Me empresta <b>um</b> lápis?” Serve qualquer lápis.</p>
+      <p>“Você me empresta <b>um</b> lápis?” Serve qualquer lápis.</p>
       <div class="tabela-wrap"><table>
         <tr><th></th><th>Singular</th><th>Plural</th></tr>
         <tr><th>Masculino</th><td class="big">um</td><td class="big">uns</td></tr>
@@ -1051,14 +1052,14 @@ const TOPICS_POR = [
   sub: 'Eu, tu, ele, ela, nós, vós, eles, elas: quem fala, com quem se fala e de quem se fala',
   lessons: [
     ['Para que servem os pronomes', `
-      <p><b>Pronome</b> é a palavra que <mark>substitui o substantivo</mark>. Ele evita que a gente repita o mesmo nome toda hora.</p>
+      <p><b>Pronome</b> é a palavra que <mark>substitui o substantivo</mark>. Com ele, não precisamos repetir o mesmo nome toda hora.</p>
       <p>Repetido: “O Pedro chegou. <s>O Pedro</s> trouxe a bola.”</p>
       <p>Melhor: “O Pedro chegou. <b>Ele</b> trouxe a bola.”</p>`],
     ['As pessoas do discurso', `
       <p>Toda conversa tem três “pessoas”:</p>
       <ul class="exemplos">
         <li><span class="num">1ª</span> <b>quem fala</b>: eu, nós</li>
-        <li><span class="num">2ª</span> <b>com quem se fala</b>: tu, vós</li>
+        <li><span class="num">2ª</span> <b>com quem se fala</b>: tu, vós (no dia a dia, <b>você, vocês</b>)</li>
         <li><span class="num">3ª</span> <b>de quem se fala</b>: ele, ela, eles, elas</li>
       </ul>
       <div class="tabela-wrap"><table>
@@ -1070,7 +1071,7 @@ const TOPICS_POR = [
       <p class="dica">Aponte para você mesmo (eu), para o colega na sua frente (tu) e para alguém lá longe (ele ou ela). Pronto: as três pessoas!</p>`],
     ['E o “você”?', `
       <p>No Brasil, quase sempre usamos <b>você</b> no lugar de <b>tu</b> para falar com alguém. No plural, usamos <b>vocês</b>.</p>
-      <p>“Você” é um <mark>pronome de tratamento</mark>. A gente fala <b>com</b> a pessoa, mas o verbo fica igual ao da 3ª pessoa:</p>
+      <p>“Você” é um <mark>pronome de tratamento</mark>. Nós falamos <b>com</b> a pessoa, mas o verbo fica igual ao da 3ª pessoa:</p>
       <ul class="exemplos">
         <li><span class="num">tu</span> tu estudas</li>
         <li><span class="num">você</span> você estuda (igual a: ele estuda)</li>
@@ -1083,14 +1084,14 @@ const TOPICS_POR = [
       <ul class="exemplos">
         <li><span class="num">nós</span> “Eu e a Ana” (eu estou no grupo)</li>
         <li><span class="num">elas</span> “A Bia e a Lu” (só meninas)</li>
-        <li><span class="num">eles</span> “O Léo e o Davi” ou “A Lu e o Davi” (se tiver pelo menos um menino)</li>
+        <li><span class="num">eles</span> “O Léo e o Davi” ou “A Lu e o Davi” (se houver pelo menos um menino no grupo)</li>
       </ul>`]
   ],
   quiz: [
     {t:'mc', lk:1, q:'Qual é o pronome da 1ª pessoa do plural?', o:['eu','eles','nós','vós'], a:2, e:'1ª pessoa é quem fala. No plural, é “nós”.'},
     {t:'mc', lk:3, q:'“O Davi e a Clara foram à praia.” Qual pronome substitui “o Davi e a Clara”?', o:['Nós','Eles','Elas','Vós'], a:1, e:'É um grupo com um menino e uma menina, e quem fala não está nele: eles.'},
     {t:'mc', lk:3, q:'“A Bia e a Lu dançaram.” Qual pronome substitui “a Bia e a Lu”?', o:['Eles','Elas','Nós','Ela'], a:1, e:'São duas meninas, no plural: elas.'},
-    {t:'mc', lk:1, q:'Na frase “Eu vou te contar um segredo”, quem é a 1ª pessoa?', o:['Quem fala (eu)','Com quem se fala (te)','O segredo'], a:0, e:'A 1ª pessoa é sempre quem fala: eu.'},
+    {t:'mc', lk:2, q:'Na pergunta “Você quer brincar comigo?”, “você” é a pessoa:', o:['que fala','com quem se fala','de quem se fala'], a:1, e:'“Você” serve para falar com alguém, como o “tu”. No Brasil, é o jeito mais usado. O verbo fica na 3ª pessoa: você quer, ele quer.'},
     {t:'mc', lk:1, q:'“Ele” é a pessoa:', o:['de quem se fala (3ª pessoa)','que fala (1ª pessoa)','com quem se fala (2ª pessoa)'], a:0, e:'Ele, ela, eles e elas são a 3ª pessoa: de quem se fala.'},
     {t:'mc', lk:0, q:'Qual opção evita a repetição? “O Léo ganhou uma bicicleta. O Léo ficou muito feliz.”', o:['O Léo ganhou uma bicicleta. Ela ficou muito feliz.','O Léo ganhou uma bicicleta. Ele ficou muito feliz.','O Léo ganhou uma bicicleta. Nós ficamos muito felizes.'], a:1, e:'O pronome “ele” substitui “o Léo”. “Ela” mudaria o sentido: pareceria que quem ficou feliz foi a bicicleta!'}
   ]
@@ -1218,7 +1219,7 @@ const TOPICS_POR = [
       <ul class="exemplos">
         <li><span class="num">mim</span> Esse presente é <b>para mim</b>.</li>
         <li><span class="num">ti</span> Ela gosta muito <b>de ti</b>.</li>
-        <li><span class="num">comigo</span> Vem <b>comigo</b>!</li>
+        <li><span class="num">comigo</span> Venha <b>comigo</b>!</li>
         <li><span class="num">conosco</span> Ele almoçou <b>conosco</b>.</li>
       </ul>`],
     ['Quadro completo', `
@@ -1292,7 +1293,7 @@ const TOPICS_POR = [
         <li><span class="num">la</span> Quero ver a apresentação. → Quero <b>vê-la</b>.</li>
         <li><span class="num">los</span> Preciso abrir os presentes. → Preciso <b>abri-los</b>.</li>
       </ul>
-      <p class="dica">Fique de olho no acento: compr<b>á</b>-lo, v<b>ê</b>-la. Com verbos em -ir não tem acento: abri-los.</p>`],
+      <p class="dica">Fique de olho no acento: compr<b>á</b>-lo, v<b>ê</b>-la. Com verbos em -ir não há acento: abri-los.</p>`],
     ['Artigo ou pronome?', `
       <p>Cuidado: <b>o, a, os, as</b> podem ser <mark>artigo</mark> ou <mark>pronome</mark>!</p>
       <ul class="exemplos">
@@ -1318,10 +1319,11 @@ const FINAL_POR = [
   {tm:0, lk:3, t:'mc', q:'Em “A praia limpa e bonita”, os adjetivos são:', o:['praia e limpa','limpa e bonita','A e praia','praia e bonita'], a:1, e:'Como é a praia? Limpa e bonita.'},
   {tm:0, lk:4, t:'mc', q:'Complete com a concordância certa: “Os dias ___.”', o:['ensolarado','ensolarada','ensolarados','ensolaradas'], a:2, e:'“Dias” é masculino e plural: ensolarados.'},
   {tm:1, lk:2, t:'mc', q:'Em “Uns amigos vieram me visitar”, a palavra “Uns” é artigo:', o:['definido','indefinido'], a:1, e:'Um, uma, uns, umas são artigos indefinidos.'},
-  {tm:1, lk:1, t:'mc', q:'Em qual frase o artigo mostra que é algo específico, já conhecido?', o:['Me empresta uma caneta?','Me empresta a caneta azul que está na sua mesa?'], a:1, e:'“A caneta azul que está na sua mesa” é uma caneta certa: artigo definido.'},
+  {tm:1, lk:1, t:'mc', q:'Em qual frase o artigo mostra que é algo específico, já conhecido?', o:['Você me empresta uma caneta?','Você me empresta a caneta azul que está na sua mesa?'], a:1, e:'“A caneta azul que está na sua mesa” é uma caneta certa: artigo definido.'},
   {tm:2, lk:1, t:'mc', q:'“Nós” é pronome da:', o:['1ª pessoa do singular','1ª pessoa do plural','3ª pessoa do plural','2ª pessoa do plural'], a:1, e:'Nós = quem fala, no plural.'},
   {tm:2, lk:1, t:'mc', q:'Na frase “Tu és meu amigo”, “tu” é a pessoa:', o:['que fala','com quem se fala','de quem se fala'], a:1, e:'Tu é a 2ª pessoa: com quem se fala.'},
   {tm:2, lk:3, t:'mc', q:'Qual pronome substitui “o Davi e a Clara”?', o:['Elas','Eles','Nós','Ele'], a:1, e:'Grupo com pelo menos um menino: eles.'},
+  {tm:2, lk:2, t:'mc', q:'Qual frase está certa?', o:['Você estudas muito.','Você estuda muito.','Você estudamos muito.'], a:1, e:'Com “você”, o verbo fica igual ao da 3ª pessoa: você estuda, ele estuda. Com “tu”, seria “tu estudas”.'},
   {tm:3, lk:3, t:'mc', q:'“Era uma vez um dragão que morava numa caverna.” Os verbos “era” e “morava” estão no:', o:['presente','pretérito perfeito','pretérito imperfeito','futuro'], a:2, e:'Nas histórias, o pretérito imperfeito mostra como as coisas eram, uma situação que durava.'},
   {tm:3, lk:2, t:'mc', q:'Qual frase está no pretérito perfeito?', o:['Eu leio um livro.','Eu li um livro.','Eu lerei um livro.','Eu lia livros.'], a:1, e:'“Li” é uma ação do passado que terminou.'},
   {tm:3, lk:4, t:'mc', q:'Complete: “Nós ___ (viajar) nas férias do ano que vem.”', o:['viajamos','viajávamos','viajaremos','viajam'], a:2, e:'“Ano que vem” é futuro: viajaremos.'},
@@ -1360,7 +1362,7 @@ function estudarHTML(meta, comExplicacao){
 
 /* ---------- Jogo: temas, figurinhas, Capi ---------- */
 const META_MAT = [
-  {cor:'#2F6BFF', em:'🦜', nome:'Arara-azul', dica:'Oi! Eu sou a Capi. Copie os exemplos no caderno, tá? Lembre: o zero não se lê, mas guarda o lugar!'},
+  {cor:'#2F6BFF', em:'🦜', nome:'Arara-azul', dica:'Oi! Eu sou a Capi. Copie os exemplos no caderno, combinado? Lembre: o zero não se lê, mas guarda o lugar!'},
   {cor:'#8E44E8', em:'🐒', nome:'Mico-leão-dourado', dica:'Desenhe o quadro valor de lugar no caderno. Ele resolve quase tudo deste tema!'},
   {cor:'#F07B00', em:'🐢', nome:'Tartaruga-marinha', dica:'Pegue uma régua! Vai ser divertido desenhar as figuras.'},
   {cor:'#E0336E', em:'🐬', nome:'Boto-cor-de-rosa', dica:'Quadradinho do caderno: um algarismo em cada um. Conta armada certinha não erra!'},
@@ -1369,7 +1371,7 @@ const META_MAT = [
   {cor:'#D1452A', em:'🦋', nome:'Borboleta-azul', dica:'Leia o problema duas vezes e imagine a história acontecendo.'}
 ];
 const META_CIE = [
-  {cor:'#0E7CC0', em:'🐋', nome:'Baleia-jubarte', dica:'Oi! Eu sou a Capi. Sabia que a baleia também respira com pulmões? Vamos descobrir como a gente respira!'},
+  {cor:'#0E7CC0', em:'🐋', nome:'Baleia-jubarte', dica:'Oi! Eu sou a Capi. Sabia que a baleia também respira com pulmões? Vamos descobrir como nós respiramos!'},
   {cor:'#E0336E', em:'🐊', nome:'Jacaré-do-papo-amarelo', dica:'Siga o caminho do ar com o dedo no desenho. E decore a frase do lagarto!'},
   {cor:'#F07B00', em:'🦉', nome:'Coruja-buraqueira', dica:'Coloque a mão na barriga enquanto respira. Você vai sentir o diafragma trabalhando!'},
   {cor:'#0E9F63', em:'🐸', nome:'Sapo-cururu', dica:'Lembre: infecciosas são causadas por micróbios; alérgicas, por sensibilidade a poeira, pólen...'},

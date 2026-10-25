@@ -1310,6 +1310,55 @@ const TOPICS_POR = [
     {t:'mc', lk:4, q:'Em qual frase o “o” é PRONOME (e não artigo)?', o:['O sol nasceu.','Eu o encontrei no parque.','O livro é novo.','Comi o bolo.'], a:1, e:'Em “Eu o encontrei”, o “o” está junto do verbo e substitui alguém. Nas outras, vem antes de um substantivo: é artigo.'},
     {t:'esc', p:true, lk:1, q:'Copie no caderno e reescreva a segunda frase, trocando a parte repetida por um pronome: “Ganhei uma bola nova. Levei a bola para a escola.”', r:'Ganhei uma bola nova. Eu a levei para a escola. (Também vale: Levei-a para a escola.)', e:'“A bola” é feminino singular, então troca por “a”.'}
   ]
+},
+{
+  id: 'p-texto', title: 'Lendo e escrevendo um texto',
+  sub: 'Encontrar as classes de palavras num texto e escrever o seu',
+  lessons: [
+    ['O texto', `
+      <p>Leia o texto com atenção. Depois, leia de novo: na segunda leitura, procure as palavras que você estudou na trilha.</p>
+      <div class="modelo"><b>Um sábado na Quinta</b>
+        <p>No sábado passado, minha família e eu fizemos um piquenique na Quinta da Boa Vista. Primeiro, a mamãe preparou uns sanduíches deliciosos. Depois, o papai encheu uma garrafa com suco gelado.</p>
+        <p>Quando chegamos, o parque estava lindo. Minha irmã Laura levou a bola nova. Ela a chutou tão alto que a bola caiu no lago! Um senhor simpático a tirou da água e a devolveu para nós.</p>
+        <p>Por fim, deitamos na grama macia e olhamos as nuvens. No próximo sábado, voltaremos ao parque com os nossos primos.</p>
+      </div>
+      <p class="dica">As questões deste tema usam frases deste texto. Se precisar, volte aqui para reler.</p>`],
+    ['Caçando as palavras no texto', `
+      <p>Use os truques da trilha para achar cada classe de palavra:</p>
+      <ul class="exemplos">
+        <li><b>Substantivo:</b> aceita o, a, um ou uma na frente.<br><small>No texto: a mamãe, a bola, Laura</small></li>
+        <li><b>Adjetivo:</b> responde “como é?”.<br><small>No texto: deliciosos, gelado, lindo</small></li>
+        <li><b>Artigo:</b> vem antes do substantivo.<br><small>No texto: a, o, uns, uma</small></li>
+        <li><b>Pronome:</b> fica no lugar de um nome.<br><small>No texto: eu, ela, a, nós</small></li>
+        <li><b>Verbo:</b> é ação ou estado e muda com o tempo.<br><small>No texto: fizemos, estava, voltaremos</small></li>
+        <li><b>Marcador temporal:</b> responde “quando?” ou mostra a ordem.<br><small>No texto: no sábado passado, primeiro, depois, por fim</small></li>
+      </ul>
+      <p>Veja os pronomes trabalhando: em “<b>Ela a</b> chutou”, o “Ela” está no lugar de <mark>Laura</mark> e o “a” está no lugar de <mark>a bola nova</mark>. Assim o texto não repete os nomes.</p>`],
+    ['Agora você escreve', `
+      <p>Para escrever um bom texto, siga o caminho:</p>
+      <p class="caminho"><span>1. Título</span><span>2. Começo</span><span>3. Meio</span><span>4. Fim</span></p>
+      <ul class="exemplos">
+        <li><span class="num">Começo</span> Conte <b>quando</b>, <b>onde</b> e <b>quem</b>: “No sábado passado, minha família e eu...”</li>
+        <li><span class="num">Meio</span> Conte o que aconteceu, <b>em ordem</b>: primeiro, depois, em seguida.</li>
+        <li><span class="num">Fim</span> Feche a história: “Por fim, ...”</li>
+      </ul>
+      <p><b>Antes de entregar, confira:</b></p>
+      <ul class="exemplos">
+        <li>✔ Letra maiúscula no começo das frases e nos nomes próprios.</li>
+        <li>✔ Ponto no final de cada frase.</li>
+        <li>✔ Adjetivos para mostrar como são as coisas.</li>
+        <li>✔ Pronomes para não repetir o mesmo nome.</li>
+        <li>✔ Verbos combinando com os marcadores temporais.</li>
+      </ul>`]
+  ],
+  quiz: [
+    {t:'mc', lk:0, q:'No texto: “Primeiro, a mamãe preparou uns sanduíches deliciosos.” Qual palavra é um adjetivo?', o:['mamãe','preparou','deliciosos','uns'], a:2, e:'Como são os sanduíches? Deliciosos: é a característica. “Mamãe” é substantivo, “preparou” é verbo e “uns” é artigo.'},
+    {t:'mc', lk:0, q:'No texto: “Minha irmã Laura levou a bola nova.” Qual é o substantivo próprio?', o:['irmã','Laura','bola','nova'], a:1, e:'Laura é o nome de uma pessoa específica: substantivo próprio, com letra maiúscula. “Irmã” e “bola” são comuns, e “nova” é adjetivo.'},
+    {t:'mc', lk:1, q:'No texto: “Ela a chutou tão alto que a bola caiu no lago!” A quem o pronome “Ela” se refere?', o:['à mamãe','à bola','à Laura','ao lago'], a:2, e:'“Ela” está no lugar de “a Laura”, que levou a bola. O “a” logo depois está no lugar de “a bola nova”.'},
+    {t:'mc', lk:1, q:'Quais palavras do texto mostram a ORDEM em que as coisas aconteceram?', o:['primeiro, depois, por fim','sábado, parque, lago','lindo, nova, macia','eu, ela, nós'], a:0, e:'Primeiro, depois e por fim são marcadores de sequência. Os outros grupos são substantivos, adjetivos e pronomes.'},
+    {t:'mc', lk:1, q:'No texto, os verbos “estava” e “voltaremos” estão em quais tempos?', o:['pretérito imperfeito e futuro','presente e futuro','pretérito perfeito e presente','futuro e pretérito perfeito'], a:0, e:'“Estava” mostra como o parque era naquele momento, uma situação que durava: pretérito imperfeito. “Voltaremos” ainda vai acontecer, no próximo sábado: futuro.'},
+    {t:'esc', p:true, lk:2, q:'Agora é a sua vez! No caderno, escreva um texto de 5 a 8 linhas contando um passeio que você fez. Use um título, os marcadores primeiro, depois e por fim, pelo menos 2 adjetivos, 1 pronome no lugar de um nome repetido e verbos no passado.', r:'<b>Título:</b> Um domingo na praia<br><b>Texto:</b> No domingo passado, eu fui à praia de Copacabana com a minha avó. Primeiro, nós passamos protetor solar. Depois, construímos um castelo enorme na areia branca. A vovó tirou uma foto do castelo e a mandou para a família toda. Por fim, tomamos um sorvete gelado e voltamos felizes para casa.', e:'O seu texto não precisa ser igual ao exemplo. Confira se ele tem título, letra maiúscula e ponto, primeiro, depois e por fim, adjetivos e um pronome no lugar de um nome repetido.'}
+  ]
 }
 ];
 TOPICS_POR.forEach((t, i) => t.quiz.forEach(q => { if (q.tm == null) q.tm = i; }));
@@ -1335,6 +1384,8 @@ const FINAL_POR = [
   {tm:6, lk:1, t:'mc', q:'“A mamãe preparou o almoço.” Trocando “o almoço” por um pronome, fica:', o:['A mamãe a preparou.','A mamãe o preparou.','A mamãe os preparou.','A mamãe preparou ele.'], a:1, e:'“O almoço” é masculino singular: o.'},
   {tm:6, lk:1, t:'mc', q:'“Eu chamei as minhas amigas.” → “Eu ___ chamei.”', o:['os','as','a','lhes'], a:1, e:'“As minhas amigas” é feminino plural: as.'},
   {tm:6, lk:1, t:'esc', p:true, q:'Reescreva no caderno, trocando “os primos” por um pronome: “O Rafa encontrou os primos no shopping.”', r:'O Rafa os encontrou no shopping.', e:'“Os primos” é masculino plural, então troca por “os”, que fica antes do verbo.'},
+  {tm:7, lk:1, t:'mc', q:'Leia: “A Clara ganhou um cachorrinho peludo. Ela o chamou de Bolinha.” O pronome “o” está no lugar de:', o:['a Clara','um cachorrinho peludo','Bolinha'], a:1, e:'“O” fica junto do verbo e substitui o cachorrinho, para não repetir. Quem substitui “a Clara” é o “Ela”.'},
+  {tm:7, lk:1, t:'mc', q:'Leia: “Ontem, a turma visitou o museu. Os alunos adoraram as estátuas antigas.” Quais são os verbos desse trecho?', o:['turma e museu','visitou e adoraram','Ontem e antigas','a e os'], a:1, e:'“Visitou” e “adoraram” são ações que já aconteceram. “Ontem” é marcador temporal, “antigas” é adjetivo, e “a” e “os” são artigos.'},
   {tm:3, lk:5, t:'esc', p:true, q:'Reescreva no caderno, passando o verbo para o futuro: “Eu arrumei o meu quarto.”', r:'Eu arrumarei o meu quarto. (Também vale: Eu vou arrumar o meu quarto.)', e:'Arrumei (passado) vira arrumarei ou vou arrumar (futuro).'}
 ];
 
@@ -1345,7 +1396,8 @@ const META_POR = [
   {cor:'#0E9F63', em:'🐟', nome:'Pirarucu', dica:'Leia cada frase e pense: isso já aconteceu, está acontecendo ou ainda vai acontecer?'},
   {cor:'#F07B00', em:'🐞', nome:'Joaninha', dica:'Ontem, hoje, amanhã... os marcadores são pistas para escolher o tempo do verbo!'},
   {cor:'#0096B8', em:'🐍', nome:'Jiboia', dica:'Depois de “para”, “de” ou “sem”, use mim. Mas, se vier um verbo depois, é “para eu”!'},
-  {cor:'#E0336E', em:'🦈', nome:'Tubarão-baleia', dica:'Pergunte ao verbo: “o quê?” ou “quem?”. A resposta é o objeto direto!'}
+  {cor:'#E0336E', em:'🦈', nome:'Tubarão-baleia', dica:'Pergunte ao verbo: “o quê?” ou “quem?”. A resposta é o objeto direto!'},
+  {cor:'#0F766E', em:'🦜', nome:'Papagaio', dica:'Leia o texto duas vezes. Na segunda leitura, use os truques: “como é?” acha o adjetivo e “quando?” acha o marcador temporal.'}
 ];
 
 /* ---------- O que estudar quando erra ---------- */
@@ -1378,7 +1430,7 @@ const META_CIE = [
   {cor:'#8E44E8', em:'🦚', nome:'Pavão', dica:'Aqui você escreve as respostas no caderno, como na prova. Capricha na letra!'}
 ];
 const SUBJ = {
-  por: {nome:'Português', em:'📚', sub:'📚 Português: classes de palavras e tempos verbais', topics:TOPICS_POR, final:FINAL_POR, meta:META_POR, metaFinal:{cor:'#E2A400', em:'📜', nome:'Diploma de Português'}, data:new Date(2026, 9, 26), key:'revisao-por-v1', keyH:'revisao-por-hist-v1'},
+  por: {nome:'Português', em:'📚', sub:'📚 Português: classes de palavras, tempos verbais e textos', topics:TOPICS_POR, final:FINAL_POR, meta:META_POR, metaFinal:{cor:'#E2A400', em:'📜', nome:'Diploma de Português'}, data:new Date(2026, 9, 26), key:'revisao-por-v1', keyH:'revisao-por-hist-v1'},
   mat: {nome:'Matemática', em:'🔢', topics:TOPICS_MAT, final:FINAL_MAT, meta:META_MAT, sub:'📏 Matemática: números, contas e figuras', metaFinal:{cor:'#E2A400', em:'🏆', nome:'Troféu da prova final'}, data:new Date(2026, 9, 22), key:'revisao-mat-miranda-v1', keyH:'revisao-mat-miranda-hist-v1'},
   cie: {nome:'Ciências', em:'🫁', topics:TOPICS_CIE, final:FINAL_CIE, meta:META_CIE, sub:'🔬 Ciências: o sistema respiratório', metaFinal:{cor:'#E2A400', em:'🥇', nome:'Medalha de Ciências'}, data:new Date(2026, 9, 23), key:'revisao-cie-v1', keyH:'revisao-cie-hist-v1'}
 };
@@ -1394,8 +1446,8 @@ function usarMateria(m){
 }
 const abas = act => `<nav class="abas" aria-label="Matéria">${Object.entries(SUBJ).map(([k, s]) => `<button class="${k === MAT ? 'on' : ''}" data-act="${act}" data-arg="${k}" aria-pressed="${k === MAT}">${s.em} ${s.nome}</button>`).join('')}</nav>`;
 const certaTxt = q => q.t === 'mc' ? q.o[q.a] : q.t === 'esc' ? q.r : fmt(q.a);
-const ELOGIOS = ['Mandou bem!','Isso aí!','Arrasou!','Acertou em cheio!','Show de bola!','Que craque!','Perfeito!'];
-const QUASE = ['Quase! Olha só como faz:','Opa, essa escapou. Vamos ver como se faz:','Errar faz parte! Veja o jeito certo:'];
+const ELOGIOS = ['Muito bem!','Isso mesmo!','Excelente!','Acertou em cheio!','Parabéns!','Ótimo trabalho!','Perfeito!'];
+const QUASE = ['Quase! Veja como se faz:','Opa, essa escapou. Vamos ver como se faz:','Errar faz parte! Veja o jeito certo:'];
 const rnd = a => a[Math.floor(Math.random() * a.length)];
 const CAPI_SVG = `<svg viewBox="0 0 120 100" aria-hidden="true">
   <rect x="60" y="6" width="7" height="34" rx="2" transform="rotate(28 63 23)" fill="#FFC93C" stroke="#3A2E00" stroke-width="2"/>
@@ -1520,7 +1572,7 @@ function pedirNome(){
       <div class="resp"><input id="nome" autocomplete="off" maxlength="20" style="width:14ch"></div>
       <p style="font-weight:700;margin:14px 0 4px">O que você quer estudar primeiro?</p>
       <div class="escolha">
-        <button class="escolha-mat" data-act="salvarNome" data-arg="por" style="--tema:#8E44E8"><span>📚</span><b>Português</b><small>Classes de palavras e verbos</small></button>
+        <button class="escolha-mat" data-act="salvarNome" data-arg="por" style="--tema:#8E44E8"><span>📚</span><b>Português</b><small>Classes de palavras, verbos e textos</small></button>
         <button class="escolha-mat" data-act="salvarNome" data-arg="cie" style="--tema:#0E9F8F"><span>🔬</span><b>Ciências</b><small>Sistema respiratório</small></button>
         <button class="escolha-mat" data-act="salvarNome" data-arg="mat" style="--tema:#2F6BFF"><span>📏</span><b>Matemática</b><small>Números, contas e figuras</small></button>
       </div>
@@ -1556,7 +1608,7 @@ function home(){
   if (totalEst === 0) fala = `Oi, ${NOME}! Eu sou a Capi. Vamos percorrer a trilha? Cada tema vale até 3 estrelas e uma figurinha para o seu álbum!`;
   else if (prox === -1) fala = 'Você completou o álbum inteiro! Pode refazer a prova final para treinar mais.';
   else if (prox === TOPICS.length) fala = 'Todas as figurinhas dos temas são suas! Agora falta só o troféu da prova final.';
-  else fala = `Você já tem ${totalEst} estrelas! A próxima parada é o tema ${prox + 1}. Bora?`;
+  else fala = `Você já tem ${totalEst} estrelas! A próxima parada é o tema ${prox + 1}. Vamos lá?`;
   const nm = SUBJ[MAT].nome;
   const diasTxt = dias == null ? '' : dias > 1 ? `📅 Faltam ${dias} dias para a prova de ${nm}` : dias === 1 ? `📅 A prova de ${nm} é amanhã!` : dias === 0 ? `📅 Hoje é a prova de ${nm}. Você consegue!` : `📅 A prova de ${nm} já passou. Dá para continuar treinando!`;
   const paradas = TOPICS.map((t, i) => {
@@ -1740,11 +1792,11 @@ function resultado(){
   const meta = Q.mode === 'prova' ? metaFinal() : 5;
   const novaFig = !tinha && acertos >= meta;
   const pct = acertos / n;
-  const msg = pct === 1 ? 'Gabaritou! Nota máxima!' : pct >= .8 ? 'Excelente! Você está mandando muito bem.' : pct >= .6 ? 'Muito bem! Revise o que errou e tente de novo.' : 'Respira e tenta de novo: releia a explicação com calma. Você consegue!';
+  const msg = pct === 1 ? 'Gabaritou! Nota máxima!' : pct >= .8 ? 'Excelente! Você está indo muito bem.' : pct >= .6 ? 'Muito bem! Revise o que errou e tente de novo.' : 'Respire e tente de novo: releia a explicação com calma. Você consegue!';
   const k = nEst(acertos, n);
   let premio = '';
   if (novaFig) premio = `<div class="premio"><span class="em">${m.em}</span><h3 style="margin:.4em 0 0">Figurinha nova!</h3><p style="margin:.2em 0 0">${m.nome} foi para o seu álbum.</p></div>`;
-  else if (!tinha) premio = `<div class="premio" style="border-style:dashed">${capi(`Faltou ${meta - acertos === 1 ? 'só 1 acerto' : `${meta - acertos} acertos`} para ganhar a figurinha ${m.em}. Tenta de novo?`, true)}</div>`;
+  else if (!tinha) premio = `<div class="premio" style="border-style:dashed">${capi(`${meta - acertos === 1 ? 'Faltou só 1 acerto' : `Faltaram ${meta - acertos} acertos`} para ganhar a figurinha ${m.em}. Vamos tentar de novo?`, true)}</div>`;
   const lista = Q.results.map((r, j) => {
     const certa = certaTxt(r.q);
     const deu = r.q.t === 'mc' ? r.q.o[r.ans] : r.ans;

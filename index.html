@@ -268,6 +268,15 @@ svg.fig polyline{fill:none}
 :root[data-materia="cie"] .bola{border-radius:46% 54% 52% 48% / 54% 46% 54% 46%}
 :root[data-materia="cie"] .cartao,:root[data-materia="cie"] .ficha{border-radius:30px}
 :root[data-materia="cie"] .chip,:root[data-materia="cie"] .abas button{border-style:dashed}
+:root[data-materia="por"]{--paper:#FFFBF3;--grid:#DCE3F2;--ink:#6A2C8A;--line:#E3D3EC;--fig:#F2E7F8}
+@media (prefers-color-scheme:dark){:root[data-materia="por"]:not([data-theme="light"]){--paper:#18121F;--sheet:#221A2D;--grid:#2A2240;--ink:#D7A9F2;--line:#3D3150;--fig:#302543}}
+:root[data-theme="dark"][data-materia="por"]{--paper:#18121F;--sheet:#221A2D;--grid:#2A2240;--ink:#D7A9F2;--line:#3D3150;--fig:#302543}
+:root[data-materia="por"] body{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cg font-family='Georgia,serif' font-weight='700' fill='%238E44E8' fill-opacity='.13'%3E%3Ctext x='70' y='56' font-size='40'%3EA%3C/text%3E%3Ctext x='176' y='44' font-size='30' font-style='italic'%3Eb%3C/text%3E%3Ctext x='122' y='128' font-size='34'%3E%C3%A7%3C/text%3E%3Ctext x='210' y='150' font-size='36'%3E%3F%3C/text%3E%3Ctext x='64' y='196' font-size='34'%3E%E2%80%9C%E2%80%9D%3C/text%3E%3Ctext x='150' y='232' font-size='30'%3E%C3%A3%3C/text%3E%3Ctext x='226' y='236' font-size='28'%3E!%3C/text%3E%3C/g%3E%3C/svg%3E"),linear-gradient(90deg,transparent 30px,rgba(227,74,98,.32) 30px,rgba(227,74,98,.32) 32px,transparent 32px),linear-gradient(transparent 31px,var(--grid) 31px,var(--grid) 32px);
+  background-size:260px 260px,100% 100%,100% 32px;
+}
+:root[data-materia="por"] .bola{border-radius:12px}
+:root[data-materia="por"] .cartao,:root[data-materia="por"] .ficha{border-radius:8px 22px 22px 8px;border-left-width:6px}
 :root[data-materia="inicio"]{--paper:#F1F7FF;--line:#C9DAEE}
 @media (prefers-color-scheme:dark){:root[data-materia="inicio"]:not([data-theme="light"]){--paper:#0F1A2C;--sheet:#172438;--line:#2B3D5A}}
 :root[data-theme="dark"][data-materia="inicio"]{--paper:#0F1A2C;--sheet:#172438;--line:#2B3D5A}
@@ -923,6 +932,420 @@ const FINAL_CIE = [
   {tm:3, lk:2, t:'esc', p:true, q:'⭐ Por que fumar faz mal?', r:'Porque o cigarro causa várias doenças no sistema respiratório e vicia muito rápido.', e:'Causa doenças e vicia rapidamente.'}
 ];
 
+const TOPICS_POR = [
+{
+  id: 'p-subst', title: 'Substantivos e adjetivos',
+  sub: 'O nome das coisas, comum e próprio, gênero, número e características',
+  lessons: [
+    ['Substantivo: o nome de tudo', `
+      <p><b>Substantivo</b> é a palavra que <mark>dá nome</mark> a pessoas, animais, objetos, lugares, sentimentos e ideias.</p>
+      <ul class="exemplos">
+        <li><span class="num">👧</span> menina, professor, {NOME}</li>
+        <li><span class="num">🐶</span> cachorro, capivara, peixe</li>
+        <li><span class="num">✏️</span> lápis, mesa, mochila</li>
+        <li><span class="num">🏖️</span> praia, escola, Rio de Janeiro</li>
+        <li><span class="num">💛</span> alegria, saudade, amizade</li>
+      </ul>
+      <p class="dica"><b>Truque:</b> tente colocar <b>o, a, um</b> ou <b>uma</b> na frente da palavra. Se combinar (<i>a alegria, o lápis, uma praia</i>), é substantivo!</p>`],
+    ['Substantivo comum e próprio', `
+      <p><b>Comum</b> dá nome a <mark>qualquer um</mark> do grupo. Escreve-se com letra minúscula.</p>
+      <p><b>Próprio</b> dá nome a <mark>um ser específico</mark>, só aquele. Escreve-se sempre com <b>letra maiúscula</b>.</p>
+      <div class="tabela-wrap"><table>
+        <tr><th>Comum</th><th>Próprio</th></tr>
+        <tr><td>cidade</td><td>Rio de Janeiro</td></tr>
+        <tr><td>escola</td><td>Colégio Pedro II</td></tr>
+        <tr><td>país</td><td>Brasil</td></tr>
+        <tr><td>cachorro</td><td>Totó</td></tr>
+        <tr><td>praia</td><td>Copacabana</td></tr>
+      </table></div>
+      <p class="dica">Nomes de pessoas, animais de estimação, cidades, países, bairros, rios e escolas são <b>próprios</b>: maiúscula neles!</p>`],
+    ['Gênero e número', `
+      <p><b>Gênero:</b> o substantivo pode ser <mark>masculino</mark> (o menino, o gato) ou <mark>feminino</mark> (a menina, a gata).</p>
+      <p>Alguns femininos mudam bastante: o ator, <b>a atriz</b>; o cavalo, <b>a égua</b>; o boi, <b>a vaca</b>; o rei, <b>a rainha</b>.</p>
+      <p><b>Número:</b> o substantivo pode estar no <mark>singular</mark> (um só) ou no <mark>plural</mark> (mais de um).</p>
+      <div class="tabela-wrap"><table>
+        <tr><th>Singular</th><th>Plural</th></tr>
+        <tr><td>livro</td><td>livros</td></tr>
+        <tr><td>flor</td><td>flores</td></tr>
+        <tr><td>animal</td><td>animais</td></tr>
+        <tr><td>pão</td><td>pães</td></tr>
+        <tr><td>lápis</td><td>lápis</td></tr>
+      </table></div>`],
+    ['Adjetivo: a característica', `
+      <p><b>Adjetivo</b> é a palavra que <mark>dá uma característica</mark> ao substantivo. Ele diz <b>como é</b> alguma coisa.</p>
+      <ul class="exemplos">
+        <li><span class="num">🐱</span> gato <b>preguiçoso</b></li>
+        <li><span class="num">🏠</span> casa <b>grande</b></li>
+        <li><span class="num">☀️</span> dia <b>ensolarado</b></li>
+        <li><span class="num">🍰</span> bolo <b>gostoso</b></li>
+      </ul>
+      <p class="dica"><b>Truque:</b> pergunte “<b>como é?</b>”. Como é o gato? Preguiçoso. Então “preguiçoso” é adjetivo.</p>`],
+    ['Concordância: um combina com o outro', `
+      <p>O adjetivo <mark>acompanha o substantivo</mark> no gênero e no número. Os dois andam juntos:</p>
+      <div class="tabela-wrap"><table>
+        <tr><th></th><th>Singular</th><th>Plural</th></tr>
+        <tr><th>Masculino</th><td>o menino alto</td><td>os meninos altos</td></tr>
+        <tr><th>Feminino</th><td>a menina alta</td><td>as meninas altas</td></tr>
+      </table></div>
+      <p>Alguns adjetivos são iguais no masculino e no feminino: <i>feliz, inteligente, grande, alegre</i>. O menino feliz, a menina feliz.</p>
+      <p class="dica">Errado: “as flores <s>vermelho</s>”. Certo: “as flores <b>vermelhas</b>”.</p>`]
+  ],
+  quiz: [
+    {t:'mc', lk:0, q:'Na frase “{NOME} adotou um gatinho”, quais palavras são substantivos?', o:['adotou e um','{NOME} e gatinho','um e gatinho','adotou e gatinho'], a:1, e:'{NOME} é o nome de uma pessoa (substantivo próprio) e gatinho é o nome de um animal (substantivo comum). “Adotou” é verbo e “um” é artigo.'},
+    {t:'mc', lk:1, q:'Qual destes é um substantivo próprio?', o:['cidade','escola','Copacabana','praia'], a:2, e:'Copacabana é o nome de um lugar específico, por isso é próprio e começa com maiúscula.'},
+    {t:'mc', lk:1, q:'Qual destas palavras deveria ser escrita com letra maiúscula?', o:['bola','brasil','janela','sapato'], a:1, e:'Brasil é o nome de um país: substantivo próprio, sempre com maiúscula.'},
+    {t:'mc', lk:2, q:'Qual é o feminino de “ator”?', o:['atora','atriz','atoriz','atrice'], a:1, e:'O ator, a atriz.'},
+    {t:'mc', lk:3, q:'Na frase “O cachorro peludo dormiu no sofá macio”, quais são os adjetivos?', o:['cachorro e sofá','dormiu e no','peludo e macio','O e no'], a:2, e:'Como é o cachorro? Peludo. Como é o sofá? Macio. Essas são as características.'},
+    {t:'mc', lk:4, q:'Qual frase está com a concordância certa?', o:['As flores vermelho','As flores vermelhas','A flores vermelhas','As flor vermelhas'], a:1, e:'“Flores” é feminino e plural, então o artigo e o adjetivo também ficam no feminino plural: as flores vermelhas.'}
+  ]
+},
+{
+  id: 'p-artigos', title: 'Artigos',
+  sub: 'Definidos e indefinidos, gênero e número',
+  lessons: [
+    ['O que é artigo', `
+      <p><b>Artigo</b> é a palavra que vem <mark>antes do substantivo</mark>. Ele mostra se o substantivo é masculino ou feminino, singular ou plural.</p>
+      <ul class="exemplos">
+        <li><span class="num">o</span> livro</li>
+        <li><span class="num">a</span> bola</li>
+        <li><span class="num">os</span> livros</li>
+        <li><span class="num">umas</span> bolas</li>
+      </ul>`],
+    ['Artigo definido: o, a, os, as', `
+      <p>O <b>artigo definido</b> fala de algo <mark>específico, já conhecido</mark>.</p>
+      <p>“Me empresta <b>o</b> lápis?” Quem fala está pensando em um lápis certo, aquele que está ali.</p>
+      <div class="tabela-wrap"><table>
+        <tr><th></th><th>Singular</th><th>Plural</th></tr>
+        <tr><th>Masculino</th><td class="big">o</td><td class="big">os</td></tr>
+        <tr><th>Feminino</th><td class="big">a</td><td class="big">as</td></tr>
+      </table></div>`],
+    ['Artigo indefinido: um, uma, uns, umas', `
+      <p>O <b>artigo indefinido</b> fala de algo <mark>qualquer, ainda não conhecido</mark>.</p>
+      <p>“Me empresta <b>um</b> lápis?” Serve qualquer lápis.</p>
+      <div class="tabela-wrap"><table>
+        <tr><th></th><th>Singular</th><th>Plural</th></tr>
+        <tr><th>Masculino</th><td class="big">um</td><td class="big">uns</td></tr>
+        <tr><th>Feminino</th><td class="big">uma</td><td class="big">umas</td></tr>
+      </table></div>
+      <p>Nas histórias, quando alguém aparece pela primeira vez, usamos o indefinido. Depois, como já conhecemos, usamos o definido:</p>
+      <p>“Era uma vez <b>um</b> rei. <b>O</b> rei morava em <b>um</b> castelo. <b>O</b> castelo ficava no alto da montanha.”</p>`],
+    ['O artigo combina com o substantivo', `
+      <p>O artigo concorda com o substantivo: <mark>masculino com masculino, feminino com feminino, singular com singular, plural com plural</mark>.</p>
+      <p>Às vezes é o artigo que mostra a diferença:</p>
+      <ul class="exemplos">
+        <li><span class="num">o / os</span> <b>o</b> lápis, <b>os</b> lápis: só o artigo mostra se é um ou mais de um.</li>
+        <li><span class="num">o / a</span> <b>o</b> estudante, <b>a</b> estudante: só o artigo mostra se é menino ou menina.</li>
+      </ul>`]
+  ],
+  quiz: [
+    {t:'mc', lk:1, q:'Quais são os artigos definidos?', o:['um, uma, uns, umas','o, a, os, as','eu, tu, ele, ela','me, te, se, nos'], a:1, e:'Os definidos são o, a, os, as. Os indefinidos são um, uma, uns, umas.'},
+    {t:'mc', lk:2, q:'Complete: “Ganhei ___ presente, mas ainda não abri para ver o que é.”', o:['os','um','as','uma'], a:1, e:'É um presente qualquer, ainda desconhecido, e a palavra “presente” é masculina e singular: um presente.'},
+    {t:'mc', lk:2, q:'Complete: “Vi um cachorro na praça. ___ cachorro estava com fome.”', o:['Um','O','Uma','Os'], a:1, e:'O cachorro já apareceu na primeira frase, então agora ele é conhecido: usamos o artigo definido “o”.'},
+    {t:'mc', lk:3, q:'Em “os lápis”, o artigo mostra que a palavra está no:', o:['singular','plural','feminino'], a:1, e:'“Lápis” é igual no singular e no plural. Quem mostra que são vários é o artigo “os”.'},
+    {t:'mc', lk:2, q:'Qual frase tem artigo indefinido?', o:['A menina chegou cedo.','Os alunos estudaram.','Umas crianças cantaram.','O sol brilhou.'], a:2, e:'“Umas” é artigo indefinido. A, os e o são definidos.'},
+    {t:'mc', lk:3, q:'Qual artigo combina com “mãos”?', o:['os','as','uns','o'], a:1, e:'“Mãos” é feminino e plural: as mãos.'}
+  ]
+},
+{
+  id: 'p-pessoais', title: 'Pronomes pessoais e pessoas do discurso',
+  sub: 'Eu, tu, ele, ela, nós, vós, eles, elas: quem fala, com quem se fala e de quem se fala',
+  lessons: [
+    ['Para que servem os pronomes', `
+      <p><b>Pronome</b> é a palavra que <mark>substitui o substantivo</mark>. Ele evita que a gente repita o mesmo nome toda hora.</p>
+      <p>Repetido: “O Pedro chegou. <s>O Pedro</s> trouxe a bola.”</p>
+      <p>Melhor: “O Pedro chegou. <b>Ele</b> trouxe a bola.”</p>`],
+    ['As pessoas do discurso', `
+      <p>Toda conversa tem três “pessoas”:</p>
+      <ul class="exemplos">
+        <li><span class="num">1ª</span> <b>quem fala</b>: eu, nós</li>
+        <li><span class="num">2ª</span> <b>com quem se fala</b>: tu, vós</li>
+        <li><span class="num">3ª</span> <b>de quem se fala</b>: ele, ela, eles, elas</li>
+      </ul>
+      <div class="tabela-wrap"><table>
+        <tr><th>Pessoa</th><th>Singular</th><th>Plural</th></tr>
+        <tr><td>1ª pessoa</td><td class="big">eu</td><td class="big">nós</td></tr>
+        <tr><td>2ª pessoa</td><td class="big">tu</td><td class="big">vós</td></tr>
+        <tr><td>3ª pessoa</td><td class="big">ele, ela</td><td class="big">eles, elas</td></tr>
+      </table></div>
+      <p class="dica">Aponte para você mesmo (eu), para o colega na sua frente (tu) e para alguém lá longe (ele ou ela). Pronto: as três pessoas!</p>`],
+    ['E o “você”?', `
+      <p>No Brasil, quase sempre usamos <b>você</b> no lugar de <b>tu</b> para falar com alguém. No plural, usamos <b>vocês</b>.</p>
+      <p>“Você” é um <mark>pronome de tratamento</mark>. A gente fala <b>com</b> a pessoa, mas o verbo fica igual ao da 3ª pessoa:</p>
+      <ul class="exemplos">
+        <li><span class="num">tu</span> tu estudas</li>
+        <li><span class="num">você</span> você estuda (igual a: ele estuda)</li>
+      </ul>
+      <p>O “vós” quase não é usado hoje. Ele aparece em textos antigos, orações e livros bem formais.</p>`],
+    ['Pronomes do caso reto', `
+      <p><b>Eu, tu, ele, ela, nós, vós, eles</b> e <b>elas</b> são os <mark>pronomes pessoais do caso reto</mark>. Normalmente eles são o <b>sujeito</b>: quem faz a ação.</p>
+      <p>“<b>Nós</b> fomos à praia.” Quem foi? Nós.</p>
+      <p><b>Como trocar um grupo de pessoas por um pronome:</b></p>
+      <ul class="exemplos">
+        <li><span class="num">nós</span> “Eu e a Ana” (eu estou no grupo)</li>
+        <li><span class="num">elas</span> “A Bia e a Lu” (só meninas)</li>
+        <li><span class="num">eles</span> “O Léo e o Davi” ou “A Lu e o Davi” (se tiver pelo menos um menino)</li>
+      </ul>`]
+  ],
+  quiz: [
+    {t:'mc', lk:1, q:'Qual é o pronome da 1ª pessoa do plural?', o:['eu','eles','nós','vós'], a:2, e:'1ª pessoa é quem fala. No plural, é “nós”.'},
+    {t:'mc', lk:3, q:'“O Davi e a Clara foram à praia.” Qual pronome substitui “o Davi e a Clara”?', o:['Nós','Eles','Elas','Vós'], a:1, e:'É um grupo com um menino e uma menina, e quem fala não está nele: eles.'},
+    {t:'mc', lk:3, q:'“A Bia e a Lu dançaram.” Qual pronome substitui “a Bia e a Lu”?', o:['Eles','Elas','Nós','Ela'], a:1, e:'São duas meninas, no plural: elas.'},
+    {t:'mc', lk:1, q:'Na frase “Eu vou te contar um segredo”, quem é a 1ª pessoa?', o:['Quem fala (eu)','Com quem se fala (te)','O segredo'], a:0, e:'A 1ª pessoa é sempre quem fala: eu.'},
+    {t:'mc', lk:1, q:'“Ele” é a pessoa:', o:['de quem se fala (3ª pessoa)','que fala (1ª pessoa)','com quem se fala (2ª pessoa)'], a:0, e:'Ele, ela, eles e elas são a 3ª pessoa: de quem se fala.'},
+    {t:'mc', lk:0, q:'Qual opção evita a repetição? “O Léo ganhou uma bicicleta. O Léo ficou muito feliz.”', o:['O Léo ganhou uma bicicleta. Ela ficou muito feliz.','O Léo ganhou uma bicicleta. Ele ficou muito feliz.','O Léo ganhou uma bicicleta. Nós ficamos muito felizes.'], a:1, e:'O pronome “ele” substitui “o Léo”. “Ela” mudaria o sentido: pareceria que quem ficou feliz foi a bicicleta!'}
+  ]
+},
+{
+  id: 'p-verbos', title: 'Verbos: presente, passado e futuro',
+  sub: 'Presente, pretérito perfeito, pretérito imperfeito e futuro',
+  lessons: [
+    ['O que é verbo', `
+      <p><b>Verbo</b> é a palavra que indica <mark>ação</mark> (correr, brincar), <mark>estado</mark> (ser, estar, ficar) ou <mark>fenômeno da natureza</mark> (chover, ventar).</p>
+      <p>O verbo no “nome original”, sem mudar, está no <b>infinitivo</b>. Ele termina em <b>-ar</b>, <b>-er</b> ou <b>-ir</b>: cantar, comer, partir.</p>
+      <p>O verbo muda conforme a <b>pessoa</b> (eu canto, nós cantamos) e o <b>tempo</b>: <mark>presente, passado (pretérito) e futuro</mark>.</p>`],
+    ['Presente', `
+      <p>O <b>presente</b> mostra o que <mark>está acontecendo agora</mark> ou o que <mark>acontece sempre</mark>, como um costume.</p>
+      <ul class="exemplos">
+        <li><span class="num">agora</span> Eu <b>estudo</b> para a prova.</li>
+        <li><span class="num">sempre</span> Ela <b>nada</b> todos os dias.</li>
+      </ul>`],
+    ['Pretérito perfeito', `
+      <p><b>Pretérito</b> quer dizer passado. O <b>pretérito perfeito</b> mostra uma ação do passado que <mark>aconteceu e terminou</mark>.</p>
+      <ul class="exemplos">
+        <li><span class="num">✔</span> Ontem eu <b>brinquei</b> no parque.</li>
+        <li><span class="num">✔</span> Ele <b>comeu</b> o bolo todo.</li>
+        <li><span class="num">✔</span> Nós <b>saímos</b> cedo.</li>
+      </ul>
+      <p class="dica">Pense numa <b>foto</b>: a ação já está pronta, acabou.</p>`],
+    ['Pretérito imperfeito', `
+      <p>O <b>pretérito imperfeito</b> também é passado, mas mostra uma ação que <mark>durava</mark> ou que <mark>se repetia</mark>, como um costume antigo.</p>
+      <ul class="exemplos">
+        <li><span class="num">⟳</span> Quando eu tinha 5 anos, <b>brincava</b> no parque todos os dias.</li>
+        <li><span class="num">⟳</span> Antigamente, minha avó <b>morava</b> em Minas.</li>
+        <li><span class="num">⟳</span> Era uma vez um dragão que <b>vivia</b> numa caverna.</li>
+      </ul>
+      <p>Muitos verbos no imperfeito terminam em <b>-ava</b> (brincava, cantava) ou <b>-ia</b> (comia, partia).</p>
+      <p class="dica">Pense num <b>filme</b>: a ação estava passando, durando. Compare: “Ontem eu <b>brinquei</b>” (perfeito, acabou) e “Antigamente eu <b>brincava</b>” (imperfeito, era costume).</p>`],
+    ['Futuro', `
+      <p>O <b>futuro</b> mostra o que <mark>ainda vai acontecer</mark>.</p>
+      <ul class="exemplos">
+        <li><span class="num">➜</span> Amanhã eu <b>estudarei</b> para a prova.</li>
+        <li><span class="num">➜</span> Amanhã eu <b>vou estudar</b> para a prova.</li>
+      </ul>
+      <p>As duas frases estão certas e falam do futuro. “Estudarei” é mais formal, mais de texto escrito. “Vou estudar” é o jeito que mais usamos falando.</p>`],
+    ['Quadro dos tempos', `
+      <p>Veja os verbos <b>brincar</b> e <b>comer</b> em cada tempo:</p>
+      <div class="tabela-wrap"><table>
+        <tr><th>Tempo</th><th>eu</th><th>ele / ela</th><th>nós</th></tr>
+        <tr><th>Presente</th><td>brinco</td><td>brinca</td><td>brincamos</td></tr>
+        <tr><th>Pretérito perfeito</th><td>brinquei</td><td>brincou</td><td>brincamos</td></tr>
+        <tr><th>Pretérito imperfeito</th><td>brincava</td><td>brincava</td><td>brincávamos</td></tr>
+        <tr><th>Futuro</th><td>brincarei</td><td>brincará</td><td>brincaremos</td></tr>
+      </table></div>
+      <div class="tabela-wrap"><table>
+        <tr><th>Tempo</th><th>eu</th><th>ele / ela</th><th>nós</th></tr>
+        <tr><th>Presente</th><td>como</td><td>come</td><td>comemos</td></tr>
+        <tr><th>Pretérito perfeito</th><td>comi</td><td>comeu</td><td>comemos</td></tr>
+        <tr><th>Pretérito imperfeito</th><td>comia</td><td>comia</td><td>comíamos</td></tr>
+        <tr><th>Futuro</th><td>comerei</td><td>comerá</td><td>comeremos</td></tr>
+      </table></div>
+      <p class="dica">Repare: “brincamos” serve para o presente e para o pretérito perfeito. Quem decide é o resto da frase: “<b>Hoje</b> brincamos” (presente), “<b>Ontem</b> brincamos” (passado).</p>`]
+  ],
+  quiz: [
+    {t:'mc', lk:2, q:'Em “Ontem eu joguei bola”, o verbo está no:', o:['presente','pretérito perfeito','pretérito imperfeito','futuro'], a:1, e:'A ação aconteceu ontem e terminou: pretérito perfeito.'},
+    {t:'mc', lk:3, q:'“Quando eu tinha 6 anos, eu andava de velocípede todos os dias.” O verbo “andava” está no:', o:['pretérito perfeito','presente','pretérito imperfeito','futuro'], a:2, e:'É um costume do passado, algo que se repetia todos os dias: pretérito imperfeito.'},
+    {t:'mc', lk:4, q:'Qual frase está no futuro?', o:['Eu viajei para Petrópolis.','Eu viajarei para Petrópolis.','Eu viajava para Petrópolis.','Eu viajo para Petrópolis.'], a:1, e:'“Viajarei” é algo que ainda vai acontecer. Viajei é perfeito, viajava é imperfeito e viajo é presente.'},
+    {t:'mc', lk:2, q:'Complete com o pretérito perfeito: “Ontem a turma ___ (cantar) no recreio.”', o:['canta','cantava','cantou','cantará'], a:2, e:'Ação que aconteceu ontem e terminou: cantou.'},
+    {t:'mc', lk:1, q:'Qual verbo está no presente?', o:['corri','corria','correrei','corro'], a:3, e:'Eu corro (presente), eu corri (perfeito), eu corria (imperfeito), eu correrei (futuro).'},
+    {t:'mc', lk:0, q:'Qual é o verbo da frase “Choveu muito no sábado”?', o:['muito','choveu','sábado','no'], a:1, e:'“Choveu” é um fenômeno da natureza. O infinitivo é chover.'}
+  ]
+},
+{
+  id: 'p-marcadores', title: 'Marcadores temporais',
+  sub: 'Palavras que mostram quando e em que ordem as coisas acontecem',
+  lessons: [
+    ['O que são marcadores temporais', `
+      <p><b>Marcadores temporais</b> são palavras ou expressões que mostram <mark>quando</mark> algo aconteceu, acontece ou vai acontecer.</p>
+      <p>Exemplos: <i>ontem, hoje, amanhã, agora, antigamente, ano passado, semana que vem, de manhã, era uma vez</i>.</p>
+      <p>“<b>Ontem</b> fui ao cinema.” “<b>Amanhã</b> tenho prova.” “<b>Antigamente</b> não existia celular.”</p>`],
+    ['Marcadores e o tempo do verbo', `
+      <p>O marcador é uma <mark>pista</mark> para escolher o tempo certo do verbo:</p>
+      <div class="tabela-wrap"><table>
+        <tr><th>Passado</th><th>Presente</th><th>Futuro</th></tr>
+        <tr><td>ontem<br>anteontem<br>semana passada<br>ano passado<br>antigamente<br>há muito tempo</td><td>hoje<br>agora<br>neste momento<br>todos os dias</td><td>amanhã<br>depois de amanhã<br>semana que vem<br>no próximo ano<br>daqui a pouco</td></tr>
+      </table></div>
+      <p class="dica">Os dois têm que combinar! Errado: “<s>Amanhã eu fui</s> à escola.” Certo: “Amanhã eu <b>irei</b> (ou <b>vou</b>) à escola.”</p>
+      <p><b>Antigamente</b>, <b>naquele tempo</b> e <b>quando eu era menor</b> costumam combinar com o <b>pretérito imperfeito</b>: “Antigamente, as pessoas <b>escreviam</b> cartas.”</p>`],
+    ['Marcadores de sequência', `
+      <p>Alguns marcadores mostram a <mark>ordem</mark> em que as coisas acontecem, uma depois da outra:</p>
+      <p><b>primeiro, depois, em seguida, logo depois, então, enquanto isso, por fim, finalmente.</b></p>
+      <div class="modelo"><b>Exemplo: fazendo um bolo</b><p><b>Primeiro</b>, lavei as mãos. <b>Depois</b>, separei os ingredientes. <b>Em seguida</b>, misturei tudo. <b>Por fim</b>, coloquei a forma no forno.</p></div>
+      <p class="dica">Use esses marcadores quando for escrever uma história ou uma receita. O texto fica organizado e fácil de entender.</p>`]
+  ],
+  quiz: [
+    {t:'mc', lk:0, q:'Qual palavra é um marcador temporal?', o:['bonito','amanhã','cadeira','correr'], a:1, e:'“Amanhã” mostra quando algo vai acontecer.'},
+    {t:'mc', lk:1, q:'Complete: “___ eu fui ao cinema com a minha avó.”', o:['Amanhã','Ontem','Daqui a pouco','Semana que vem'], a:1, e:'O verbo “fui” está no passado, então o marcador também tem que ser de passado: ontem.'},
+    {t:'mc', lk:1, q:'Qual marcador combina com o futuro?', o:['ano passado','antigamente','no próximo ano','anteontem'], a:2, e:'“No próximo ano” fala de algo que ainda vai acontecer.'},
+    {t:'mc', lk:1, q:'Qual frase está ERRADA?', o:['Amanhã eu irei à escola.','Ontem eu fui à escola.','Amanhã eu fui à escola.','Hoje eu vou à escola.'], a:2, e:'“Amanhã” é futuro e “fui” é passado. Eles não combinam.'},
+    {t:'mc', lk:2, q:'Qual marcador mostra o FINAL de uma sequência?', o:['Primeiro','Em seguida','Por fim','Depois'], a:2, e:'“Por fim” (ou “finalmente”) mostra a última etapa.'},
+    {t:'mc', lk:1, q:'“Antigamente, as pessoas ___ cartas.” Qual verbo combina?', o:['escreverão','escreviam','escrevem','escreverem'], a:1, e:'“Antigamente” fala de um costume do passado: pretérito imperfeito, escreviam.'}
+  ]
+},
+{
+  id: 'p-obliquos', title: 'Pronomes oblíquos átonos e tônicos',
+  sub: 'Me, te, o, a, nos... e mim, ti, comigo, conosco...',
+  lessons: [
+    ['Reto ou oblíquo?', `
+      <p>Os pronomes <b>retos</b> (eu, tu, ele...) normalmente são o <mark>sujeito</mark>: quem faz a ação.</p>
+      <p>Os pronomes <b>oblíquos</b> normalmente são o <mark>complemento</mark>: quem recebe a ação.</p>
+      <ul class="exemplos">
+        <li><span class="num">reto</span> <b>Eu</b> vi a Ana. (eu fiz a ação)</li>
+        <li><span class="num">oblíquo</span> A Ana <b>me</b> viu. (eu recebi a ação)</li>
+      </ul>
+      <p>Os oblíquos se dividem em dois grupos: <b>átonos</b> e <b>tônicos</b>.</p>`],
+    ['Oblíquos átonos', `
+      <p><b>Átono</b> quer dizer “fraco”, sem força na pronúncia. Esses pronomes ficam <mark>grudadinhos no verbo</mark>, <b>sem preposição</b>.</p>
+      <p class="caminho"><span>me</span><span>te</span><span>se</span><span>o</span><span>a</span><span>lhe</span><span>nos</span><span>vos</span><span>os</span><span>as</span><span>lhes</span></p>
+      <ul class="exemplos">
+        <li><span class="num">me</span> Ela <b>me</b> chamou.</li>
+        <li><span class="num">te</span> Eu <b>te</b> ajudo.</li>
+        <li><span class="num">nos</span> O professor <b>nos</b> elogiou.</li>
+      </ul>`],
+    ['Oblíquos tônicos', `
+      <p><b>Tônico</b> quer dizer “forte”. Esses pronomes vêm <mark>depois de uma preposição</mark>: <i>para, de, por, sem, a, em, sobre, entre...</i></p>
+      <p class="caminho"><span>mim</span><span>ti</span><span>ele</span><span>ela</span><span>si</span><span>nós</span><span>vós</span><span>eles</span><span>elas</span></p>
+      <p>Com a preposição <b>com</b>, eles viram uma palavra só: <b>comigo, contigo, consigo, conosco, convosco</b>.</p>
+      <ul class="exemplos">
+        <li><span class="num">mim</span> Esse presente é <b>para mim</b>.</li>
+        <li><span class="num">ti</span> Ela gosta muito <b>de ti</b>.</li>
+        <li><span class="num">comigo</span> Vem <b>comigo</b>!</li>
+        <li><span class="num">conosco</span> Ele almoçou <b>conosco</b>.</li>
+      </ul>`],
+    ['Quadro completo', `
+      <div class="tabela-wrap"><table>
+        <tr><th>Pessoa</th><th>Reto</th><th>Oblíquo átono</th><th>Oblíquo tônico</th></tr>
+        <tr><td>1ª singular</td><td>eu</td><td>me</td><td>mim, comigo</td></tr>
+        <tr><td>2ª singular</td><td>tu</td><td>te</td><td>ti, contigo</td></tr>
+        <tr><td>3ª singular</td><td>ele, ela</td><td>o, a, lhe, se</td><td>ele, ela, si, consigo</td></tr>
+        <tr><td>1ª plural</td><td>nós</td><td>nos</td><td>nós, conosco</td></tr>
+        <tr><td>2ª plural</td><td>vós</td><td>vos</td><td>vós, convosco</td></tr>
+        <tr><td>3ª plural</td><td>eles, elas</td><td>os, as, lhes, se</td><td>eles, elas, si, consigo</td></tr>
+      </table></div>
+      <p class="dica">Copie esse quadro no caderno. Ele resolve quase todas as questões deste tema!</p>`],
+    ['Cuidado: “para mim” ou “para eu”?', `
+      <p>O <b>mim</b> nunca faz a ação. Se depois vier um <mark>verbo que a pessoa vai fazer</mark>, use <b>eu</b>:</p>
+      <ul class="exemplos">
+        <li><span class="num">✔</span> Esse livro é <b>para mim</b>. (não tem verbo depois)</li>
+        <li><span class="num">✔</span> Esse livro é <b>para eu ler</b>. (quem vai ler sou eu)</li>
+        <li><span class="num">✘</span> <s>Esse livro é para mim ler.</s></li>
+      </ul>
+      <p>Outros cuidados: diga <b>comigo</b> (e não “com eu” ou “com mim”) e <b>conosco</b>.</p>
+      <p class="dica">Truque: “mim” não fala, não lê, não faz nada. Quem faz é o <b>eu</b>!</p>`]
+  ],
+  quiz: [
+    {t:'mc', lk:1, q:'Qual destes é um pronome oblíquo átono?', o:['mim','comigo','me','eu'], a:2, e:'“Me” fica junto do verbo, sem preposição: é átono. Mim e comigo são tônicos, e eu é reto.'},
+    {t:'mc', lk:4, q:'Complete: “Esse bilhete é para ___.”', o:['eu','mim','me','comigo'], a:1, e:'Depois da preposição “para”, sem verbo em seguida, usamos o tônico “mim”.'},
+    {t:'mc', lk:4, q:'Complete: “A professora pediu para ___ ler o texto.”', o:['mim','eu','me','comigo'], a:1, e:'Quem vai ler sou eu. Como depois vem o verbo “ler”, o certo é “para eu ler”.'},
+    {t:'mc', lk:2, q:'Qual frase está certa?', o:['Você quer ir com eu?','Você quer ir comigo?','Você quer ir com me?'], a:1, e:'Com + eu vira uma palavra só: comigo.'},
+    {t:'mc', lk:1, q:'Na frase “A vovó nos levou ao parque”, o pronome “nos” é:', o:['reto','oblíquo átono','oblíquo tônico','artigo'], a:1, e:'“Nos” recebe a ação, está junto do verbo e não tem preposição: oblíquo átono.'},
+    {t:'mc', lk:2, q:'Os pronomes oblíquos tônicos aparecem depois de:', o:['uma preposição (para, de, sem, por...)','um artigo','um adjetivo'], a:0, e:'Os tônicos vêm depois de preposição: para mim, de ti, sem ela.'}
+  ]
+},
+{
+  id: 'p-objeto', title: 'Objeto direto: o, a, os, as',
+  sub: 'Trocar o complemento do verbo por um pronome, sem repetir',
+  lessons: [
+    ['O que é objeto direto', `
+      <p>Alguns verbos precisam de um <b>complemento</b> para a frase fazer sentido. “Eu comprei...” Comprei o quê?</p>
+      <p>Quando o complemento vem <mark>sem preposição</mark>, ele se chama <b>objeto direto</b>. Para achar, pergunte ao verbo: <b>o quê?</b> ou <b>quem?</b></p>
+      <ul class="exemplos">
+        <li><span class="num">o quê?</span> A Ana comeu <b>a maçã</b>. (comeu o quê? a maçã)</li>
+        <li><span class="num">quem?</span> O cachorro seguiu <b>o menino</b>. (seguiu quem? o menino)</li>
+      </ul>`],
+    ['Trocando por o, a, os, as', `
+      <p>Para não repetir, trocamos o objeto direto por um pronome oblíquo. Ele <mark>combina com a palavra que substitui</mark>:</p>
+      <div class="tabela-wrap"><table>
+        <tr><th></th><th>Singular</th><th>Plural</th></tr>
+        <tr><th>Masculino</th><td class="big">o</td><td class="big">os</td></tr>
+        <tr><th>Feminino</th><td class="big">a</td><td class="big">as</td></tr>
+      </table></div>
+      <ul class="exemplos">
+        <li><span class="num">o</span> Eu encontrei <b>o Pedro</b>. → Eu <b>o</b> encontrei.</li>
+        <li><span class="num">a</span> Eu lavei <b>a louça</b>. → Eu <b>a</b> lavei.</li>
+        <li><span class="num">os</span> Eu guardei <b>os brinquedos</b>. → Eu <b>os</b> guardei.</li>
+        <li><span class="num">as</span> Nós regamos <b>as plantas</b>. → Nós <b>as</b> regamos.</li>
+      </ul>
+      <div class="modelo"><b>No texto:</b><p>“Ganhei uma bola nova. Levei <s>a bola</s> para a escola.” → “Ganhei uma bola nova. Eu <b>a</b> levei para a escola.”</p></div>`],
+    ['Fala e escrita', `
+      <p>Conversando, é comum ouvir: “Eu vi <b>ele</b> ontem.” Mas, na escrita da escola e na prova, o certo é usar o pronome oblíquo:</p>
+      <ul class="exemplos">
+        <li><span class="num">✘</span> <s>Eu vi ele ontem.</s></li>
+        <li><span class="num">✔</span> Eu <b>o</b> vi ontem.</li>
+        <li><span class="num">✘</span> <s>Encontrei elas no parque.</s></li>
+        <li><span class="num">✔</span> Eu <b>as</b> encontrei no parque.</li>
+      </ul>
+      <p class="dica">Na escrita formal, não começamos a frase com o, a, os, as. Escreva “<b>Eu o</b> vi”, e não “<s>O vi</s>”.</p>`],
+    ['Para saber mais: lo, la, los, las', `
+      <p>Quando o verbo termina em <b>r</b>, o pronome muda um pouquinho: o <b>r</b> sai e o pronome vira <mark>lo, la, los, las</mark>, ligado por um tracinho.</p>
+      <ul class="exemplos">
+        <li><span class="num">lo</span> Vou comprar o pão. → Vou <b>comprá-lo</b>.</li>
+        <li><span class="num">la</span> Quero ver a apresentação. → Quero <b>vê-la</b>.</li>
+        <li><span class="num">los</span> Preciso abrir os presentes. → Preciso <b>abri-los</b>.</li>
+      </ul>
+      <p class="dica">Fique de olho no acento: compr<b>á</b>-lo, v<b>ê</b>-la. Com verbos em -ir não tem acento: abri-los.</p>`],
+    ['Artigo ou pronome?', `
+      <p>Cuidado: <b>o, a, os, as</b> podem ser <mark>artigo</mark> ou <mark>pronome</mark>!</p>
+      <ul class="exemplos">
+        <li><span class="num">artigo</span> <b>O</b> gato dormiu. (vem antes de um substantivo: gato)</li>
+        <li><span class="num">pronome</span> Eu <b>o</b> vi. (fica junto do verbo e substitui um nome)</li>
+      </ul>
+      <p class="dica">Olhe a palavra que vem depois. Se for um <b>substantivo</b>, é artigo. Se for um <b>verbo</b>, é pronome.</p>`]
+  ],
+  quiz: [
+    {t:'mc', lk:0, q:'Em “A Lia comprou um caderno”, qual é o objeto direto?', o:['A Lia','comprou','um caderno'], a:2, e:'Comprou o quê? Um caderno. Esse é o objeto direto.'},
+    {t:'mc', lk:1, q:'“Eu encontrei a Júlia.” Qual opção troca “a Júlia” por um pronome do jeito certo?', o:['Eu a encontrei.','Eu o encontrei.','Eu encontrei ela.','Eu os encontrei.'], a:0, e:'“A Júlia” é feminino singular, então usamos “a”. “Encontrei ela” é comum na fala, mas não na escrita formal.'},
+    {t:'mc', lk:1, q:'“O papai lavou os pratos.” Trocando “os pratos” por um pronome, fica:', o:['O papai as lavou.','O papai os lavou.','O papai o lavou.','O papai lavou eles.'], a:1, e:'“Os pratos” é masculino plural: os.'},
+    {t:'mc', lk:1, q:'“Regamos as flores.” Qual pronome substitui “as flores”?', o:['o','a','os','as'], a:3, e:'“As flores” é feminino plural: Nós as regamos.'},
+    {t:'mc', lk:4, q:'Em qual frase o “o” é PRONOME (e não artigo)?', o:['O sol nasceu.','Eu o encontrei no parque.','O livro é novo.','Comi o bolo.'], a:1, e:'Em “Eu o encontrei”, o “o” está junto do verbo e substitui alguém. Nas outras, vem antes de um substantivo: é artigo.'},
+    {t:'esc', p:true, lk:1, q:'Copie no caderno e reescreva a segunda frase, trocando a parte repetida por um pronome: “Ganhei uma bola nova. Levei a bola para a escola.”', r:'Ganhei uma bola nova. Eu a levei para a escola. (Também vale: Levei-a para a escola.)', e:'“A bola” é feminino singular, então troca por “a”.'}
+  ]
+}
+];
+TOPICS_POR.forEach((t, i) => t.quiz.forEach(q => { if (q.tm == null) q.tm = i; }));
+
+const FINAL_POR = [
+  {tm:0, lk:1, t:'mc', q:'Qual palavra é um substantivo próprio?', o:['menino','Brasil','país','rua'], a:1, e:'Brasil é o nome de um país específico: substantivo próprio, com maiúscula.'},
+  {tm:0, lk:3, t:'mc', q:'Em “A praia limpa e bonita”, os adjetivos são:', o:['praia e limpa','limpa e bonita','A e praia','praia e bonita'], a:1, e:'Como é a praia? Limpa e bonita.'},
+  {tm:0, lk:4, t:'mc', q:'Complete com a concordância certa: “Os dias ___.”', o:['ensolarado','ensolarada','ensolarados','ensolaradas'], a:2, e:'“Dias” é masculino e plural: ensolarados.'},
+  {tm:1, lk:2, t:'mc', q:'Em “Uns amigos vieram me visitar”, a palavra “Uns” é artigo:', o:['definido','indefinido'], a:1, e:'Um, uma, uns, umas são artigos indefinidos.'},
+  {tm:1, lk:1, t:'mc', q:'Em qual frase o artigo mostra que é algo específico, já conhecido?', o:['Me empresta uma caneta?','Me empresta a caneta azul que está na sua mesa?'], a:1, e:'“A caneta azul que está na sua mesa” é uma caneta certa: artigo definido.'},
+  {tm:2, lk:1, t:'mc', q:'“Nós” é pronome da:', o:['1ª pessoa do singular','1ª pessoa do plural','3ª pessoa do plural','2ª pessoa do plural'], a:1, e:'Nós = quem fala, no plural.'},
+  {tm:2, lk:1, t:'mc', q:'Na frase “Tu és meu amigo”, “tu” é a pessoa:', o:['que fala','com quem se fala','de quem se fala'], a:1, e:'Tu é a 2ª pessoa: com quem se fala.'},
+  {tm:2, lk:3, t:'mc', q:'Qual pronome substitui “o Davi e a Clara”?', o:['Elas','Eles','Nós','Ele'], a:1, e:'Grupo com pelo menos um menino: eles.'},
+  {tm:3, lk:3, t:'mc', q:'“Era uma vez um dragão que morava numa caverna.” Os verbos “era” e “morava” estão no:', o:['presente','pretérito perfeito','pretérito imperfeito','futuro'], a:2, e:'Nas histórias, o pretérito imperfeito mostra como as coisas eram, uma situação que durava.'},
+  {tm:3, lk:2, t:'mc', q:'Qual frase está no pretérito perfeito?', o:['Eu leio um livro.','Eu li um livro.','Eu lerei um livro.','Eu lia livros.'], a:1, e:'“Li” é uma ação do passado que terminou.'},
+  {tm:3, lk:4, t:'mc', q:'Complete: “Nós ___ (viajar) nas férias do ano que vem.”', o:['viajamos','viajávamos','viajaremos','viajam'], a:2, e:'“Ano que vem” é futuro: viajaremos.'},
+  {tm:4, lk:1, t:'mc', q:'Qual marcador temporal indica passado?', o:['amanhã','semana passada','agora','daqui a pouco'], a:1, e:'“Semana passada” já passou.'},
+  {tm:4, lk:2, t:'mc', q:'Qual é a ordem certa dos marcadores de sequência?', o:['Por fim, primeiro, depois','Primeiro, depois, por fim','Depois, por fim, primeiro'], a:1, e:'Primeiro vem o começo, depois o meio e por fim o final.'},
+  {tm:5, lk:2, t:'mc', q:'Complete: “Você vai ao cinema ___?” (com + eu)', o:['com eu','comigo','com mim'], a:1, e:'Com + eu vira comigo.'},
+  {tm:5, lk:4, t:'mc', q:'Qual frase está certa?', o:['Isso é para mim fazer.','Isso é para eu fazer.','Isso é para me fazer.'], a:1, e:'Quem vai fazer sou eu. Antes de verbo, use “para eu”.'},
+  {tm:5, lk:1, t:'mc', q:'Em “O cachorro te seguiu”, “te” é pronome oblíquo:', o:['átono','tônico'], a:0, e:'“Te” está junto do verbo, sem preposição: átono.'},
+  {tm:6, lk:1, t:'mc', q:'“A mamãe preparou o almoço.” Trocando “o almoço” por um pronome, fica:', o:['A mamãe a preparou.','A mamãe o preparou.','A mamãe os preparou.','A mamãe preparou ele.'], a:1, e:'“O almoço” é masculino singular: o.'},
+  {tm:6, lk:1, t:'mc', q:'“Eu chamei as minhas amigas.” → “Eu ___ chamei.”', o:['os','as','a','lhes'], a:1, e:'“As minhas amigas” é feminino plural: as.'},
+  {tm:6, lk:1, t:'esc', p:true, q:'Reescreva no caderno, trocando “os primos” por um pronome: “O Rafa encontrou os primos no shopping.”', r:'O Rafa os encontrou no shopping.', e:'“Os primos” é masculino plural, então troca por “os”, que fica antes do verbo.'},
+  {tm:3, lk:5, t:'esc', p:true, q:'Reescreva no caderno, passando o verbo para o futuro: “Eu arrumei o meu quarto.”', r:'Eu arrumarei o meu quarto. (Também vale: Eu vou arrumar o meu quarto.)', e:'Arrumei (passado) vira arrumarei ou vou arrumar (futuro).'}
+];
+
+const META_POR = [
+  {cor:'#D1452A', em:'🐺', nome:'Lobo-guará', dica:'Oi! Eu sou a Capi. Para achar um substantivo, tente colocar “o” ou “a” na frente: a alegria, o lápis... Funciona!'},
+  {cor:'#2F6BFF', em:'🐝', nome:'Abelha-jataí', dica:'O artigo é pequenininho, mas mostra se a palavra é masculina ou feminina, singular ou plural.'},
+  {cor:'#8E44E8', em:'🦀', nome:'Caranguejo-uçá', dica:'Aponte para você (eu), para o colega da frente (tu) e para alguém lá longe (ele ou ela). Pronto: as três pessoas!'},
+  {cor:'#0E9F63', em:'🐟', nome:'Pirarucu', dica:'Leia cada frase e pense: isso já aconteceu, está acontecendo ou ainda vai acontecer?'},
+  {cor:'#F07B00', em:'🐞', nome:'Joaninha', dica:'Ontem, hoje, amanhã... os marcadores são pistas para escolher o tempo do verbo!'},
+  {cor:'#0096B8', em:'🐍', nome:'Jiboia', dica:'Depois de “para”, “de” ou “sem”, use mim. Mas, se vier um verbo depois, é “para eu”!'},
+  {cor:'#E0336E', em:'🦈', nome:'Tubarão-baleia', dica:'Pergunte ao verbo: “o quê?” ou “quem?”. A resposta é o objeto direto!'}
+];
+
 /* ---------- O que estudar quando erra ---------- */
 (() => {
   const LK = [[1,1,2,3,3,4],[2,0,3,3,2,0],[1,2,2,2,1,2],[1,1,2,2,2,3],[2,2,3,3,1,2],[2,3,1,2,3,3],[1,1,1,1,1,2]];
@@ -953,12 +1376,13 @@ const META_CIE = [
   {cor:'#8E44E8', em:'🦚', nome:'Pavão', dica:'Aqui você escreve as respostas no caderno, como na prova. Capricha na letra!'}
 ];
 const SUBJ = {
-  mat: {nome:'Matemática', em:'🔢', topics:TOPICS_MAT, final:FINAL_MAT, meta:META_MAT, metaFinal:{cor:'#E2A400', em:'🏆', nome:'Troféu da prova final'}, data:new Date(2026, 9, 22), key:'revisao-mat-miranda-v1', keyH:'revisao-mat-miranda-hist-v1'},
-  cie: {nome:'Ciências', em:'🫁', topics:TOPICS_CIE, final:FINAL_CIE, meta:META_CIE, metaFinal:{cor:'#E2A400', em:'🥇', nome:'Medalha de Ciências'}, data:new Date(2026, 9, 23), key:'revisao-cie-v1', keyH:'revisao-cie-hist-v1'}
+  por: {nome:'Português', em:'📚', sub:'📚 Português: classes de palavras e tempos verbais', topics:TOPICS_POR, final:FINAL_POR, meta:META_POR, metaFinal:{cor:'#E2A400', em:'📜', nome:'Diploma de Português'}, data:new Date(2026, 9, 26), key:'revisao-por-v1', keyH:'revisao-por-hist-v1'},
+  mat: {nome:'Matemática', em:'🔢', topics:TOPICS_MAT, final:FINAL_MAT, meta:META_MAT, sub:'📏 Matemática: números, contas e figuras', metaFinal:{cor:'#E2A400', em:'🏆', nome:'Troféu da prova final'}, data:new Date(2026, 9, 22), key:'revisao-mat-miranda-v1', keyH:'revisao-mat-miranda-hist-v1'},
+  cie: {nome:'Ciências', em:'🫁', topics:TOPICS_CIE, final:FINAL_CIE, meta:META_CIE, sub:'🔬 Ciências: o sistema respiratório', metaFinal:{cor:'#E2A400', em:'🥇', nome:'Medalha de Ciências'}, data:new Date(2026, 9, 23), key:'revisao-cie-v1', keyH:'revisao-cie-hist-v1'}
 };
 let MAT, TOPICS, FINAL, META, META_FINAL, KEY, KEY_H, ALLQ = [];
 function usarMateria(m){
-  if (!SUBJ[m]) m = 'cie';
+  if (!SUBJ[m]) m = 'por';
   MAT = m; const S = SUBJ[m];
   TOPICS = S.topics; FINAL = S.final; META = S.meta; META_FINAL = S.metaFinal; KEY = S.key; KEY_H = S.keyH;
   ALLQ = [...TOPICS.flatMap(t => t.quiz), ...FINAL];
@@ -985,7 +1409,10 @@ const CAPI_SVG = `<svg viewBox="0 0 120 100" aria-hidden="true">
 </svg>`;
 const OCULOS = '<path d="M44 40 L58 31" stroke="#1F6FA8" stroke-width="3" stroke-linecap="round"/><circle cx="36" cy="43" r="10" fill="rgba(190,235,255,.45)" stroke="#1F6FA8" stroke-width="3"/>';
 const FRASCO = '<g transform="rotate(22 64 22)"><rect x="60" y="2" width="9" height="8" fill="#E6F7FF" stroke="#1F6FA8" stroke-width="2"/><path d="M60 10 L52 36 Q64 42 77 36 L69 10 Z" fill="#E6F7FF" stroke="#1F6FA8" stroke-width="2"/><path d="M55 28 Q64 33 74 28 L77 36 Q64 42 52 36 Z" fill="#3CCFB4"/></g>';
-const capiSvg = () => MAT === 'cie'
+const LIVRO = '<g transform="rotate(-14 64 20)"><rect x="47" y="9" width="34" height="23" rx="3" fill="#8E44E8" stroke="#4A1E6E" stroke-width="2"/><path d="M50 10 Q57 6 64 10 L64 29 Q57 25 50 29 Z" fill="#FFFDF6" stroke="#4A1E6E" stroke-width="1.6"/><path d="M64 10 Q71 6 78 10 L78 29 Q71 25 64 29 Z" fill="#FFFDF6" stroke="#4A1E6E" stroke-width="1.6"/><path d="M53 15 h7 M53 19 h7 M67 15 h7 M67 19 h7" stroke="#B9A6CC" stroke-width="1.4"/></g>';
+const capiSvg = () => MAT === 'por'
+  ? CAPI_SVG.replace(/<rect x="60" y="6"[^>]*\/>/, LIVRO)
+  : MAT === 'cie'
   ? CAPI_SVG.replace(/<rect x="60" y="6"[^>]*\/>/, FRASCO).replace('</svg>', OCULOS + '</svg>')
   : CAPI_SVG;
 const capi = (msg, peq) => `<div class="capi${peq ? ' peq' : ''}">${capiSvg()}<div class="balao">${msg}</div></div>`;
@@ -1071,8 +1498,12 @@ function confete(n = 60){
 let NOME = (() => { try { return localStorage.getItem('revisao-mat-nome') || ''; } catch(e){ return ''; } })();
 function aplicarNome(){
   const n = NOME || 'Ana';
-  for (const q of [...TOPICS_MAT, ...TOPICS_CIE].flatMap(t => t.quiz).concat(FINAL_MAT, FINAL_CIE)) { if (q.q0 == null) q.q0 = q.q; q.q = q.q0.replaceAll('{NOME}', n); }
-  for (const t of [...TOPICS_MAT, ...TOPICS_CIE]) for (const l of t.lessons) { if (l[2] == null) l[2] = l[1]; l[1] = l[2].replaceAll('{NOME}', n); }
+  for (const q of [...TOPICS_MAT, ...TOPICS_CIE, ...TOPICS_POR].flatMap(t => t.quiz).concat(FINAL_MAT, FINAL_CIE, FINAL_POR)) {
+    if (q.q0 == null) { q.q0 = q.q; q.e0 = q.e; if (q.o) q.o0 = [...q.o]; }
+    q.q = q.q0.replaceAll('{NOME}', n); q.e = q.e0.replaceAll('{NOME}', n);
+    if (q.o0) q.o = q.o0.map(x => x.replaceAll('{NOME}', n));
+  }
+  for (const t of [...TOPICS_MAT, ...TOPICS_CIE, ...TOPICS_POR]) for (const l of t.lessons) { if (l[2] == null) l[2] = l[1]; l[1] = l[2].replaceAll('{NOME}', n); }
 }
 aplicarNome();
 function pedirNome(){
@@ -1080,13 +1511,14 @@ function pedirNome(){
   document.documentElement.dataset.materia = 'inicio';
   app.innerHTML = `
     <h1>A trilha de estudos</h1>
-    <p style="font-family:Fredoka,sans-serif;font-weight:600;font-size:1.25rem;color:var(--margin);margin:10px 0 4px">💌 A Miranda convidou você para estudar com ela para as provas de Matemática e Ciências!</p>
+    <p style="font-family:Fredoka,sans-serif;font-weight:600;font-size:1.25rem;color:var(--margin);margin:10px 0 4px">💌 A Miranda convidou você para estudar com ela para as provas!</p>
     <div class="capi">${CAPI_SVG.replace(/<rect x="60" y="6"[^>]*\/>/, '')}<div class="balao">Oi! Eu sou a Capi e vou estudar com vocês. Antes de começar, como você se chama?</div></div>
     <div class="ficha">
       <label for="nome" style="font-weight:700">Seu primeiro nome:</label>
       <div class="resp"><input id="nome" autocomplete="off" maxlength="20" style="width:14ch"></div>
       <p style="font-weight:700;margin:14px 0 4px">O que você quer estudar primeiro?</p>
       <div class="escolha">
+        <button class="escolha-mat" data-act="salvarNome" data-arg="por" style="--tema:#8E44E8"><span>📚</span><b>Português</b><small>Classes de palavras e verbos</small></button>
         <button class="escolha-mat" data-act="salvarNome" data-arg="cie" style="--tema:#0E9F8F"><span>🔬</span><b>Ciências</b><small>Sistema respiratório</small></button>
         <button class="escolha-mat" data-act="salvarNome" data-arg="mat" style="--tema:#2F6BFF"><span>📏</span><b>Matemática</b><small>Números, contas e figuras</small></button>
       </div>
@@ -1114,7 +1546,7 @@ function home(){
   const s = load();
   const prova = SUBJ[MAT].data;
   const hoje = new Date(); hoje.setHours(0,0,0,0);
-  const dias = Math.round((prova - hoje) / 86400000);
+  const dias = prova ? Math.round((prova - hoje) / 86400000) : null;
   const totalEst = TOPICS.reduce((a, t) => a + nEst(s.best[t.id], 6), 0) + nEst(s.final, FINAL.length);
   const totalFig = TOPICS.filter((t, i) => ganhou(s, i)).length + (ganhou(s, TOPICS.length) ? 1 : 0);
   const prox = (() => { const k = TOPICS.findIndex((t, i) => !ganhou(s, i)); return k === -1 ? (ganhou(s, TOPICS.length) ? -1 : TOPICS.length) : k; })();
@@ -1124,7 +1556,7 @@ function home(){
   else if (prox === TOPICS.length) fala = 'Todas as figurinhas dos temas são suas! Agora falta só o troféu da prova final.';
   else fala = `Você já tem ${totalEst} estrelas! A próxima parada é o tema ${prox + 1}. Bora?`;
   const nm = SUBJ[MAT].nome;
-  const diasTxt = dias > 1 ? `📅 Faltam ${dias} dias para a prova de ${nm}` : dias === 1 ? `📅 A prova de ${nm} é amanhã!` : dias === 0 ? `📅 Hoje é a prova de ${nm}. Você consegue!` : `📅 A prova de ${nm} já passou. Dá para continuar treinando!`;
+  const diasTxt = dias == null ? '' : dias > 1 ? `📅 Faltam ${dias} dias para a prova de ${nm}` : dias === 1 ? `📅 A prova de ${nm} é amanhã!` : dias === 0 ? `📅 Hoje é a prova de ${nm}. Você consegue!` : `📅 A prova de ${nm} já passou. Dá para continuar treinando!`;
   const paradas = TOPICS.map((t, i) => {
     const g = ganhou(s, i), b = s.best[t.id];
     return `<li class="parada${i === prox ? ' agora' : ''}" style="--tema:${META[i].cor}">
@@ -1143,10 +1575,10 @@ function home(){
   app.innerHTML = `
     ${abas('materia')}
     <h1>A trilha de ${NOME}</h1>
-    <p class="subtitulo">${MAT === 'cie' ? '🔬 Ciências: o sistema respiratório' : '📏 Matemática: números, contas e figuras'}</p>
+    <p class="subtitulo">${SUBJ[MAT].sub}</p>
     <p class="convite">💌 A <b>Miranda</b> está muito feliz de compartilhar esta trilha com a turma toda. Bons estudos!</p>
     ${capi(fala)}
-    <div class="placar-topo"><span class="chip">⭐ ${totalEst} de ${(TOPICS.length + 1) * 3} estrelas</span><span class="chip">🎴 ${totalFig} de ${TOPICS.length + 1} figurinhas</span><span class="chip dias">${diasTxt}</span></div>
+    <div class="placar-topo"><span class="chip">⭐ ${totalEst} de ${(TOPICS.length + 1) * 3} estrelas</span><span class="chip">🎴 ${totalFig} de ${TOPICS.length + 1} figurinhas</span>${diasTxt ? `<span class="chip dias">${diasTxt}</span>` : ''}</div>
     <ol class="trilha">${paradas}
       <li class="parada${prox === TOPICS.length ? ' agora' : ''}" style="--tema:${META_FINAL.cor}">
         <button data-act="final"><span class="bola${gf ? ' figurinha' : ''}">${gf ? '🏆' : '★'}</span>
@@ -1156,7 +1588,7 @@ function home(){
     <h2>Meu álbum de figurinhas</h2>
     <div class="album">${album}</div>
     <div class="acoes" style="margin:0 0 18px"><button class="btn sec" data-act="painel">👨‍👧 Painel dos pais: acertos e erros</button></div>
-    <p class="dica">✏️ <b>Regra do jogo:</b> toda conta é feita no caderno, com lápis. Aqui você só digita a resposta.</p>
+    <p class="dica">✏️ <b>Regra do jogo:</b> ${MAT === 'mat' ? 'toda conta é feita no caderno, com lápis. Aqui você só digita a resposta.' : 'quando aparecer o lápis, escreva a resposta no caderno antes de conferir.'}</p>
     <p class="rodape">O progresso fica salvo neste aparelho. <button data-act="reset">Começar a trilha do zero</button> · <button data-act="trocarNome">Trocar o nome</button></p>`;
   subir();
 }
@@ -1514,7 +1946,7 @@ document.addEventListener('keydown', e => {
   else if (e.target.id === 'tab-ans') { e.preventDefault(); tabCheck(); }
   else if (e.target.id === 'nome') { e.preventDefault(); salvarNome(); }
 });
-usarMateria((() => { try { return localStorage.getItem('revisao-materia'); } catch(e){ return null; } })() || 'cie');
+usarMateria((() => { try { return localStorage.getItem('revisao-materia'); } catch(e){ return null; } })() || 'por');
 home();
 </script>
 </body>
